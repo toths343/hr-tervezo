@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class Login extends Controller
@@ -13,9 +14,11 @@ class Login extends Controller
         return view('login.index');
     }
 
-    public function login(LoginRequest $loginRequest)
+    public function login(LoginRequest $loginRequest): RedirectResponse
     {
+        $validated = $loginRequest->validated();
 
+        return redirect('/');
     }
 
 }
