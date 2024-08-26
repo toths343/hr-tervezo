@@ -21,4 +21,9 @@ class Login extends Controller
         return redirect('/');
     }
 
+    public function logout(): RedirectResponse
+    {
+        return redirect('/login');
+    }
+
 }

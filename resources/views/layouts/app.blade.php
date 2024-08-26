@@ -27,7 +27,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav me-auto">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Entities
@@ -39,6 +39,10 @@
                                 </ul>
                             </li>
                         </ul>
+
+                        <a class="btn btn-outline-primary" href="{{ route('logout') }}">
+                            {{ __('layout.logout') }}
+                        </a>
                     </div>
                 </div>
             </nav>

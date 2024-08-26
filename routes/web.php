@@ -24,7 +24,7 @@ Route::group([
 
     Route::controller(Login::class)->group(function () {
         Route::get('/login', 'index');
-        Route::post('/login', 'login')
-            ->name('login');
+        Route::get('/logout', 'logout')->name('logout');
+        Route::post('/login', 'login')->name('login');
     });
 });
