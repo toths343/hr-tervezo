@@ -1,0 +1,66 @@
+<?php
+
+namespace App\Models;
+
+use App\Models\Base\ElszamolasiAdatok as BaseElszamolasiAdatok;
+
+class ElszamolasiAdatok extends BaseElszamolasiAdatok
+{
+	protected $fillable = [
+		'elszam_prj_id',
+		'elszam_azonosito',
+		'elszam_status',
+		'elszam_benyujt_date',
+		'elszam_zaras_date',
+		'dkf_benyujt_eu_teteles_eloleg',
+		'dkf_benyujt_hazai_teteles_eloleg',
+		'dkf_benyujt_eu_atalany_eloleg',
+		'dkf_benyujt_hazai_atalany_eloleg',
+		'dkf_benyujt_eu_teteles_utofin',
+		'dkf_benyujt_hazai_teteles_utofin',
+		'dkf_benyujt_eu_atalany_utofin',
+		'dkf_benyujt_hazai_atalany_utofin',
+		'dkf_elfog_eu_teteles_eloleg',
+		'dkf_elfog_hazai_teteles_eloleg',
+		'dkf_elfog_eu_atalany_eloleg',
+		'dkf_elfog_hazai_atalany_eloleg',
+		'dkf_elfog_eu_teteles_utofin',
+		'dkf_elfog_hazai_teteles_utofin',
+		'dkf_elfog_eu_atalany_utofin',
+		'dkf_elfog_hazai_atalany_utofin',
+		'szallito_benyujt_eu_teteles_eloleg',
+		'szallito_benyujt_hazai_teteles_eloleg',
+		'szallito_benyujt_eu_atalany_eloleg',
+		'szallito_benyujt_hazai_atalany_eloleg',
+		'szallito_benyujt_eu_teteles_utofin',
+		'szallito_benyujt_hazai_teteles_utofin',
+		'szallito_benyujt_eu_atalany_utofin',
+		'szallito_benyujt_hazai_atalany_utofin',
+		'szallito_elfog_eu_teteles_eloleg',
+		'szallito_elfog_hazai_teteles_eloleg',
+		'szallito_elfog_eu_atalany_eloleg',
+		'szallito_elfog_hazai_atalany_eloleg',
+		'szallito_elfog_eu_teteles_utofin',
+		'szallito_elfog_hazai_teteles_utofin',
+		'szallito_elfog_eu_atalany_utofin',
+		'szallito_elfog_hazai_atalany_utofin',
+		'dkf_benyujt_teteles_eloleg_megj',
+		'dkf_benyujt_atalany_eloleg_megj',
+		'dkf_benyujt_teteles_utofin_megj',
+		'dkf_benyujt_atlany_utofin_megj',
+		'dkf_elfog_teteles_eloleg_megj',
+		'dkf_elfog_atalany_eloleg_megj',
+		'dkf_elfog_teteles_utofin_megj',
+		'dkf_elfog_atlany_utofin_megj',
+		'szallito_benyujt_teteles_eloleg_megj',
+		'szallito_benyujt_atalany_eloleg_megj',
+		'szallito_benyujt_teteles_utofin_megj',
+		'szallito_benyujt_atlany_utofin_megj',
+		'szallito_elfog_teteles_eloleg_megj',
+		'szallito_elfog_atalany_eloleg_megj',
+		'szallito_elfog_teteles_utofin_megj',
+		'szallito_elfog_atlany_utofin_megj',
+		'elszam_creater',
+		'elszam_modifier'
+	];
+}
