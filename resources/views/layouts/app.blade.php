@@ -8,45 +8,34 @@
 </head>
 <body>
     <div class="container">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    {{ __('layout.title') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Entities
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Entity 1</a></li>
+                                <li><a class="dropdown-item" href="#">Entity 2</a></li>
+                                <li><a class="dropdown-item" href="#">Entity 3</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="/">
-                        {{ __('layout.title') }}
+                    <a class="btn btn-outline-primary" href="{{ route('logout') }}">
+                        {{ __('layout.logout') }}
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav me-auto">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Entities
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Entity 1</a></li>
-                                    <li><a class="dropdown-item" href="#">Entity 2</a></li>
-                                    <li><a class="dropdown-item" href="#">Entity 3</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                        <a class="btn btn-outline-primary" href="{{ route('logout') }}">
-                            {{ __('layout.logout') }}
-                        </a>
-                    </div>
                 </div>
-            </nav>
-
+            </div>
+        </nav>
 
         @yield('content')
     </div>
