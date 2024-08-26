@@ -33,24 +33,35 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AuthUser extends Model
 {
+	const USER_UID = 'user_uid';
+	const USER_GROUP_UID = 'user_group_uid';
+	const USER_LOGIN = 'user_login';
+	const USER_PASSWORD = 'user_password';
+	const USER_NAME = 'user_name';
+	const USER_CREATED = 'user_created';
+	const USER_CREATER = 'user_creater';
+	const USER_LASTUPD = 'user_lastupd';
+	const USER_MODIFIER = 'user_modifier';
+	const USER_DEL = 'user_del';
 	protected $table = 'auth_user';
 	protected $primaryKey = 'user_uid';
 	public $timestamps = false;
 
 	protected $casts = [
-		'user_group_uid' => 'int',
-		'user_created' => 'datetime',
-		'user_lastupd' => 'datetime',
-		'user_del' => 'int'
+		self::USER_UID => 'int',
+		self::USER_GROUP_UID => 'int',
+		self::USER_CREATED => 'datetime',
+		self::USER_LASTUPD => 'datetime',
+		self::USER_DEL => 'int'
 	];
 
 	public function auth_group()
 	{
-		return $this->belongsTo(AuthGroup::class, 'user_group_uid');
+		return $this->belongsTo(AuthGroup::class, \App\Models\AuthUser::USER_GROUP_UID);
 	}
 
 	public function auth_user_resources()
 	{
-		return $this->hasMany(AuthUserResource::class, 'aures_user_uid');
+		return $this->hasMany(AuthUserResource::class, AuthUserResource::AURES_USER_UID);
 	}
 }

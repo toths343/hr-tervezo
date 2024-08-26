@@ -20,7 +20,7 @@ class AuthUser extends BaseAuthUser implements Authenticatable
 		'user_modifier'
 	];
 
-    public function getAuthIdentifierName()
+    public function getAuthIdentifierName(): string
     {
         return $this->user_name;
     }
@@ -30,7 +30,7 @@ class AuthUser extends BaseAuthUser implements Authenticatable
         return $this->user_uid;
     }
 
-    public function getAuthPassword()
+    public function getAuthPassword(): string
     {
         return $this->user_password;
     }
@@ -50,5 +50,9 @@ class AuthUser extends BaseAuthUser implements Authenticatable
         // TODO: Implement getRememberTokenName() method.
     }
 
+    public function getAuthPasswordName(): string
+    {
+        return BaseAuthUser::USER_PASSWORD;
+    }
 
 }

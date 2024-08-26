@@ -38,33 +38,47 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Pozicio extends Model
 {
+	const POZ_UID = 'poz_uid';
+	const POZ_MKV_ID = 'poz_mkv_id';
+	const POZ_POZK_UID = 'poz_pozk_uid';
+	const POZ_NEV = 'poz_nev';
+	const POZ_SZERVEZET = 'poz_szervezet';
+	const POZ_AKTIV = 'poz_aktiv';
+	const POZ_HATKEZD = 'poz_hatkezd';
+	const POZ_HATVEGE = 'poz_hatvege';
+	const POZ_CREATED = 'poz_created';
+	const POZ_CREATER = 'poz_creater';
+	const POZ_LASTUPD = 'poz_lastupd';
+	const POZ_MODIFIER = 'poz_modifier';
+	const POZ_DEL = 'poz_del';
 	protected $table = 'pozicio';
 	protected $primaryKey = 'poz_uid';
 	public $timestamps = false;
 
 	protected $casts = [
-		'poz_mkv_id' => 'int',
-		'poz_pozk_uid' => 'int',
-		'poz_aktiv' => 'int',
-		'poz_hatkezd' => 'datetime',
-		'poz_hatvege' => 'datetime',
-		'poz_created' => 'datetime',
-		'poz_lastupd' => 'datetime',
-		'poz_del' => 'int'
+		self::POZ_UID => 'int',
+		self::POZ_MKV_ID => 'int',
+		self::POZ_POZK_UID => 'int',
+		self::POZ_AKTIV => 'int',
+		self::POZ_HATKEZD => 'datetime',
+		self::POZ_HATVEGE => 'datetime',
+		self::POZ_CREATED => 'datetime',
+		self::POZ_LASTUPD => 'datetime',
+		self::POZ_DEL => 'int'
 	];
 
 	public function munkavallalo()
 	{
-		return $this->belongsTo(Munkavallalo::class, 'poz_mkv_id', 'mkv_id');
+		return $this->belongsTo(Munkavallalo::class, \App\Models\Pozicio::POZ_MKV_ID, Munkavallalo::MKV_ID);
 	}
 
 	public function pozicio_kategorium()
 	{
-		return $this->belongsTo(PozicioKategorium::class, 'poz_pozk_uid');
+		return $this->belongsTo(PozicioKategorium::class, \App\Models\Pozicio::POZ_POZK_UID);
 	}
 
 	public function pozicio_orabontas()
 	{
-		return $this->hasMany(PozicioOrabonta::class, 'pozb_poz_uid');
+		return $this->hasMany(PozicioOrabonta::class, PozicioOrabonta::POZB_POZ_UID);
 	}
 }

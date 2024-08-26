@@ -18,12 +18,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class VMkvIdNexonSzemelyId extends Model
 {
+	const MKV_ID = 'mkv_id';
+	const MKV_NEXON_SZEMELY_ID = 'mkv_nexon_szemely_id';
 	protected $table = 'v_mkv_id_nexon_szemely_id';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'mkv_id' => 'int',
-		'mkv_nexon_szemely_id' => 'int'
+		self::MKV_ID => 'int',
+		self::MKV_NEXON_SZEMELY_ID => 'int'
 	];
 }

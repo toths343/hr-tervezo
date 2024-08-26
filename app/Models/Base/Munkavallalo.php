@@ -33,23 +33,36 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Munkavallalo extends Model
 {
+	const MKV_UID = 'mkv_uid';
+	const MKV_ID = 'mkv_id';
+	const MKV_NEXON_SZEMELY_ID = 'mkv_nexon_szemely_id';
+	const MKV_NEXON_JOGV_ID = 'mkv_nexon_jogv_id';
+	const MKV_NEV = 'mkv_nev';
+	const MKV_HATKEZD = 'mkv_hatkezd';
+	const MKV_HATVEGE = 'mkv_hatvege';
+	const MKV_CREATED = 'mkv_created';
+	const MKV_CREATER = 'mkv_creater';
+	const MKV_MODIFIER = 'mkv_modifier';
+	const MKV_LASTUPD = 'mkv_lastupd';
+	const MKV_DEL = 'mkv_del';
 	protected $table = 'munkavallalo';
 	protected $primaryKey = 'mkv_uid';
 	public $timestamps = false;
 
 	protected $casts = [
-		'mkv_id' => 'int',
-		'mkv_nexon_szemely_id' => 'int',
-		'mkv_nexon_jogv_id' => 'int',
-		'mkv_hatkezd' => 'datetime',
-		'mkv_hatvege' => 'datetime',
-		'mkv_created' => 'datetime',
-		'mkv_lastupd' => 'datetime',
-		'mkv_del' => 'int'
+		self::MKV_UID => 'int',
+		self::MKV_ID => 'int',
+		self::MKV_NEXON_SZEMELY_ID => 'int',
+		self::MKV_NEXON_JOGV_ID => 'int',
+		self::MKV_HATKEZD => 'datetime',
+		self::MKV_HATVEGE => 'datetime',
+		self::MKV_CREATED => 'datetime',
+		self::MKV_LASTUPD => 'datetime',
+		self::MKV_DEL => 'int'
 	];
 
 	public function pozicios()
 	{
-		return $this->hasMany(Pozicio::class, 'poz_mkv_id', 'mkv_id');
+		return $this->hasMany(Pozicio::class, Pozicio::POZ_MKV_ID, Pozicio::MKV_ID);
 	}
 }

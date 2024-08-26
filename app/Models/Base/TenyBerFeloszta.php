@@ -38,30 +38,49 @@ use Illuminate\Database\Eloquent\Model;
  */
 class TenyBerFeloszta extends Model
 {
+	const TEB_UID = 'teb_uid';
+	const TEB_TEBB_UID = 'teb_tebb_uid';
+	const TEB_JOGV_ID = 'teb_jogv_id';
+	const TEB_JUT_UID = 'teb_jut_uid';
+	const TEB_SZAMF_EV = 'teb_szamf_ev';
+	const TEB_SZAMF_HONAP = 'teb_szamf_honap';
+	const TEB_VON_KEZD = 'teb_von_kezd';
+	const TEB_VON_VEGE = 'teb_von_vege';
+	const TEB_M_NAPOK = 'teb_m_napok';
+	const TEB_N_NAPOK = 'teb_n_napok';
+	const TEB_M_ORA = 'teb_m_ora';
+	const TEB_OSSZEG = 'teb_osszeg';
+	const TEB_NIDO_HIANY = 'teb_nido_hiany';
+	const TEB_CREATED = 'teb_created';
+	const TEB_CREATER = 'teb_creater';
+	const TEB_LASTUPD = 'teb_lastupd';
+	const TEB_MODIFIER = 'teb_modifier';
+	const TEB_DEL = 'teb_del';
 	protected $table = 'teny_ber_felosztas';
 	protected $primaryKey = 'teb_uid';
 	public $timestamps = false;
 
 	protected $casts = [
-		'teb_tebb_uid' => 'int',
-		'teb_jogv_id' => 'int',
-		'teb_jut_uid' => 'int',
-		'teb_szamf_ev' => 'int',
-		'teb_szamf_honap' => 'int',
-		'teb_von_kezd' => 'datetime',
-		'teb_von_vege' => 'datetime',
-		'teb_m_napok' => 'int',
-		'teb_n_napok' => 'int',
-		'teb_m_ora' => 'float',
-		'teb_osszeg' => 'float',
-		'teb_nido_hiany' => 'int',
-		'teb_created' => 'datetime',
-		'teb_lastupd' => 'datetime',
-		'teb_del' => 'int'
+		self::TEB_UID => 'int',
+		self::TEB_TEBB_UID => 'int',
+		self::TEB_JOGV_ID => 'int',
+		self::TEB_JUT_UID => 'int',
+		self::TEB_SZAMF_EV => 'int',
+		self::TEB_SZAMF_HONAP => 'int',
+		self::TEB_VON_KEZD => 'datetime',
+		self::TEB_VON_VEGE => 'datetime',
+		self::TEB_M_NAPOK => 'int',
+		self::TEB_N_NAPOK => 'int',
+		self::TEB_M_ORA => 'float',
+		self::TEB_OSSZEG => 'float',
+		self::TEB_NIDO_HIANY => 'int',
+		self::TEB_CREATED => 'datetime',
+		self::TEB_LASTUPD => 'datetime',
+		self::TEB_DEL => 'int'
 	];
 
 	public function teny_ber_betolte()
 	{
-		return $this->belongsTo(TenyBerBetolte::class, 'teb_tebb_uid');
+		return $this->belongsTo(TenyBerBetolte::class, \App\Models\TenyBerFeloszta::TEB_TEBB_UID);
 	}
 }

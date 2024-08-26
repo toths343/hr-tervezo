@@ -26,13 +26,23 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Szotar extends Model
 {
+	const SZO_UID = 'szo_uid';
+	const SZO_TIPUS = 'szo_tipus';
+	const SZO_RNEV = 'szo_rnev';
+	const SZO_HNEV = 'szo_hnev';
+	const SZO_CREATED = 'szo_created';
+	const SZO_CREATER = 'szo_creater';
+	const SZO_LASTUPD = 'szo_lastupd';
+	const SZO_MODIFIER = 'szo_modifier';
+	const SZO_DEL = 'szo_del';
 	protected $table = 'szotar';
 	protected $primaryKey = 'szo_uid';
 	public $timestamps = false;
 
 	protected $casts = [
-		'szo_created' => 'datetime',
-		'szo_lastupd' => 'datetime',
-		'szo_del' => 'int'
+		self::SZO_UID => 'int',
+		self::SZO_CREATED => 'datetime',
+		self::SZO_LASTUPD => 'datetime',
+		self::SZO_DEL => 'int'
 	];
 }

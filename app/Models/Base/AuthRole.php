@@ -30,18 +30,28 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AuthRole extends Model
 {
+	const ROLE_UID = 'role_uid';
+	const ROLE_LABEL = 'role_label';
+	const ROLE_NAME = 'role_name';
+	const ROLE_DESCRIPTION = 'role_description';
+	const ROLE_CREATED = 'role_created';
+	const ROLE_CREATER = 'role_creater';
+	const ROLE_LASTUPD = 'role_lastupd';
+	const ROLE_MODIFIER = 'role_modifier';
+	const ROLE_DEL = 'role_del';
 	protected $table = 'auth_role';
 	protected $primaryKey = 'role_uid';
 	public $timestamps = false;
 
 	protected $casts = [
-		'role_created' => 'datetime',
-		'role_lastupd' => 'datetime',
-		'role_del' => 'int'
+		self::ROLE_UID => 'int',
+		self::ROLE_CREATED => 'datetime',
+		self::ROLE_LASTUPD => 'datetime',
+		self::ROLE_DEL => 'int'
 	];
 
 	public function auth_group_roles()
 	{
-		return $this->hasMany(AuthGroupRole::class, 'grole_role_uid');
+		return $this->hasMany(AuthGroupRole::class, AuthGroupRole::GROLE_ROLE_UID);
 	}
 }

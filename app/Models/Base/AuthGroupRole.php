@@ -30,25 +30,34 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AuthGroupRole extends Model
 {
+	const GROLE_UID = 'grole_uid';
+	const GROLE_GROUP_UID = 'grole_group_uid';
+	const GROLE_ROLE_UID = 'grole_role_uid';
+	const GROLE_CREATED = 'grole_created';
+	const GROLE_CREATER = 'grole_creater';
+	const GROLE_LASTUPD = 'grole_lastupd';
+	const GROLE_MODIFIER = 'grole_modifier';
+	const GROLE_DEL = 'grole_del';
 	protected $table = 'auth_group_role';
 	protected $primaryKey = 'grole_uid';
 	public $timestamps = false;
 
 	protected $casts = [
-		'grole_group_uid' => 'int',
-		'grole_role_uid' => 'int',
-		'grole_created' => 'datetime',
-		'grole_lastupd' => 'datetime',
-		'grole_del' => 'int'
+		self::GROLE_UID => 'int',
+		self::GROLE_GROUP_UID => 'int',
+		self::GROLE_ROLE_UID => 'int',
+		self::GROLE_CREATED => 'datetime',
+		self::GROLE_LASTUPD => 'datetime',
+		self::GROLE_DEL => 'int'
 	];
 
 	public function auth_group()
 	{
-		return $this->belongsTo(AuthGroup::class, 'grole_group_uid');
+		return $this->belongsTo(AuthGroup::class, \App\Models\AuthGroupRole::GROLE_GROUP_UID);
 	}
 
 	public function auth_role()
 	{
-		return $this->belongsTo(AuthRole::class, 'grole_role_uid');
+		return $this->belongsTo(AuthRole::class, \App\Models\AuthGroupRole::GROLE_ROLE_UID);
 	}
 }

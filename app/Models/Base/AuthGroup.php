@@ -31,23 +31,32 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AuthGroup extends Model
 {
+	const GROUP_UID = 'group_uid';
+	const GROUP_NAME = 'group_name';
+	const GROUP_TYPE = 'group_type';
+	const GROUP_CREATED = 'group_created';
+	const GROUP_CREATER = 'group_creater';
+	const GROUP_LASTUPD = 'group_lastupd';
+	const GROUP_MODIFIER = 'group_modifier';
+	const GROUP_DEL = 'group_del';
 	protected $table = 'auth_group';
 	protected $primaryKey = 'group_uid';
 	public $timestamps = false;
 
 	protected $casts = [
-		'group_created' => 'datetime',
-		'group_lastupd' => 'datetime',
-		'group_del' => 'int'
+		self::GROUP_UID => 'int',
+		self::GROUP_CREATED => 'datetime',
+		self::GROUP_LASTUPD => 'datetime',
+		self::GROUP_DEL => 'int'
 	];
 
 	public function auth_group_roles()
 	{
-		return $this->hasMany(AuthGroupRole::class, 'grole_group_uid');
+		return $this->hasMany(AuthGroupRole::class, AuthGroupRole::GROLE_GROUP_UID);
 	}
 
 	public function auth_users()
 	{
-		return $this->hasMany(AuthUser::class, 'user_group_uid');
+		return $this->hasMany(AuthUser::class, AuthUser::USER_GROUP_UID);
 	}
 }

@@ -8,6 +8,7 @@ namespace App\Models\Base;
 
 use App\Models\Partner;
 use App\Models\ProjektPartner;
+use App\Models\ProjektPartnerKapcsolattarto;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -38,29 +39,45 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Kapcsolattarto extends Model
 {
+	const KAPCS_UID = 'kapcs_uid';
+	const KAPCS_ID = 'kapcs_id';
+	const KAPCS_AZONOSITO = 'kapcs_azonosito';
+	const KAPCS_TIPUS = 'kapcs_tipus';
+	const KAPCS_PAR_ID = 'kapcs_par_id';
+	const KAPCS_NEV = 'kapcs_nev';
+	const KAPCS_EMAIL = 'kapcs_email';
+	const KAPCS_TEL = 'kapcs_tel';
+	const KAPCS_HATKEZD = 'kapcs_hatkezd';
+	const KAPCS_HATVEGE = 'kapcs_hatvege';
+	const KAPCS_CREATED = 'kapcs_created';
+	const KAPCS_CREATER = 'kapcs_creater';
+	const KAPCS_LASTUPD = 'kapcs_lastupd';
+	const KAPCS_MODIFIER = 'kapcs_modifier';
+	const KAPCS_DEL = 'kapcs_del';
 	protected $table = 'kapcsolattarto';
 	protected $primaryKey = 'kapcs_uid';
 	public $timestamps = false;
 
 	protected $casts = [
-		'kapcs_id' => 'int',
-		'kapcs_tipus' => 'bool',
-		'kapcs_par_id' => 'int',
-		'kapcs_hatkezd' => 'datetime',
-		'kapcs_hatvege' => 'datetime',
-		'kapcs_created' => 'datetime',
-		'kapcs_lastupd' => 'datetime',
-		'kapcs_del' => 'int'
+		self::KAPCS_UID => 'int',
+		self::KAPCS_ID => 'int',
+		self::KAPCS_TIPUS => 'bool',
+		self::KAPCS_PAR_ID => 'int',
+		self::KAPCS_HATKEZD => 'datetime',
+		self::KAPCS_HATVEGE => 'datetime',
+		self::KAPCS_CREATED => 'datetime',
+		self::KAPCS_LASTUPD => 'datetime',
+		self::KAPCS_DEL => 'int'
 	];
 
 	public function partner()
 	{
-		return $this->belongsTo(Partner::class, 'kapcs_par_id', 'par_id');
+		return $this->belongsTo(Partner::class, \App\Models\Kapcsolattarto::KAPCS_PAR_ID, Partner::PAR_ID);
 	}
 
 	public function projekt_partners()
 	{
-		return $this->belongsToMany(ProjektPartner::class, 'projekt_partner_kapcsolattarto', 'prjpk_kapcs_id', 'prjpk_prjp_uid')
-					->withPivot('prjpk_uid', 'prjpk_jelleg', 'prjpk_del');
+		return $this->belongsToMany(ProjektPartner::class, 'projekt_partner_kapcsolattarto', ProjektPartner::PRJPK_KAPCS_ID, ProjektPartner::PRJPK_PRJP_UID)
+					->withPivot(ProjektPartnerKapcsolattarto::PRJPK_UID, ProjektPartnerKapcsolattarto::PRJPK_JELLEG, ProjektPartnerKapcsolattarto::PRJPK_DEL);
 	}
 }

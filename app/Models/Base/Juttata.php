@@ -33,15 +33,32 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Juttata extends Model
 {
+	const JUT_UID = 'jut_uid';
+	const JUT_CID = 'jut_cid';
+	const JUT_TARTOZIK_FOKONYV = 'jut_tartozik_fokonyv';
+	const JUT_TARTOZIK_MEGNEVEZES = 'jut_tartozik_megnevezes';
+	const JUT_JUTTATAS = 'jut_juttatas';
+	const JUT_KOVETEL_FOKONYV = 'jut_kovetel_fokonyv';
+	const JUT_KOVETEL_MEGNEVEZES = 'jut_kovetel_megnevezes';
+	const JUT_KTGTIP = 'jut_ktgtip';
+	const JUT_OSZTASALAP = 'jut_osztasalap';
+	const JUT_HATKEZD = 'jut_hatkezd';
+	const JUT_HATVEGE = 'jut_hatvege';
+	const JUT_CREATED = 'jut_created';
+	const JUT_CREATER = 'jut_creater';
+	const JUT_LASTUPD = 'jut_lastupd';
+	const JUT_MODIFIER = 'jut_modifier';
+	const JUT_DEL = 'jut_del';
 	protected $table = 'juttatas';
 	protected $primaryKey = 'jut_uid';
 	public $timestamps = false;
 
 	protected $casts = [
-		'jut_hatkezd' => 'datetime',
-		'jut_hatvege' => 'datetime',
-		'jut_created' => 'datetime',
-		'jut_lastupd' => 'datetime',
-		'jut_del' => 'int'
+		self::JUT_UID => 'int',
+		self::JUT_HATKEZD => 'datetime',
+		self::JUT_HATVEGE => 'datetime',
+		self::JUT_CREATED => 'datetime',
+		self::JUT_LASTUPD => 'datetime',
+		self::JUT_DEL => 'int'
 	];
 }

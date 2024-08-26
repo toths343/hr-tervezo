@@ -29,20 +29,30 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AuthUserResource extends Model
 {
+	const AURES_UID = 'aures_uid';
+	const AURES_USER_UID = 'aures_user_uid';
+	const AURES_RES_ID = 'aures_res_id';
+	const AURES_RES_TYPE = 'aures_res_type';
+	const AURES_CREATED = 'aures_created';
+	const AURES_CREATER = 'aures_creater';
+	const AURES_LASTUPD = 'aures_lastupd';
+	const AURES_MODIFIER = 'aures_modifier';
+	const AURES_DEL = 'aures_del';
 	protected $table = 'auth_user_resource';
 	protected $primaryKey = 'aures_uid';
 	public $timestamps = false;
 
 	protected $casts = [
-		'aures_user_uid' => 'int',
-		'aures_res_id' => 'int',
-		'aures_created' => 'datetime',
-		'aures_lastupd' => 'datetime',
-		'aures_del' => 'int'
+		self::AURES_UID => 'int',
+		self::AURES_USER_UID => 'int',
+		self::AURES_RES_ID => 'int',
+		self::AURES_CREATED => 'datetime',
+		self::AURES_LASTUPD => 'datetime',
+		self::AURES_DEL => 'int'
 	];
 
 	public function auth_user()
 	{
-		return $this->belongsTo(AuthUser::class, 'aures_user_uid');
+		return $this->belongsTo(AuthUser::class, \App\Models\AuthUserResource::AURES_USER_UID);
 	}
 }
