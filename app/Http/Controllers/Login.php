@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class Login extends Controller
@@ -18,7 +19,17 @@ class Login extends Controller
     {
         $validated = $loginRequest->validated();
 
-        return redirect('/');
+        if (Auth::attempt([
+            'user_login' => $validated['userName'],
+            'password' => $validated['password'],
+        ])) {
+            $loginRequest->session()->regenerate();
+            return redirect()->intended();
+        }
+
+        return back()->withErrors([
+            'userName' => __('login.auth_failed'),
+        ])->onlyInput('userName');
     }
 
     public function logout(): RedirectResponse
