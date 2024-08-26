@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group([
+    'middleware' => [],
+], function () {
+    Route::controller(Login::class)->group(function () {
+        Route::get('/', 'index');
+    });
 });
