@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Home;
 use App\Http\Controllers\Login;
+use App\Http\Controllers\Partner;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,4 +28,9 @@ Route::group([
         Route::get('/logout', 'logout')->name('logout');
         Route::post('/login', 'login')->name('login');
     });
+
+    Route::controller(Partner::class)->group(function () {
+        Route::get('/partners', 'index')->name('partner.index');;
+    });
+
 });
