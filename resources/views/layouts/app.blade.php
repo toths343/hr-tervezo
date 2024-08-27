@@ -59,6 +59,14 @@
     @yield('content')
 </div>
 
+@push('scripts')
+    <script type="module">
+        $(() => {
+            $('input[name="aktDate"]').datepicker();
+        });
+    </script>
+@endpush
+
 @stack('scripts')
 </body>
 </html>
