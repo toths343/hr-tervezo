@@ -16,7 +16,7 @@
 <body>
 <div class="container-xxl p-0">
     <div class="bg-body-secondary p-2 text-end">
-       @include('layouts.snippets.datepickers')
+        @include('layouts.snippets.datepickers')
         <span class="fw-semibold ms-3">
             {{ $user->user_name }}
         </span>
