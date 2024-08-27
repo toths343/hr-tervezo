@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Models\AuthUser;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,10 @@ class Login extends Controller
             'password' => $validated['password'],
         ])) {
             $loginRequest->session()->regenerate();
+            $now = Carbon::now();
+            $loginRequest->session()->put('actDate', $now);
+            $loginRequest->session()->put('startDate', $now->copy()->startOfYear());
+            $loginRequest->session()->put('endDate', $now->copy()->endOfYear());
             return redirect()->intended();
         }
 

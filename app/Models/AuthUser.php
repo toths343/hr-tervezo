@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Base\AuthUser as BaseAuthUser;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\Auth;
 
 class AuthUser extends BaseAuthUser implements Authenticatable
 {
@@ -26,7 +25,7 @@ class AuthUser extends BaseAuthUser implements Authenticatable
         return BaseAuthUser::USER_UID;
     }
 
-    public function getAuthIdentifier()
+    public function getAuthIdentifier(): mixed
     {
         return $this->attributes[$this->getAuthIdentifierName()];
     }

@@ -16,12 +16,14 @@
 <body>
 <div class="container-xxl p-0">
     <div class="bg-body-secondary p-2 text-end">
-        {{ __('layout.date_picker') }}:
-        <input type="text" name="aktDate">
-        {{ __('layout.display') }}:
-        <input type="text" name="startDate">
-        <input type="text" name="endDate">
-        <span class="fw-semibold">
+        <span>{{ __('layout.date_picker') }}:</span>
+        <input type="text" name="actDate" value="{{ session()->get('actDate')->format('Y.m.d') }}">
+
+        <span class="ms-3">{{ __('layout.display') }}:</span>
+        <input type="text" name="startDate" value="{{ session()->get('startDate')->format('Y.m.d') }}">
+        <input type="text" name="endDate" value="{{ session()->get('endDate')->format('Y.m.d') }}">
+
+        <span class="fw-semibold ms-3">
             {{ $user->user_name }}
         </span>
         <a class="btn btn-outline-primary ms-2" href="{{ route('logout') }}">
@@ -62,7 +64,42 @@
 @push('scripts')
     <script type="module">
         $(() => {
-            $('input[name="aktDate"]').datepicker();
+            const dateFormat = 'yy.mm.dd';
+
+            $('input[name="actDate"]').datepicker({
+                dateFormat: dateFormat
+            });
+
+            const from = $('input[name="startDate"]')
+                .datepicker({
+                    defaultDate: '+1w',
+                    changeMonth: true,
+                    dateFormat: dateFormat
+                })
+                .on('change', function () {
+                    to.datepicker('option', 'minDate', getDate(this));
+                });
+
+            const to = $('input[name="endDate"]')
+                .datepicker({
+                    defaultDate: '+1w',
+                    changeMonth: true,
+                    dateFormat: dateFormat
+                })
+                .on( "change", function() {
+                    from.datepicker('option', 'maxDate', getDate(this));
+                });
+
+            function getDate( element ) {
+                let date;
+                try {
+                    date = $.datepicker.parseDate(dateFormat, element.value);
+                } catch( error ) {
+                    date = null;
+                }
+
+                return date;
+            }
         });
     </script>
 @endpush
