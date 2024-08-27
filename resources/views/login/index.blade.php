@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <form class="col-md-4 offset-md-4 mt-5" method="post" action="{{ route('login') }}">
+        <form class="col-md-4 offset-md-4 mt-5" method="post" action="{{ route('doLogin') }}">
             @csrf
             <h1 class="h3 mb-3 fw-normal">
                 {{ __('login.please_login') }}

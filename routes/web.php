@@ -17,20 +17,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([
-    'middleware' => [],
+    'middleware' => ['auth'],
 ], function () {
     Route::controller(Home::class)->group(function () {
         Route::get('/', 'index');
     });
 
     Route::controller(Login::class)->group(function () {
-        Route::get('/login', 'index');
         Route::get('/logout', 'logout')->name('logout');
-        Route::post('/login', 'login')->name('login');
     });
 
     Route::controller(Partner::class)->group(function () {
         Route::get('/partners', 'index')->name('partner.index');;
     });
 
+});
+
+Route::controller(Login::class)->group(function () {
+    Route::get('/login', 'index')->name('login');
+    Route::post('/login', 'login')->name('doLogin');
 });

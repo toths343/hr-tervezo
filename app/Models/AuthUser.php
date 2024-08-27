@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Base\AuthUser as BaseAuthUser;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class AuthUser extends BaseAuthUser implements Authenticatable
 {
@@ -22,17 +23,22 @@ class AuthUser extends BaseAuthUser implements Authenticatable
 
     public function getAuthIdentifierName(): string
     {
-        return $this->user_name;
+        return BaseAuthUser::USER_UID;
     }
 
     public function getAuthIdentifier()
     {
-        return $this->user_uid;
+        return $this->attributes[$this->getAuthIdentifierName()];
+    }
+
+    public function getAuthPasswordName(): string
+    {
+        return BaseAuthUser::USER_PASSWORD;
     }
 
     public function getAuthPassword(): string
     {
-        return $this->user_password;
+        return $this->attributes[$this->getAuthPasswordName()];
     }
 
     public function getRememberToken()
@@ -48,11 +54,6 @@ class AuthUser extends BaseAuthUser implements Authenticatable
     public function getRememberTokenName()
     {
         // TODO: Implement getRememberTokenName() method.
-    }
-
-    public function getAuthPasswordName(): string
-    {
-        return BaseAuthUser::USER_PASSWORD;
     }
 
 }
