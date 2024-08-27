@@ -21,6 +21,7 @@ Route::group([
 ], function () {
     Route::controller(Home::class)->group(function () {
         Route::get('/', 'index');
+        Route::post('/changeDate', 'changeDate')->name('changeDate');
     });
 
     Route::controller(Login::class)->group(function () {
