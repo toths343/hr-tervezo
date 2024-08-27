@@ -28,7 +28,8 @@ Route::group([
     });
 
     Route::controller(Partner::class)->group(function () {
-        Route::get('/partners', 'index')->name('partner.index');;
+        Route::get('/partners', 'index')->name('partner.index');
+        Route::get('/partners/{id}', 'detail')->name('partner.detail');
     });
 
 });

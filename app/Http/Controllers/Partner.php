@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\PartnerDataTable;
+use Illuminate\View\View;
 
 class Partner extends Controller
 {
@@ -11,4 +12,8 @@ class Partner extends Controller
         return $dataTable->render('partner.index');
     }
 
+    public function detail(): View
+    {
+        return view('partner.detail');
+    }
 }

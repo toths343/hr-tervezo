@@ -23,14 +23,20 @@ use Illuminate\Database\Eloquent\Model;
  */
 class VNexonMunkavallalo extends Model
 {
+	const NMKV_UID = 'nmkv_uid';
+	const NMKV_NEXON_SZEMELY_ID = 'nmkv_nexon_szemely_id';
+	const NMKV_NEXON_JOGV_ID = 'nmkv_nexon_jogv_id';
+	const NMKV_NEV = 'nmkv_nev';
+	const NMKV_HATKEZD = 'nmkv_hatkezd';
+	const NMKV_HATVEGE = 'nmkv_hatvege';
 	protected $table = 'v_nexon_munkavallalo';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'nmkv_nexon_szemely_id' => 'int',
-		'nmkv_nexon_jogv_id' => 'int',
-		'nmkv_hatkezd' => 'datetime',
-		'nmkv_hatvege' => 'datetime'
+		self::NMKV_NEXON_SZEMELY_ID => 'int',
+		self::NMKV_NEXON_JOGV_ID => 'int',
+		self::NMKV_HATKEZD => 'datetime',
+		self::NMKV_HATVEGE => 'datetime'
 	];
 }

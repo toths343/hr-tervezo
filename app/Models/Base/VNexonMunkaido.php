@@ -23,15 +23,21 @@ use Illuminate\Database\Eloquent\Model;
  */
 class VNexonMunkaido extends Model
 {
+	const NIDO_NEXON_SZEMELY_ID = 'nido_nexon_szemely_id';
+	const NIDO_JOGV_ID = 'nido_jogv_id';
+	const NIDO_NISZ_ID = 'nido_nisz_id';
+	const NIDO_DATUM = 'nido_datum';
+	const NIDO_ORA = 'nido_ora';
+	const NIDO_NAP_TIPUS = 'nido_nap_tipus';
 	protected $table = 'v_nexon_munkaido';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'nido_nexon_szemely_id' => 'int',
-		'nido_jogv_id' => 'int',
-		'nido_nisz_id' => 'int',
-		'nido_datum' => 'datetime',
-		'nido_ora' => 'float'
+		self::NIDO_NEXON_SZEMELY_ID => 'int',
+		self::NIDO_JOGV_ID => 'int',
+		self::NIDO_NISZ_ID => 'int',
+		self::NIDO_DATUM => 'datetime',
+		self::NIDO_ORA => 'float'
 	];
 }

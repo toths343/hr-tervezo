@@ -17,11 +17,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class VSysSzamlistum extends Model
 {
+	const SZAM = 'szam';
 	protected $table = 'v_sys_szamlista';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'szam' => 'int'
+		self::SZAM => 'int'
 	];
 }

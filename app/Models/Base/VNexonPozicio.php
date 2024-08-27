@@ -24,14 +24,21 @@ use Illuminate\Database\Eloquent\Model;
  */
 class VNexonPozicio extends Model
 {
+	const NPOZ_UID = 'npoz_uid';
+	const NPOZ_NEXON_SZEMELY_ID = 'npoz_nexon_szemely_id';
+	const NPOZ_NEV = 'npoz_nev';
+	const NPOZ_AKTIV = 'npoz_aktiv';
+	const NPOZ_SZERVEZET = 'npoz_szervezet';
+	const NPOZ_HATKEZD = 'npoz_hatkezd';
+	const NPOZ_HATVEGE = 'npoz_hatvege';
 	protected $table = 'v_nexon_pozicio';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'npoz_nexon_szemely_id' => 'int',
-		'npoz_aktiv' => 'int',
-		'npoz_hatkezd' => 'datetime',
-		'npoz_hatvege' => 'datetime'
+		self::NPOZ_NEXON_SZEMELY_ID => 'int',
+		self::NPOZ_AKTIV => 'int',
+		self::NPOZ_HATKEZD => 'datetime',
+		self::NPOZ_HATVEGE => 'datetime'
 	];
 }

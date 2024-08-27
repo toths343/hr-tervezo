@@ -21,14 +21,18 @@ use Illuminate\Database\Eloquent\Model;
  */
 class VSysHonapok extends Model
 {
+	const HONAP_EV = 'honap_ev';
+	const HONAP_HONAP = 'honap_honap';
+	const HONAP_KEZD = 'honap_kezd';
+	const HONAP_VEGE = 'honap_vege';
 	protected $table = 'v_sys_honapok';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'honap_ev' => 'int',
-		'honap_honap' => 'int',
-		'honap_kezd' => 'datetime',
-		'honap_vege' => 'datetime'
+		self::HONAP_EV => 'int',
+		self::HONAP_HONAP => 'int',
+		self::HONAP_KEZD => 'datetime',
+		self::HONAP_VEGE => 'datetime'
 	];
 }
