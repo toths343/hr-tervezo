@@ -2,16 +2,13 @@ import './bootstrap';
 
 import 'bootstrap';
 
-import jQuery from "jquery";
-window.$ = window.jQuery = jQuery;
-
 import 'jszip';
 import 'pdfmake';
 import 'datatables.net-bs5';
 import 'datatables.net-buttons-bs5';
 import 'datatables.net-responsive-bs5';
 
-await import('jquery-ui/ui/widgets/datepicker.js');
+import 'jquery-ui/dist/jquery-ui';
 
 
 
