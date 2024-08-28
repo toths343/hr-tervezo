@@ -25,7 +25,8 @@ class PartnerDataTable extends DataTable
 
     public function query(Partner $model): QueryBuilder
     {
-        return $model->newQuery();
+        $actDate = session()->get('actDate')->format('Y-m-d');
+        return $model->newQuery()->where(Partner::PAR_HATKEZD, '<=', $actDate)->where(Partner::PAR_HATVEGE, '>', $actDate);
     }
 
     public function html(): HtmlBuilder
@@ -34,7 +35,7 @@ class PartnerDataTable extends DataTable
             ->setTableId('partner')
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->orderBy(1)
+            ->orderBy(1, 'asc')
             ->parameters([
                 'buttons' => ['export'],
             ]);

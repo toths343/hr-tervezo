@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Home;
-use App\Http\Controllers\Login;
-use App\Http\Controllers\Partner;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PartnerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,23 +19,22 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'middleware' => ['auth'],
 ], function () {
-    Route::controller(Home::class)->group(function () {
-        Route::get('/', 'index');
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('/', 'index')->name('home.index');
         Route::post('/changeDate', 'changeDate')->name('changeDate');
     });
 
-    Route::controller(Login::class)->group(function () {
+    Route::controller(LoginController::class)->group(function () {
         Route::get('/logout', 'logout')->name('logout');
     });
 
-    Route::controller(Partner::class)->group(function () {
+    Route::controller(PartnerController::class)->group(function () {
         Route::get('/partners', 'index')->name('partner.index');
         Route::get('/partners/{id}', 'detail')->name('partner.detail');
     });
-
 });
 
-Route::controller(Login::class)->group(function () {
+Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'index')->name('login');
     Route::post('/login', 'login')->name('doLogin');
 });

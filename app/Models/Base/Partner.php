@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Partner
- * 
+ *
  * @property int $par_uid
  * @property int $par_id
  * @property string $par_azonosito
@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $par_lastupd
  * @property string $par_modifier
  * @property int $par_del
- * 
+ *
  * @property Collection|Kapcsolattarto[] $kapcsolattartos
  * @property Collection|Projekt[] $projekts
  *

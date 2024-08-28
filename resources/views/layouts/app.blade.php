@@ -1,11 +1,10 @@
 @php
-    use App\Models\AuthUser;
-    use Illuminate\Support\Facades\Auth;
+    use App\Models\AuthUser;use Illuminate\Support\Facades\Auth;
     /* @var $user AuthUser */
     $user = Auth::user();
 @endphp
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -15,44 +14,68 @@
 </head>
 <body>
 <div class="container-xxl p-0">
-    <div class="bg-body-secondary p-2 text-end">
-        @include('layouts.snippets.datepickers')
+    <div class="bg-body-secondary p-2 d-flex justify-content-between">
+        <div>
+            @include('layouts.snippets.datepickers')
+        </div>
+        <div>
         <span class="fw-semibold ms-3">
             {{ $user->user_name }}
         </span>
-        <a class="btn btn-outline-primary ms-2" href="{{ route('logout') }}">
-            {{ __('layout.logout') }}
-        </a>
-    </div>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">
-                {{ __('layout.title') }}
+            <a class="btn btn-outline-primary ms-2" href="{{ route('logout') }}">
+                {{ __('layout.logout') }}
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                           aria-expanded="false">
-                            Entities
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Entity 1</a></li>
-                            <li><a class="dropdown-item" href="#">Entity 2</a></li>
-                            <li><a class="dropdown-item" href="#">Entity 3</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
         </div>
-    </nav>
-
-
-    @yield('content')
+    </div>
+    <div class="d-flex justify-content-between align-items-center px-5">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid ps-0">
+                <a class="navbar-brand" href="/">
+                    {{ __('layout.title') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Törzsadatok
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route('partner.index') }}">Partnerek</a></li>
+                                <li><a class="dropdown-item" href="#">Entity 2</a></li>
+                                <li><a class="dropdown-item" href="#">Entity 3</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('home.index') }}">Nyitólap</a></li>
+                @if(isset($breadcrumbs))
+                    @foreach($breadcrumbs as $url => $breadcrumb)
+                        <li class="breadcrumb-item {{ !$url ? 'active' : '' }}">
+                            @if ($url)
+                                <a class="text-decoration-none" href="{{ $url }}">
+                                    @endif
+                                    {{ $breadcrumb }}
+                                    @if ($url) </a>
+                            @endif
+                        </li>
+                    @endforeach
+                @endif
+            </ol>
+        </nav>
+    </div>
+    <div class="p-5 pt-0">
+        @yield('content')
+    </div>
 </div>
 
 @push('scripts')
@@ -80,15 +103,15 @@
                     changeMonth: true,
                     dateFormat: dateFormat
                 })
-                .on( "change", function() {
+                .on("change", function () {
                     from.datepicker('option', 'maxDate', getDate(this));
                 });
 
-            function getDate( element ) {
+            function getDate(element) {
                 let date;
                 try {
                     date = $.datepicker.parseDate(dateFormat, element.value);
-                } catch( error ) {
+                } catch (error) {
                     date = null;
                 }
 

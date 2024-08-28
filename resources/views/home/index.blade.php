@@ -3,5 +3,5 @@
 @section('title', __('home.title'))
 
 @section('content')
-    Home
+    Nyitólap
 @endsection
