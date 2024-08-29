@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\Entity;
+use App\Abstracts\Entity;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
 
@@ -31,6 +31,7 @@ class EntityController extends Controller
                 '' => $list[0]->getUniqueName(),
             ],
             'list' => $entity->getEntityList($id),
+            'mergeable' => $entity->mergeable($id),
         ];
 
         return view('entity.index', $data);

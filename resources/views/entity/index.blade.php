@@ -4,7 +4,11 @@
 
 @section('content')
 
-   @foreach($list as $element)
+    @if($mergeable)
+        <button type="button" class="btn btn-outline-primary">Összevonás</button>
+    @endif
+
+    @foreach($list as $element)
        <div class="card mb-3">
            <div class="card-header">{{ $element->getUniqueName() }}</div>
            <div class="card-body">
@@ -16,6 +20,6 @@
            </div>
            <div class="card-footer">{{ $element->getHatInterval() }}</div>
        </div>
-   @endforeach
+    @endforeach
 
 @endsection

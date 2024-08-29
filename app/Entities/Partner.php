@@ -2,15 +2,16 @@
 
 namespace App\Entities;
 
+use App\Abstracts\Entity;
+use App\Abstracts\IntervalEntity;
 use App\DataTables\PartnerDataTable;
-use App\Interfaces\Entity;
 use App\Models\Base\Partner as PartnerBase;
 use App\Models\Partner as PartnerModel;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Yajra\DataTables\Services\DataTable;
 
-class Partner implements Entity
+class Partner extends Entity
 {
 
     public function __construct(private readonly PartnerDataTable $partnerDataTable)
