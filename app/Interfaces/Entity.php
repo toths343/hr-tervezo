@@ -2,13 +2,14 @@
 
 namespace App\Interfaces;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 interface Entity
 {
     function getType(): string;
 
-    function getEloquentClass(): string;
+    function getBuilder(): Builder;
 
     function getBreadcrumbName(): string;
 

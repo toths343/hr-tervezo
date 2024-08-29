@@ -5,7 +5,8 @@ namespace App\Entities;
 use App\Interfaces\Entity;
 use App\Models\Base\Partner as PartnerBase;
 use App\Models\Partner as PartnerModel;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 class Partner implements Entity
 {
@@ -15,9 +16,9 @@ class Partner implements Entity
         return 'partner';
     }
 
-    function getEloquentClass(): string
+    function getBuilder(): Builder
     {
-        return PartnerModel::class;
+        return PartnerModel::query();
     }
 
     function getBreadcrumbName(): string
@@ -27,7 +28,7 @@ class Partner implements Entity
 
     function getEntityList(int $id): Collection
     {
-        return $this->getEloquentClass()::query()->where(PartnerBase::PAR_ID, $id)->orderBy(PartnerBase::PAR_HATKEZD)->get();
+        return $this->getBuilder()->where(PartnerBase::PAR_ID, $id)->orderBy(PartnerBase::PAR_HATKEZD)->get();
     }
 
 }
