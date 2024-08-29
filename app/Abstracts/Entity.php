@@ -30,4 +30,17 @@ abstract class Entity
         };
         return false;
     }
+
+    function getMergeableDates(): array
+    {
+        $mergeableDates = [];
+        $lastHatvege = Carbon::createFromDate('1970', 1, 1)->startOfDay();
+        foreach ($this->getEntityList() as $element) {
+            if ($lastHatvege->copy()->addDay()->isSameDay($element->getHatkezd())) {
+                $mergeableDates[] = [$lastHatvege, $element->getHatkezd()];
+            }
+            $lastHatvege = $element->getHatvege();
+        };
+        return $mergeableDates;
+    }
 }
