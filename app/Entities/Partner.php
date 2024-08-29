@@ -27,7 +27,7 @@ class Partner implements Entity
 
     function getEntityList(int $id): Collection
     {
-        return $this->getEloquentClass()::query()->where(PartnerBase::PAR_ID, $id)->orderBy(PartnerBase::PAR_HATKEZD)->get();;
+        return $this->getEloquentClass()::query()->where(PartnerBase::PAR_ID, $id)->orderBy(PartnerBase::PAR_HATKEZD)->get();
     }
 
 }
