@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">{{ __('partner.title') }}</div>
+        <div class="card-header">{{ $title }}</div>
         <div class="card-body small">
             {{ $dataTable->table() }}
         </div>

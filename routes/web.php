@@ -32,6 +32,7 @@ Route::group([
     Route::controller(EntityController::class)->group(function () {
         Route::get('/entity/{type}', 'list')->name('entity.list');
         Route::get('/entity/{type}/{id}', 'index')->name('entity.index');
+        Route::get('/entity/{type}/save/{uid}', 'index')->name('entity.save');
     });
 });
 

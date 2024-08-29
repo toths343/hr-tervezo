@@ -10,7 +10,7 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Yajra\DataTables\Services\DataTable;
 
-class Partner extends Entity
+class PartnerEntity extends Entity
 {
 
     public function __construct(private readonly PartnerDataTable $partnerDataTable, private readonly ?int $id)

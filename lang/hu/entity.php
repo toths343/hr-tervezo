@@ -2,4 +2,5 @@
 
 return [
     'partners' => 'Partnerek',
+    'projekts' => 'Projektek',
 ];

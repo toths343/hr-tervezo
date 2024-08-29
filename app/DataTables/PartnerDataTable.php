@@ -14,19 +14,24 @@ class PartnerDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->setRowId('par_uid')
-            ->editColumn('par_hatkezd', function (Partner $model) {
-                return $model->par_hatkezd->format('Y.m.d') . ' - ' . $model->par_hatvege->format('Y.m.d');
+            ->setRowId(Partner::PAR_UID)
+            ->editColumn(Partner::PAR_HATKEZD, function (Partner $model) {
+                return $model->getHatInterval();
             })
             ->addColumn('action', function (Partner $model) {
-                return view('datatable.buttons.detail', ['route' => 'entity.index', 'type' => 'partner', 'id' => $model->par_id]);
+                return view(
+                    'datatable.buttons.detail',
+                    ['route' => 'entity.index', 'type' => 'partner', 'id' => $model->par_id]
+                );
             });
     }
 
     public function query(Partner $model): QueryBuilder
     {
         $actDate = session()->get('actDate')->format('Y-m-d');
-        return $model->newQuery()->where(Partner::PAR_HATKEZD, '<=', $actDate)->where(Partner::PAR_HATVEGE, '>', $actDate);
+        return $model->newQuery()
+            ->where(Partner::PAR_HATKEZD, '<=', $actDate)
+            ->where(Partner::PAR_HATVEGE, '>', $actDate);
     }
 
     public function html(): HtmlBuilder
@@ -44,14 +49,14 @@ class PartnerDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('par_uid')->title('Uid'),
-            Column::make('par_id')->title('Id'),
-            Column::make('par_azonosito')->title('Azonosító'),
-            Column::make('par_nev')->title('Név'),
-            Column::make('par_adoszam')->title('Adószám'),
-            Column::make('par_nyilv_szam')->title('Nyilvántartási szám'),
-            Column::make('par_cim')->title('Cím'),
-            Column::make('par_hatkezd')->title('Hatályosság'),
+            Column::make(Partner::PAR_UID)->title(__('partner.uid'))->className('align-middle'),
+            Column::make(Partner::PAR_ID)->title(__('partner.uid'))->className('align-middle'),
+            Column::make(Partner::PAR_AZONOSITO)->title(__('partner.azonosito'))->className('align-middle'),
+            Column::make(Partner::PAR_NEV)->title(__('partner.nev'))->className('align-middle'),
+            Column::make(Partner::PAR_ADOSZAM)->title(__('partner.adoszam'))->className('align-middle'),
+            Column::make(Partner::PAR_NYILV_SZAM)->title(__('partner.nyilvantartasi_szam'))->className('align-middle'),
+            Column::make(Partner::PAR_CIM)->title(__('partner.cim'))->className('align-middle'),
+            Column::make(Partner::PAR_HATKEZD)->title(__('partner.hatalyossag'))->className('align-middle'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
