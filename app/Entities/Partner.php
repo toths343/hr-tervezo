@@ -2,14 +2,20 @@
 
 namespace App\Entities;
 
+use App\DataTables\PartnerDataTable;
 use App\Interfaces\Entity;
 use App\Models\Base\Partner as PartnerBase;
 use App\Models\Partner as PartnerModel;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Yajra\DataTables\Services\DataTable;
 
 class Partner implements Entity
 {
+
+    public function __construct(private readonly PartnerDataTable $partnerDataTable)
+    {
+    }
 
     function getType(): string
     {
@@ -29,6 +35,11 @@ class Partner implements Entity
     function getEntityList(int $id): Collection
     {
         return $this->getBuilder()->where(PartnerBase::PAR_ID, $id)->orderBy(PartnerBase::PAR_HATKEZD)->get();
+    }
+
+    function getDatatable(): Datatable
+    {
+        return $this->partnerDataTable;
     }
 
 }

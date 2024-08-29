@@ -46,7 +46,7 @@
                                 Törzsadatok
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('partner.index') }}">Partnerek</a></li>
+                                <li><a class="dropdown-item" href="{{ route('entity.list', ['type' => 'partner']) }}">Partnerek</a></li>
                                 <li><a class="dropdown-item" href="#">Entity 2</a></li>
                                 <li><a class="dropdown-item" href="#">Entity 3</a></li>
                             </ul>

@@ -29,12 +29,8 @@ Route::group([
         Route::get('/logout', 'logout')->name('logout');
     });
 
-    Route::controller(PartnerController::class)->group(function () {
-        Route::get('/partners', 'index')->name('partner.index');
-        Route::get('/partners/{id}', 'detail')->name('partner.detail');
-    });
-
     Route::controller(EntityController::class)->group(function () {
+        Route::get('/entity/{type}', 'list')->name('entity.list');
         Route::get('/entity/{type}/{id}', 'index')->name('entity.index');
     });
 });

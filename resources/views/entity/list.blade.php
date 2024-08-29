@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('partner.title'))
+@section('title', $title)
 
 @section('content')
     <div class="card">
