@@ -3,7 +3,6 @@
 namespace App\Entities;
 
 use App\Abstracts\Entity;
-use App\Abstracts\IntervalEntity;
 use App\DataTables\PartnerDataTable;
 use App\Models\Base\Partner as PartnerBase;
 use App\Models\Partner as PartnerModel;
