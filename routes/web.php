@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EntityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PartnerController;
@@ -31,6 +32,10 @@ Route::group([
     Route::controller(PartnerController::class)->group(function () {
         Route::get('/partners', 'index')->name('partner.index');
         Route::get('/partners/{id}', 'detail')->name('partner.detail');
+    });
+
+    Route::controller(EntityController::class)->group(function () {
+        Route::get('/entity/{type}/{id}', 'index')->name('entity.index');
     });
 });
 

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Interfaces\Entity;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +12,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(Entity::class, function () {
+            $entityType = ucfirst(request()->route('type'));
+            return $this->app->get('\App\Entities\\' . $entityType);
+        });
     }
 
     /**

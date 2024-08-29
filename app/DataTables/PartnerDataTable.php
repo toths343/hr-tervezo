@@ -19,7 +19,7 @@ class PartnerDataTable extends DataTable
                 return $model->par_hatkezd->format('Y.m.d') . ' - ' . $model->par_hatvege->format('Y.m.d');
             })
             ->addColumn('action', function (Partner $model) {
-                return view('datatable.buttons.detail', ['route' => 'partner.detail', 'id' => $model->par_id]);
+                return view('datatable.buttons.detail', ['route' => 'entity.index', 'type' => 'partner', 'id' => $model->par_id]);
             });
     }
 
