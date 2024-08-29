@@ -20,18 +20,18 @@ class EntityController extends Controller
         return $entity->getDatatable()->render('entity.list', $data);
     }
 
-    public function index(Entity $entity, string $type, int $id): View
+    public function index(Entity $entity): View
     {
-        $list = $entity->getEntityList($id);
+        $list = $entity->getEntityList();
         $data = [
             'title' => $entity->getBreadcrumbName(),
-            'type' => $type,
+            'type' => $entity->getType(),
             'breadcrumbs' => [
-                route('entity.list', ['type' => $type]) => $entity->getBreadcrumbName(),
+                route('entity.list', ['type' => $entity->getType()]) => $entity->getBreadcrumbName(),
                 '' => $list[0]->getUniqueName(),
             ],
-            'list' => $entity->getEntityList($id),
-            'mergeable' => $entity->mergeable($id),
+            'list' => $entity->getEntityList(),
+            'mergeable' => $entity->mergeable(),
         ];
 
         return view('entity.index', $data);

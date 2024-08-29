@@ -15,14 +15,14 @@ abstract class Entity
 
     abstract function getBreadcrumbName(): string;
 
-    abstract function getEntityList(int $id): Collection;
+    abstract function getEntityList(): Collection;
 
     abstract function getDatatable(): Datatable;
 
-    function mergeable(int $id): bool
+    function mergeable(): bool
     {
         $lastHatvege = Carbon::createFromDate('1970', 1, 1)->startOfDay();
-        foreach ($this->getEntityList($id) as $element) {
+        foreach ($this->getEntityList() as $element) {
             if ($lastHatvege->addDay()->isSameDay($element->getHatkezd())) {
                 return true;
             }

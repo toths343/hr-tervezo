@@ -14,7 +14,7 @@ use Yajra\DataTables\Services\DataTable;
 class Partner extends Entity
 {
 
-    public function __construct(private readonly PartnerDataTable $partnerDataTable)
+    public function __construct(private readonly PartnerDataTable $partnerDataTable, private readonly ?int $id)
     {
     }
 
@@ -33,9 +33,9 @@ class Partner extends Entity
         return __('entity.partners');
     }
 
-    function getEntityList(int $id): Collection
+    function getEntityList(): Collection
     {
-        return $this->getBuilder()->where(PartnerBase::PAR_ID, $id)->orderBy(PartnerBase::PAR_HATKEZD)->get();
+        return $this->getBuilder()->where(PartnerBase::PAR_ID, $this->id)->orderBy(PartnerBase::PAR_HATKEZD)->get();
     }
 
     function getDatatable(): Datatable
