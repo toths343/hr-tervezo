@@ -22,6 +22,10 @@ class BorderdateModal
                 url: '/entity/modal/borderdate/' + event.target.dataset.type + '/' + event.target.dataset.id
             }).done((response) => {
                 $('.borderdate-modal .modal-body').html(response.html);
+
+                this.borderdateModalElement.find('.datepicker').datepicker({
+                    dateFormat: 'yy.mm.dd'
+                });
             })
         });
     }

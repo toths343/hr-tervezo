@@ -11,4 +11,6 @@ return [
     'modositas' => 'Módosítás',
     'mergeuid_required' => 'Szakasz kiválasztása kötelező',
     'borderdateuid_required' => 'Szakasz kiválasztása kötelező',
+    'borderdate_date_required' => 'Dátum választása szükséges',
+    'borderdate_date_format' => 'Dátum nem megfelelő formátumú',
 ];
