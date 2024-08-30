@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ChangeDateRequest;
-use Carbon\Carbon;
+use App\Services\DateService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
+
+    public function __construct(private readonly DateService $dateService)
+    {
+    }
+
     public function index(): View
     {
         return view('home.index');
@@ -18,20 +23,6 @@ class HomeController extends Controller
     {
         $validated = $changeDateRequest->validated();
 
-        $actDate = Carbon::createFromFormat('Y.m.d', $validated['actDate']);
-        $startDate = Carbon::createFromFormat('Y.m.d', $validated['startDate']);
-        $endDate = Carbon::createFromFormat('Y.m.d', $validated['endDate']);
-        if ($startDate > $actDate) {
-            $startDate = $actDate->copy()->startOfYear();
-        }
-        if ($endDate < $actDate) {
-            $endDate = $actDate->copy()->endOfYear();
-        }
-
-        $changeDateRequest->session()->put('actDate', $actDate);
-        $changeDateRequest->session()->put('startDate', $startDate);
-        $changeDateRequest->session()->put('endDate', $endDate);
-
-        return redirect()->intended();
+        return $this->dateService->changeDate($changeDateRequest, $validated);
     }
 }

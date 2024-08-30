@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Models\AuthUser;
+use App\Services\LoginService;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,6 +13,10 @@ use Illuminate\View\View;
 
 class LoginController extends Controller
 {
+
+    public function __construct(private readonly LoginService $loginService)
+    {
+    }
 
     public function index(): View
     {
@@ -22,21 +27,7 @@ class LoginController extends Controller
     {
         $validated = $loginRequest->validated();
 
-        if (Auth::attempt([
-            'user_login' => $validated['userName'],
-            'password' => $validated['password'],
-        ])) {
-            $loginRequest->session()->regenerate();
-            $now = Carbon::now();
-            $loginRequest->session()->put('actDate', $now);
-            $loginRequest->session()->put('startDate', $now->copy()->startOfYear());
-            $loginRequest->session()->put('endDate', $now->copy()->endOfYear());
-            return redirect()->intended();
-        }
-
-        return back()->withErrors([
-            'userName' => __('login.auth_failed'),
-        ])->onlyInput('userName');
+        return $this->loginService->login($loginRequest, $validated);
     }
 
     public function logout(Request $request): RedirectResponse
