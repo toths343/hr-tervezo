@@ -33,6 +33,7 @@ Route::group([
         Route::get('/entity/{type}/{id}', 'index')->name('entity.index');
         Route::get('/entity/{type}/save/{uid}', 'index')->name('entity.save');
         Route::get('/entity/modal/merge/{type}/{id}', 'mergeModal')->name('entity.mergeModal');
+        Route::get('/entity/modal/borderdate/{type}/{id}', 'borderdateModal')->name('entity.borderdateModal');
     });
 });
 

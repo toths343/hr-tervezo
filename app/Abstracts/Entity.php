@@ -36,11 +36,15 @@ abstract class Entity
     function getMergeableDates(): array
     {
         $mergeableDates = [];
+        $lastHatKezd = Carbon::createFromDate('1970', 1, 1)->startOfDay();
         $lastHatvege = Carbon::createFromDate('1970', 1, 1)->startOfDay();
         foreach ($this->getEntityList() as $element) {
             if ($lastHatvege->copy()->addDay()->isSameDay($element->getHatkezd())) {
-                $mergeableDates[] = [$lastHatvege, $element->getHatkezd()];
+                $mergeableDates[] = [
+                    [$lastHatKezd, $lastHatvege], [$element->getHatkezd(), $element->getHatvege()],
+                ];
             }
+            $lastHatKezd = $element->getHatKezd();
             $lastHatvege = $element->getHatvege();
         };
         return $mergeableDates;

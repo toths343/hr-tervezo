@@ -42,7 +42,18 @@ class EntityController extends Controller
     public function mergeModal(Entity $entity): JsonResponse
     {
         return response()->json([
-            'html' => view('entity.modals.merge')->render(),
+            'html' => view('entity.modals.merge', [
+                'mergeableDates' => $entity->getMergeableDates(),
+            ])->render(),
+        ]);
+    }
+
+    public function borderdateModal(Entity $entity): JsonResponse
+    {
+        return response()->json([
+            'html' => view('entity.modals.borderdate', [
+                'mergeableDates' => $entity->getMergeableDates(),
+            ])->render(),
         ]);
     }
 

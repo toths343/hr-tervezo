@@ -1,1 +1,1 @@
-borderdate
+{{ json_encode($mergeableDates) }}

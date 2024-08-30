@@ -22,3 +22,6 @@ import 'jquery-ui/dist/jquery-ui';
 
 import { openMergeModal } from './mergemodal';
 window.openMergeModal = openMergeModal;
+
+import { openBorderdateModal } from './borderdatemodal';
+window.openBorderdateModal = openBorderdateModal;

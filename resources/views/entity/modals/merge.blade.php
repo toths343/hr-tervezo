@@ -1,1 +1,1 @@
-merge
+{{ json_encode($mergeableDates) }}
