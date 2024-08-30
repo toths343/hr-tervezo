@@ -6,6 +6,7 @@ use App\Abstracts\Entity;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
 
+
 class EntityController extends Controller
 {
 
@@ -38,7 +39,7 @@ class EntityController extends Controller
         return view('entity.index', $data);
     }
 
-    public function mergeModal(): JsonResponse
+    public function mergeModal(Entity $entity): JsonResponse
     {
         return response()->json([
             'html' => view('entity.modals.merge')->render(),
