@@ -15,4 +15,6 @@ return [
     'borderdate_date_format' => 'Dátum nem megfelelő formátumú',
     'uj_elem_felvitele_lista_elejere' => 'Új elem felvitele a lista elejére',
     'uj_elem_felvitele_lista_vegere' => 'Új elem felvitele a lista végére',
+    'szerkesztes' => 'Szerkesztés',
+    'mentes' => 'Mentés',
 ];

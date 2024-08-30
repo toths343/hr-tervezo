@@ -1,3 +1,4 @@
+@php /** @var App\Interfaces\HatalyosModel[] $list */ @endphp
 @extends('layouts.app')
 
 @section('title', $title)
@@ -6,6 +7,7 @@
 
     @include('entity.snippets.merge')
     @include('entity.snippets.borderdate')
+    @include('entity.snippets.edit')
 
     @if ($canInsertBeforeFirst)
         <br/>
@@ -21,8 +23,8 @@
                <div class="card-text">
                    @include('entities.display.' . $type, [$type => $element])
                </div>
-               <button type="button" class="btn btn-outline-primary">Szerkesztés</button>
-               <button type="button" class="btn btn-outline-danger">Törlés</button>
+               <button type="button" class="btn btn-outline-primary btn-edit-modal-open" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">Szerkesztés {{$element->getUid()}}</button>
+               <button type="button" class="btn btn-outline-danger" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">Törlés</button>
            </div>
            <div class="card-footer">{{ $element->getHatInterval() }}</div>
        </div>

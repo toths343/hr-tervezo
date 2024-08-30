@@ -14,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(Entity::class, function () {
             $entityType = ucfirst(request()->route('type'));
-            return $this->app->make('\App\Entities\\' . $entityType . 'Entity', ['id' => request()->route('id'),]);
+            return $this->app->make('\App\Entities\\' . $entityType . 'Entity', [
+                'uid' => request()->route('uid'),
+                'id' => request()->route('id')
+            ]);
         });
     }
 

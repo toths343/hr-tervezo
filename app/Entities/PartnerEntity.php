@@ -5,6 +5,7 @@ namespace App\Entities;
 use App\Abstracts\Entity;
 use App\DataTables\PartnerDataTable;
 use App\Models\Base\Partner as PartnerBase;
+use App\Models\Partner;
 use App\Models\Partner as PartnerModel;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
@@ -13,8 +14,9 @@ use Yajra\DataTables\Services\DataTable;
 class PartnerEntity extends Entity
 {
 
-    public function __construct(private readonly PartnerDataTable $partnerDataTable, ?int $id)
+    public function __construct(private readonly PartnerDataTable $partnerDataTable, ?int $uid, ?int $id)
     {
+        $this->uid = $uid;
         $this->id = $id;
     }
 
@@ -43,4 +45,10 @@ class PartnerEntity extends Entity
         return $this->partnerDataTable;
     }
 
+    function getEditorData(): array
+    {
+        return [
+            'partner' => $this->uid ? $this->getBuilder()->find($this->uid) : new Partner(),
+        ];
+    }
 }

@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use App\Abstracts\Entity;
 use App\Http\Requests\EntityBorderdateRequest;
 use App\Http\Requests\EntityMergeRequest;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 
@@ -79,4 +84,38 @@ class EntityController extends Controller
         return response()->json([]);
     }
 
+    public function edit(): JsonResponse
+    {
+        return response()->json([
+            'html' => view(
+                'entities.editor.' . $this->entity->getType(),
+                $this->entity->getEditorData()
+            )->render(),
+        ]);
+    }
+
+    /** @deprecated  */
+    public function save(Request $request): JsonResponse
+    {
+        /* @var FormRequest $entityRequest */
+        $entityRequestClassName = '\App\Http\Requests\Entity\\' . ucfirst($this->entity->getType()) . 'Request';
+        $entityRequest = (new $entityRequestClassName());
+        $validator = Validator::make($request->all(), $entityRequest->rules(), $entityRequest->messages());
+        if (!$validator->fails()) {
+            /* @var Model $entityModelClass */
+            $entityModelClassName = '\App\Models\\' . ucfirst($this->entity->getType());
+            $entityModelClass = new $entityModelClassName;
+            $attributes = $request->all();
+            $attributes = array_combine(array_map(fn ($key) => Str::snake($key), array_keys($attributes)), $attributes);
+            if ($this->entity->uid) {
+                $entityModel = $entityModelClass::query()->find($this->entity->uid);
+                $entityModel->update($attributes);
+            } else {
+                $entityModelClass::create($attributes);
+            }
+            return response()->json();
+        } else {
+            return response()->json(['errors' => $validator->messages()], 422);
+        }
+    }
 }

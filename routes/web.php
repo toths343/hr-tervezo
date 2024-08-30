@@ -3,6 +3,7 @@
 use App\Http\Controllers\EntityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PartnerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,12 +32,18 @@ Route::group([
     Route::controller(EntityController::class)->group(function () {
         Route::get('/entity/{type}', 'list')->name('entity.list');
         Route::get('/entity/{type}/{id}', 'index')->name('entity.index');
-        Route::get('/entity/{type}/save/{uid}', 'index')->name('entity.save');
+        Route::get('/entity/modal/edit/{type}/{uid?}', 'edit')->name('entity.editModal');
         Route::get('/entity/modal/merge/{type}/{id}', 'mergeModal')->name('entity.mergeModal');
         Route::get('/entity/modal/borderdate/{type}/{id}', 'borderdateModal')->name('entity.borderdateModal');
         Route::post('/entity/save/merge/{type}/{id}', 'mergeSave')->name('entity.mergeSave');
         Route::post('/entity/save/borderdate/{type}/{id}', 'borderdateSave')->name('entity.borderdateSave');
+        // Route::post('/entity/save/{type}/{uid}', 'save')->name('entity.save');
     });
+
+    Route::controller(PartnerController::class)->group(function () {
+        Route::post('/partner/save/{uid?}', 'save')->name('partner.save');
+    });
+
 });
 
 Route::controller(LoginController::class)->group(function () {

@@ -9,6 +9,7 @@ use Yajra\DataTables\Services\DataTable;
 
 abstract class Entity
 {
+    public ?int $uid;
     public ?int $id;
 
     abstract function getType(): string;
@@ -67,5 +68,10 @@ abstract class Entity
             return true;
         }
         return false;
+    }
+
+    function getEditorData(): array
+    {
+        return [];
     }
 }

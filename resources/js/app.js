@@ -23,3 +23,4 @@ import 'jquery-ui/dist/jquery-ui';
 import './dates';
 import './mergemodal';
 import './borderdatemodal';
+import './editmodal';
