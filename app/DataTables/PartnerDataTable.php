@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\Base\Partner as PartnerBase;
 use App\Models\Partner;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -14,8 +15,8 @@ class PartnerDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->setRowId(Partner::PAR_UID)
-            ->editColumn(Partner::PAR_HATKEZD, function (Partner $model) {
+            ->setRowId(PartnerBase::PAR_UID)
+            ->editColumn(PartnerBase::PAR_HATKEZD, function (Partner $model) {
                 return $model->getHatInterval();
             })
             ->addColumn('action', function (Partner $model) {
@@ -30,8 +31,8 @@ class PartnerDataTable extends DataTable
     {
         $actDate = session()->get('actDate')->format('Y-m-d');
         return $model->newQuery()
-            ->where(Partner::PAR_HATKEZD, '<=', $actDate)
-            ->where(Partner::PAR_HATVEGE, '>', $actDate);
+            ->where(PartnerBase::PAR_HATKEZD, '<=', $actDate)
+            ->where(PartnerBase::PAR_HATVEGE, '>', $actDate);
     }
 
     public function html(): HtmlBuilder
@@ -49,14 +50,14 @@ class PartnerDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make(Partner::PAR_UID)->title(__('partner.uid'))->className('align-middle'),
-            Column::make(Partner::PAR_ID)->title(__('partner.uid'))->className('align-middle'),
-            Column::make(Partner::PAR_AZONOSITO)->title(__('partner.azonosito'))->className('align-middle'),
-            Column::make(Partner::PAR_NEV)->title(__('partner.nev'))->className('align-middle'),
-            Column::make(Partner::PAR_ADOSZAM)->title(__('partner.adoszam'))->className('align-middle'),
-            Column::make(Partner::PAR_NYILV_SZAM)->title(__('partner.nyilvantartasi_szam'))->className('align-middle'),
-            Column::make(Partner::PAR_CIM)->title(__('partner.cim'))->className('align-middle'),
-            Column::make(Partner::PAR_HATKEZD)->title(__('partner.hatalyossag'))->className('align-middle'),
+            Column::make(PartnerBase::PAR_UID)->title(__('partner.uid'))->className('align-middle'),
+            Column::make(PartnerBase::PAR_ID)->title(__('partner.uid'))->className('align-middle'),
+            Column::make(PartnerBase::PAR_AZONOSITO)->title(__('partner.azonosito'))->className('align-middle'),
+            Column::make(PartnerBase::PAR_NEV)->title(__('partner.nev'))->className('align-middle'),
+            Column::make(PartnerBase::PAR_ADOSZAM)->title(__('partner.adoszam'))->className('align-middle'),
+            Column::make(PartnerBase::PAR_NYILV_SZAM)->title(__('partner.nyilvantartasi_szam'))->className('align-middle'),
+            Column::make(PartnerBase::PAR_CIM)->title(__('partner.cim'))->className('align-middle'),
+            Column::make(PartnerBase::PAR_HATKEZD)->title(__('partner.hatalyossag'))->className('align-middle'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

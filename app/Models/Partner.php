@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Interfaces\HatalyosModel;
 use App\Models\Base\Partner as BasePartner;
 use Carbon\Carbon;
 
-class Partner extends BasePartner
+class Partner extends BasePartner implements HatalyosModel
 {
     protected $fillable = [
         'par_id',

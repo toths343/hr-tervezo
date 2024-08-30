@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+use App\Models\Base\Projekt as ProjektBase;
 use App\Models\Projekt;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -14,8 +15,8 @@ class ProjektDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->setRowId(Projekt::PRJ_UID)
-            ->editColumn(Projekt::PRJ_HATKEZD, function (Projekt $model) {
+            ->setRowId(ProjektBase::PRJ_UID)
+            ->editColumn(ProjektBase::PRJ_HATKEZD, function (Projekt $model) {
                 return $model->getHatInterval();
             })
             ->addColumn('action', function (Projekt $model) {
@@ -30,8 +31,8 @@ class ProjektDataTable extends DataTable
     {
         $actDate = session()->get('actDate')->format('Y-m-d');
         return $model->newQuery()
-            ->where(Projekt::PRJ_HATKEZD, '<=', $actDate)
-            ->where(Projekt::PRJ_HATVEGE, '>', $actDate);
+            ->where(ProjektBase::PRJ_HATKEZD, '<=', $actDate)
+            ->where(ProjektBase::PRJ_HATVEGE, '>', $actDate);
     }
 
     public function html(): HtmlBuilder
@@ -49,12 +50,12 @@ class ProjektDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make(Projekt::PRJ_UID)->title(__('projekt.uid'))->className('align-middle'),
-            Column::make(Projekt::PRJ_ID)->title(__('projekt.id'))->className('align-middle'),
-            Column::make(Projekt::PRJ_AZONOSITO)->title(__('projekt.projekt_azonosito_szama'))->className('align-middle'),
-            Column::make(Projekt::PRJ_NEV)->title(__('projekt.projekt_neve'))->className('align-middle'),
-            Column::make(Projekt::PRJ_ROVID_NEV)->title(__('projekt.projekt_rovid_neve'))->className('align-middle'),
-            Column::make(Projekt::PRJ_HATKEZD)->title(__('projekt.projekt_hatalyossaga'))->className('align-middle'),
+            Column::make(ProjektBase::PRJ_UID)->title(__('projekt.uid'))->className('align-middle'),
+            Column::make(ProjektBase::PRJ_ID)->title(__('projekt.id'))->className('align-middle'),
+            Column::make(ProjektBase::PRJ_AZONOSITO)->title(__('projekt.projekt_azonosito_szama'))->className('align-middle'),
+            Column::make(ProjektBase::PRJ_NEV)->title(__('projekt.projekt_neve'))->className('align-middle'),
+            Column::make(ProjektBase::PRJ_ROVID_NEV)->title(__('projekt.projekt_rovid_neve'))->className('align-middle'),
+            Column::make(ProjektBase::PRJ_HATKEZD)->title(__('projekt.projekt_hatalyossaga'))->className('align-middle'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use App\Interfaces\HatalyosModel;
 use App\Models\Base\Projekt as BaseProjekt;
 use Carbon\Carbon;
 
-class Projekt extends BaseProjekt
+class Projekt extends BaseProjekt implements HatalyosModel
 {
 	protected $fillable = [
 		'prj_id',
