@@ -29,7 +29,7 @@ class PartnerEntity extends Entity
 
     function getBreadcrumbName(): string
     {
-        return __('entity.partners');
+        return __('entity.partnerek');
     }
 
     function getEntityList(): Collection

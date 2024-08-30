@@ -4,9 +4,8 @@
 
 @section('content')
 
-    @if($mergeable)
-        <button type="button" class="btn btn-outline-primary">Összevonás</button>
-    @endif
+    @include('entity.modals.merge')
+    @include('entity.modals.borderdate')
 
     @foreach($list as $element)
        <div class="card mb-3">

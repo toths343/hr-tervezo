@@ -27,7 +27,7 @@ class ProjektEntity extends Entity
 
     function getBreadcrumbName(): string
     {
-        return __('entity.projekts');
+        return __('entity.projektek');
     }
 
     function getEntityList(): Collection
