@@ -4,8 +4,8 @@
 
 @section('content')
 
-    @include('entity.modals.merge')
-    @include('entity.modals.borderdate')
+    @include('entity.snippets.merge')
+    @include('entity.snippets.borderdate')
 
     @foreach($list as $element)
        <div class="card mb-3">

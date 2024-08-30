@@ -11,8 +11,9 @@ use Yajra\DataTables\Services\DataTable;
 
 class ProjektEntity extends Entity
 {
-    public function __construct(private readonly ProjektDataTable $projektDataTable, private readonly ?int $id)
+    public function __construct(private readonly ProjektDataTable $projektDataTable, ?int $id)
     {
+        $this->id = $id;
     }
 
     function getType(): string

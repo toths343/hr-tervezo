@@ -9,6 +9,8 @@ use Yajra\DataTables\Services\DataTable;
 
 abstract class Entity
 {
+    public ?int $id;
+
     abstract function getType(): string;
 
     abstract function getBuilder(): Builder;

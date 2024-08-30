@@ -13,8 +13,9 @@ use Yajra\DataTables\Services\DataTable;
 class PartnerEntity extends Entity
 {
 
-    public function __construct(private readonly PartnerDataTable $partnerDataTable, private readonly ?int $id)
+    public function __construct(private readonly PartnerDataTable $partnerDataTable, ?int $id)
     {
+        $this->id = $id;
     }
 
     function getType(): string

@@ -26,6 +26,7 @@ class EntityController extends Controller
         $data = [
             'title' => $entity->getBreadcrumbName(),
             'type' => $entity->getType(),
+            'id' => $entity->id,
             'breadcrumbs' => [
                 route('entity.list', ['type' => $entity->getType()]) => $entity->getBreadcrumbName(),
                 '' => $list[0]->getUniqueName(),
@@ -35,6 +36,13 @@ class EntityController extends Controller
         ];
 
         return view('entity.index', $data);
+    }
+
+    public function mergeModal(): JsonResponse
+    {
+        return response()->json([
+            'html' => view('entity.modals.merge')->render(),
+        ]);
     }
 
 }
