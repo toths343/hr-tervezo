@@ -40,6 +40,8 @@ class EntityController extends Controller
             ],
             'list' => $this->entity->getEntityList(),
             'mergeable' => $this->entity->mergeable(),
+            'canInsertBeforeFirst' => $this->entity->canInsertBeforeFirst(),
+            'canInsertAfterLast' => $this->entity->canInsertAfterLast(),
         ];
 
         return view('entity.index', $data);

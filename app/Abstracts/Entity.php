@@ -52,4 +52,20 @@ abstract class Entity
         };
         return $mergeableDates;
     }
+
+    function canInsertBeforeFirst(): bool
+    {
+        if (!$this->getEntityList()->isEmpty() && $this->getEntityList()->first()->getHatkezd()->isAfter(Carbon::createFromFormat('Y-m-d','1970-01-01'))) {
+            return true;
+        }
+        return false;
+    }
+
+    function canInsertAfterLast(): bool
+    {
+        if (!$this->getEntityList()->isEmpty() && $this->getEntityList()->first()->getHatvege()->isBefore(Carbon::createFromFormat('Y-m-d','3999-12-31'))) {
+            return true;
+        }
+        return false;
+    }
 }

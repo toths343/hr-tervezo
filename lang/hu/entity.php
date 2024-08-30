@@ -13,4 +13,6 @@ return [
     'borderdateuid_required' => 'Szakasz kiválasztása kötelező',
     'borderdate_date_required' => 'Dátum választása szükséges',
     'borderdate_date_format' => 'Dátum nem megfelelő formátumú',
+    'uj_elem_felvitele_lista_elejere' => 'Új elem felvitele a lista elejére',
+    'uj_elem_felvitele_lista_vegere' => 'Új elem felvitele a lista végére',
 ];

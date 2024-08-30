@@ -7,6 +7,13 @@
     @include('entity.snippets.merge')
     @include('entity.snippets.borderdate')
 
+    @if ($canInsertBeforeFirst)
+        <br/>
+        <button type="button" class="btn btn-outline-success mb-2">
+            {{ __('entity.uj_elem_felvitele_lista_elejere') }}
+        </button>
+    @endif
+
     @foreach($list as $element)
        <div class="card mb-3">
            <div class="card-header">{{ $element->getUniqueName() }}</div>
@@ -20,5 +27,11 @@
            <div class="card-footer">{{ $element->getHatInterval() }}</div>
        </div>
     @endforeach
+
+    @if ($canInsertAfterLast)
+        <button type="button" class="btn btn-outline-success mb-2">
+            {{ __('entity.uj_elem_felvitele_lista_vegere') }}
+        </button>
+    @endif
 
 @endsection
