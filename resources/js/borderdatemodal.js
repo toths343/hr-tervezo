@@ -1,3 +1,7 @@
+$('.btn-borderdate-modal-open').on('click.borderdate-modal-open', () => {
+    openBorderdateModal();
+});
+
 const borderdateModalElement = $('.borderdate-modal');
 borderdateModalElement.on('shown.bs.modal', (event) => {
     $.ajax({
@@ -6,7 +10,12 @@ borderdateModalElement.on('shown.bs.modal', (event) => {
         $('.borderdate-modal .modal-body').html(response.html);
     })
 });
-export function openBorderdateModal() {
+function openBorderdateModal() {
+    const borderdateModal = new bootstrap.Modal('.borderdate-modal', {});
+    borderdateModal.show();
+}
+
+function saveBorderdate() {
     const borderdateModal = new bootstrap.Modal('.borderdate-modal', {});
     borderdateModal.show();
 }

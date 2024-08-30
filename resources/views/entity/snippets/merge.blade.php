@@ -1,5 +1,5 @@
 @if($mergeable)
-    <button type="button" class="btn btn-outline-success my-2" onclick="openMergeModal()">
+    <button type="button" class="btn btn-outline-success my-2 btn-merge-modal-open">
         {{ __('entity.szakaszok_osszevonasa') }}
     </button>
 
@@ -15,13 +15,19 @@
                 <div class="modal-body">
                     <div class="d-flex justify-content-center">
                         <div class="spinner-border" role="status">
-                            <span class="visually-hidden">Loading...</span>
+                            <span class="visually-hidden">
+                                {{ __('entity.betoltes') }}
+                            </span>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        {{ __('layout.megse') }}
+                    </button>
+                    <button type="button" class="btn btn-primary save-btn">
+                        {{ __('entity.egyesites') }}
+                    </button>
                 </div>
             </div>
         </div>

@@ -41,7 +41,10 @@ abstract class Entity
         foreach ($this->getEntityList() as $element) {
             if ($lastHatvege->copy()->addDay()->isSameDay($element->getHatkezd())) {
                 $mergeableDates[] = [
-                    [$lastHatKezd, $lastHatvege], [$element->getHatkezd(), $element->getHatvege()],
+                    'startInterval' => [$lastHatKezd, $lastHatvege],
+                    'endInterval' => [$element->getHatkezd(), $element->getHatvege()],
+                    'name' => $element->getUniqueName(),
+                    'uid' => $element->getUid(),
                 ];
             }
             $lastHatKezd = $element->getHatKezd();

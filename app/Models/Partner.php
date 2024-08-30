@@ -21,6 +21,11 @@ class Partner extends BasePartner implements HatalyosModel
         'par_modifier',
     ];
 
+    public function getUid(): int
+    {
+        return $this->par_uid;
+    }
+
     public function getUniqueName(): string
     {
         return $this->par_nev . ' (' . $this->par_cim . ')';

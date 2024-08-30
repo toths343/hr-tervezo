@@ -1,3 +1,7 @@
+$('.btn-merge-modal-open').on('click.merge-modal-open', () => {
+    openMergeModal();
+});
+
 const mergeModalElement = $('.merge-modal');
 mergeModalElement.on('shown.bs.modal', (event) => {
     $.ajax({
@@ -7,7 +11,7 @@ mergeModalElement.on('shown.bs.modal', (event) => {
     })
 });
 
-export function openMergeModal() {
+function openMergeModal() {
     const mergeModal = new bootstrap.Modal('.merge-modal', {});
     mergeModal.show();
 }

@@ -37,6 +37,11 @@ class Projekt extends BaseProjekt implements HatalyosModel
 		'prj_modifier'
 	];
 
+    public function getUid(): int
+    {
+        return $this->prj_uid;
+    }
+
     public function getUniqueName(): string
     {
         return $this->prj_nev . ' (' . $this->prj_azonosito . ')';
