@@ -35,6 +35,7 @@ Route::group([
         Route::get('/entity/modal/merge/{type}/{id}', 'mergeModal')->name('entity.mergeModal');
         Route::get('/entity/modal/borderdate/{type}/{id}', 'borderdateModal')->name('entity.borderdateModal');
         Route::post('/entity/save/merge/{type}/{id}', 'mergeSave')->name('entity.mergeSave');
+        Route::post('/entity/save/borderdate/{type}/{id}', 'borderdateSave')->name('entity.borderdateSave');
     });
 });
 

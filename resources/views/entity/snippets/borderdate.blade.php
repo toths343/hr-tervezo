@@ -15,13 +15,19 @@
                 <div class="modal-body">
                     <div class="d-flex justify-content-center">
                         <div class="spinner-border" role="status">
-                            <span class="visually-hidden">Loading...</span>
+                            <span class="visually-hidden">
+                                {{ __('entity.betoltes') }}
+                            </span>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        {{ __('layout.megse') }}
+                    </button>
+                    <button type="button" class="btn btn-primary save-btn" data-type="{{ $type }}" data-id="{{ $id }}">
+                        {{ __('entity.modositas') }}
+                    </button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,8 @@
 class BorderdateModal
 {
+    borderdateModalElement;
+    borderdateModal;
+
     constructor() {
         this.init();
     }
@@ -9,8 +12,12 @@ class BorderdateModal
             this.openBorderdateModal();
         });
 
-        const borderdateModalElement = $('.borderdate-modal');
-        borderdateModalElement.on('shown.bs.modal', (event) => {
+        $('.borderdate-modal .save-btn').on('click.borderdate-modal-save', (event) => {
+            this.save(event);
+        });
+
+        this.borderdateModalElement = $('.borderdate-modal');
+        this.borderdateModalElement.on('shown.bs.modal', (event) => {
             $.ajax({
                 url: '/entity/modal/borderdate/' + event.target.dataset.type + '/' + event.target.dataset.id
             }).done((response) => {
@@ -20,13 +27,24 @@ class BorderdateModal
     }
 
     openBorderdateModal() {
-        const borderdateModal = new bootstrap.Modal('.borderdate-modal', {});
-        borderdateModal.show();
+        this.borderdateModal = new bootstrap.Modal('.borderdate-modal', {});
+        this.borderdateModal.show();
     }
 
-    saveBorderdate() {
-        const borderdateModal = new bootstrap.Modal('.borderdate-modal', {});
-        borderdateModal.show();
+    save(event) {
+        $.ajax({
+            method: 'POST',
+            url: '/entity/save/borderdate/' + event.target.dataset.type + '/' + event.target.dataset.id,
+            data: new FormData(document.querySelector('.borderdate-form')),
+            processData: false,
+            contentType: false
+        })
+            .fail((response) => {
+                $('.borderdate-error-container').html(Object.entries(response.responseJSON.errors).map(error => error[1]).join('<br/>')).toggleClass('d-none');
+            })
+            .done(() => {
+                location.reload();
+            })
     }
 }
 

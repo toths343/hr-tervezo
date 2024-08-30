@@ -2,6 +2,8 @@
     {{ __('entity.osszevonas_figyelmeztetes') }}
 </div>
 
+<div class="alert alert-danger merge-error-container d-none"></div>
+
 <form class="merge-form" action="#">
     @csrf
     <table class="table">

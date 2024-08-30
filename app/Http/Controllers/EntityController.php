@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Abstracts\Entity;
+use App\Http\Requests\EntityBorderdateRequest;
 use App\Http\Requests\EntityMergeRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
-use Psy\Util\Json;
 
 
 class EntityController extends Controller
@@ -66,6 +66,14 @@ class EntityController extends Controller
     public function mergeSave(EntityMergeRequest $entityMergeRequest): JsonResponse
     {
         $validated = $entityMergeRequest->validated();
+
+        return response()->json([]);
+    }
+
+    public function borderdateSave(EntityBorderdateRequest $entityBorderdateRequest): JsonResponse
+    {
+        $validated = $entityBorderdateRequest->validated();
+
         return response()->json([]);
     }
 

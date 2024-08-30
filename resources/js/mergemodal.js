@@ -38,8 +38,12 @@ class MergeModal
             data: new FormData(document.querySelector('.merge-form')),
             processData: false,
             contentType: false
-        }).done((response) => {
-            this.mergeModal.hide();
+        })
+        .fail((response) => {
+            $('.merge-error-container').html(Object.entries(response.responseJSON.errors).map(error => error[1]).join('<br/>')).toggleClass('d-none');
+        })
+        .done(() => {
+            location.reload();
         })
     }
 }
