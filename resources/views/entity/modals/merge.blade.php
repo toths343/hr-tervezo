@@ -3,7 +3,7 @@
         {{ __('entity.szakaszok_osszevonasa') }}
     </button>
 
-    <div class="modal merge-modal" tabindex="-1">
+    <div class="modal merge-modal" tabindex="-1" id="merge-modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -23,14 +23,4 @@
         </div>
     </div>
 
-    @push('scripts')
-        <script type="module">
-            function openMergeModal() {
-                const mergeModal = new bootstrap.Modal('.merge-modal', options)
-                mergeModal.addEventListener('shown.bs.modal', () => {
-                    alert('cica');
-                });
-            }
-        </script>
-    @endpush
 @endif

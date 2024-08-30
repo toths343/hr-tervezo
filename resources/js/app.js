@@ -1,6 +1,7 @@
 import './bootstrap';
 
-import 'bootstrap';
+import * as bootstrap from 'bootstrap';
+window.bootstrap = bootstrap;
 
 import 'jszip';
 import 'pdfmake';
@@ -18,3 +19,6 @@ $.extend($.fn.dataTable.defaults, {
 });
 
 import 'jquery-ui/dist/jquery-ui';
+
+import { openMergeModal } from './mergemodal';
+window.openMergeModal = openMergeModal;
