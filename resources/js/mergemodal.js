@@ -1,5 +1,8 @@
 class MergeModal
 {
+    mergeModalElement;
+    mergeModal;
+
     constructor() {
         this.init();
     }
@@ -9,8 +12,12 @@ class MergeModal
             this.openMergeModal();
         });
 
-        const mergeModalElement = $('.merge-modal');
-        mergeModalElement.on('shown.bs.modal', (event) => {
+        $('.merge-modal .save-btn').on('click.merge-modal-save', (event) => {
+            this.save(event);
+        });
+
+        this.mergeModalElement = $('.merge-modal');
+        this.mergeModalElement.on('shown.bs.modal', (event) => {
             $.ajax({
                 url: '/entity/modal/merge/' + event.target.dataset.type + '/' + event.target.dataset.id
             }).done((response) => {
@@ -20,8 +27,20 @@ class MergeModal
     }
 
     openMergeModal() {
-        const mergeModal = new bootstrap.Modal('.merge-modal', {});
-        mergeModal.show();
+        this.mergeModal = new bootstrap.Modal('.merge-modal', {});
+        this.mergeModal.show();
+    }
+
+    save(event) {
+        $.ajax({
+            method: 'POST',
+            url: '/entity/save/merge/' + event.target.dataset.type + '/' + event.target.dataset.id,
+            data: new FormData(document.querySelector('.merge-form')),
+            processData: false,
+            contentType: false
+        }).done((response) => {
+            this.mergeModal.hide();
+        })
     }
 }
 

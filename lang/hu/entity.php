@@ -8,5 +8,5 @@ return [
     'hatardatum_elmozgatasa' => 'Határdátum elmozgatása',
     'osszevonas_figyelmeztetes' => 'Összevonáskor a második szakasz adatai maradnak életben.',
     'egyesites' => 'Egyesítés',
-
+    'mergeuid_required' => 'Szakasz kiválasztása kötelező',
 ];

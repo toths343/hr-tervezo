@@ -25,7 +25,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         {{ __('layout.megse') }}
                     </button>
-                    <button type="button" class="btn btn-primary save-btn">
+                    <button type="button" class="btn btn-primary save-btn" data-type="{{ $type }}" data-id="{{ $id }}">
                         {{ __('entity.egyesites') }}
                     </button>
                 </div>
