@@ -1,4 +1,4 @@
-<div class="alert alert-danger">
+<div class="alert alert-info">
     {{ __('entity.osszevonas_figyelmeztetes') }}
 </div>
 
