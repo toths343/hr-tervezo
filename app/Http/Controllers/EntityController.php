@@ -10,49 +10,53 @@ use Illuminate\View\View;
 class EntityController extends Controller
 {
 
-    public function list(Entity $entity): View|JsonResponse
+    public function __construct(private readonly Entity $entity)
     {
-        $data = [
-            'title' => $entity->getBreadcrumbName(),
-            'breadcrumbs' => [
-                '' => $entity->getBreadcrumbName(),
-            ],
-        ];
-        return $entity->getDatatable()->render('entity.list', $data);
     }
 
-    public function index(Entity $entity): View
+    public function list(): View|JsonResponse
     {
-        $list = $entity->getEntityList();
         $data = [
-            'title' => $entity->getBreadcrumbName(),
-            'type' => $entity->getType(),
-            'id' => $entity->id,
+            'title' => $this->entity->getBreadcrumbName(),
             'breadcrumbs' => [
-                route('entity.list', ['type' => $entity->getType()]) => $entity->getBreadcrumbName(),
+                '' => $this->entity->getBreadcrumbName(),
+            ],
+        ];
+        return $this->entity->getDatatable()->render('entity.list', $data);
+    }
+
+    public function index(): View
+    {
+        $list = $this->entity->getEntityList();
+        $data = [
+            'title' => $this->entity->getBreadcrumbName(),
+            'type' => $this->entity->getType(),
+            'id' => $this->entity->id,
+            'breadcrumbs' => [
+                route('entity.list', ['type' => $this->entity->getType()]) => $this->entity->getBreadcrumbName(),
                 '' => $list[0]->getUniqueName(),
             ],
-            'list' => $entity->getEntityList(),
-            'mergeable' => $entity->mergeable(),
+            'list' => $this->entity->getEntityList(),
+            'mergeable' => $this->entity->mergeable(),
         ];
 
         return view('entity.index', $data);
     }
 
-    public function mergeModal(Entity $entity): JsonResponse
+    public function mergeModal(): JsonResponse
     {
         return response()->json([
             'html' => view('entity.modals.merge', [
-                'mergeableDates' => $entity->getMergeableDates(),
+                'mergeableDates' => $this->entity->getMergeableDates(),
             ])->render(),
         ]);
     }
 
-    public function borderdateModal(Entity $entity): JsonResponse
+    public function borderdateModal(): JsonResponse
     {
         return response()->json([
             'html' => view('entity.modals.borderdate', [
-                'mergeableDates' => $entity->getMergeableDates(),
+                'mergeableDates' => $this->entity->getMergeableDates(),
             ])->render(),
         ]);
     }
