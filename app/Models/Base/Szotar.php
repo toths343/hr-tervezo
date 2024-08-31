@@ -45,4 +45,15 @@ class Szotar extends Model
 		self::SZO_LASTUPD => 'datetime',
 		self::SZO_DEL => 'int'
 	];
+
+	protected $fillable = [
+		self::SZO_TIPUS,
+		self::SZO_RNEV,
+		self::SZO_HNEV,
+		self::SZO_CREATED,
+		self::SZO_CREATER,
+		self::SZO_LASTUPD,
+		self::SZO_MODIFIER,
+		self::SZO_DEL
+	];
 }

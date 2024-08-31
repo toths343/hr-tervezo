@@ -40,4 +40,13 @@ class VNexonMunkaido extends Model
 		self::NIDO_DATUM => 'datetime',
 		self::NIDO_ORA => 'float'
 	];
+
+	protected $fillable = [
+		self::NIDO_NEXON_SZEMELY_ID,
+		self::NIDO_JOGV_ID,
+		self::NIDO_NISZ_ID,
+		self::NIDO_DATUM,
+		self::NIDO_ORA,
+		self::NIDO_NAP_TIPUS
+	];
 }

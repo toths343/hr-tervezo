@@ -10,6 +10,7 @@ use App\Models\AuthGroupRole;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class AuthRole
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $role_modifier
  * @property int $role_del
  * 
- * @property Collection|AuthGroupRole[] $auth_group_roles
+ * @property Collection|AuthGroupRole[] $auth_group_roles_where_grole
  *
  * @package App\Models\Base
  */
@@ -50,7 +51,18 @@ class AuthRole extends Model
 		self::ROLE_DEL => 'int'
 	];
 
-	public function auth_group_roles()
+	protected $fillable = [
+		self::ROLE_LABEL,
+		self::ROLE_NAME,
+		self::ROLE_DESCRIPTION,
+		self::ROLE_CREATED,
+		self::ROLE_CREATER,
+		self::ROLE_LASTUPD,
+		self::ROLE_MODIFIER,
+		self::ROLE_DEL
+	];
+
+	public function auth_group_roles_where_grole(): HasMany
 	{
 		return $this->hasMany(AuthGroupRole::class, AuthGroupRole::GROLE_ROLE_UID);
 	}

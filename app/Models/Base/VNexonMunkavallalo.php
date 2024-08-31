@@ -39,4 +39,13 @@ class VNexonMunkavallalo extends Model
 		self::NMKV_HATKEZD => 'datetime',
 		self::NMKV_HATVEGE => 'datetime'
 	];
+
+	protected $fillable = [
+		self::NMKV_UID,
+		self::NMKV_NEXON_SZEMELY_ID,
+		self::NMKV_NEXON_JOGV_ID,
+		self::NMKV_NEV,
+		self::NMKV_HATKEZD,
+		self::NMKV_HATVEGE
+	];
 }

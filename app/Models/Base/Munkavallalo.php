@@ -10,6 +10,7 @@ use App\Models\Pozicio;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Munkavallalo
@@ -27,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $mkv_lastupd
  * @property int $mkv_del
  * 
- * @property Collection|Pozicio[] $pozicios
+ * @property Collection|Pozicio[] $pozicios_where_poz
  *
  * @package App\Models\Base
  */
@@ -61,7 +62,21 @@ class Munkavallalo extends Model
 		self::MKV_DEL => 'int'
 	];
 
-	public function pozicios()
+	protected $fillable = [
+		self::MKV_ID,
+		self::MKV_NEXON_SZEMELY_ID,
+		self::MKV_NEXON_JOGV_ID,
+		self::MKV_NEV,
+		self::MKV_HATKEZD,
+		self::MKV_HATVEGE,
+		self::MKV_CREATED,
+		self::MKV_CREATER,
+		self::MKV_MODIFIER,
+		self::MKV_LASTUPD,
+		self::MKV_DEL
+	];
+
+	public function pozicios_where_poz(): HasMany
 	{
 		return $this->hasMany(Pozicio::class, Pozicio::POZ_MKV_ID, Pozicio::MKV_ID);
 	}

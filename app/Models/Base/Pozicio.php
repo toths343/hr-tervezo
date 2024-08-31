@@ -6,12 +6,13 @@
 
 namespace App\Models\Base;
 
-use App\Models\Munkavallalo;
 use App\Models\PozicioKategorium;
 use App\Models\PozicioOrabonta;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Pozicio
@@ -30,9 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $poz_modifier
  * @property int $poz_del
  * 
- * @property Munkavallalo $munkavallalo
- * @property PozicioKategorium|null $pozicio_kategorium
- * @property Collection|PozicioOrabonta[] $pozicio_orabontas
+ * @property PozicioKategorium|null $poz
+ * @property Collection|PozicioOrabonta[] $pozicio_orabontas_where_pozb
  *
  * @package App\Models\Base
  */
@@ -67,17 +67,27 @@ class Pozicio extends Model
 		self::POZ_DEL => 'int'
 	];
 
-	public function munkavallalo()
-	{
-		return $this->belongsTo(Munkavallalo::class, \App\Models\Pozicio::POZ_MKV_ID, Munkavallalo::MKV_ID);
-	}
+	protected $fillable = [
+		self::POZ_MKV_ID,
+		self::POZ_POZK_UID,
+		self::POZ_NEV,
+		self::POZ_SZERVEZET,
+		self::POZ_AKTIV,
+		self::POZ_HATKEZD,
+		self::POZ_HATVEGE,
+		self::POZ_CREATED,
+		self::POZ_CREATER,
+		self::POZ_LASTUPD,
+		self::POZ_MODIFIER,
+		self::POZ_DEL
+	];
 
-	public function pozicio_kategorium()
+	public function poz(): BelongsTo
 	{
 		return $this->belongsTo(PozicioKategorium::class, \App\Models\Pozicio::POZ_POZK_UID);
 	}
 
-	public function pozicio_orabontas()
+	public function pozicio_orabontas_where_pozb(): HasMany
 	{
 		return $this->hasMany(PozicioOrabonta::class, PozicioOrabonta::POZB_POZ_UID);
 	}

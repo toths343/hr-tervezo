@@ -9,6 +9,7 @@ namespace App\Models\Base;
 use App\Models\AuthUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class AuthUserResource
@@ -23,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $aures_modifier
  * @property int $aures_del
  * 
- * @property AuthUser $auth_user
+ * @property AuthUser $aures
  *
  * @package App\Models\Base
  */
@@ -51,7 +52,18 @@ class AuthUserResource extends Model
 		self::AURES_DEL => 'int'
 	];
 
-	public function auth_user()
+	protected $fillable = [
+		self::AURES_USER_UID,
+		self::AURES_RES_ID,
+		self::AURES_RES_TYPE,
+		self::AURES_CREATED,
+		self::AURES_CREATER,
+		self::AURES_LASTUPD,
+		self::AURES_MODIFIER,
+		self::AURES_DEL
+	];
+
+	public function aures(): BelongsTo
 	{
 		return $this->belongsTo(AuthUser::class, \App\Models\AuthUserResource::AURES_USER_UID);
 	}

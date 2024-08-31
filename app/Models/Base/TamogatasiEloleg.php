@@ -9,6 +9,7 @@ namespace App\Models\Base;
 use App\Models\Projekt;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class TamogatasiEloleg
@@ -31,7 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $tam_modifier
  * @property int $tam_del
  * 
- * @property Projekt $projekt
+ * @property Projekt $tam
  *
  * @package App\Models\Base
  */
@@ -74,7 +75,26 @@ class TamogatasiEloleg extends Model
 		self::TAM_DEL => 'int'
 	];
 
-	public function projekt()
+	protected $fillable = [
+		self::TAM_SORSZAM,
+		self::TAM_TIPUS,
+		self::TAM_PRJ_ID,
+		self::TAM_DKFBEERKEZETT,
+		self::TAM_DKFBEERKEZETT_DATUM,
+		self::TAM_DKFELFOGADOTT,
+		self::TAM_DKFELFOGADOTT_DATUM,
+		self::TAM_SZALLITOBEERKEZETT,
+		self::TAM_SZALLITOBEERKEZETT_DATUM,
+		self::TAM_SZALLITOELSZAMOLT,
+		self::TAM_SZALLITOELSZAMOLT_DATUM,
+		self::TAM_CREATED,
+		self::TAM_CREATER,
+		self::TAM_LASTUPD,
+		self::TAM_MODIFIER,
+		self::TAM_DEL
+	];
+
+	public function tam(): BelongsTo
 	{
 		return $this->belongsTo(Projekt::class, \App\Models\TamogatasiEloleg::TAM_PRJ_ID, Projekt::PRJ_ID);
 	}

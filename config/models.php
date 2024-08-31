@@ -102,8 +102,8 @@ return [
         'timestamps' => [
             'enabled' => true,
             'fields' => [
-                'CREATED_AT' => '*_created',
-                'UPDATED_AT' => '*_lastupd',
+                'CREATED_AT' => 'created',
+                'UPDATED_AT' => 'lastupd',
              ]
         ],
 
@@ -123,7 +123,7 @@ return [
 
         'soft_deletes' => [
              'enabled' => true,
-             'field' => '*_del',
+             'field' => 'del',
         ],
 
         /*
@@ -431,7 +431,7 @@ return [
         | if you want the $fillable to be generated in base files
         |
         */
-        'fillable_in_base_files' => false,
+        'fillable_in_base_files' => true,
 
         /*
         |--------------------------------------------------------------------------
@@ -443,7 +443,7 @@ return [
         | NOTE: This requires PHP 7.0 or later.
         |
         */
-        'enable_return_types' => false,
+        'enable_return_types' => true,
     ],
 
     /*

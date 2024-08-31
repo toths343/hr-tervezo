@@ -10,6 +10,7 @@ use App\Models\TenyBerFeloszta;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class TenyBerBetolte
@@ -34,7 +35,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $tebb_modifier
  * @property int $tebb_del
  * 
- * @property Collection|TenyBerFeloszta[] $teny_ber_felosztas
+ * @property Collection|TenyBerFeloszta[] $teny_ber_felosztas_where_teb
  *
  * @package App\Models\Base
  */
@@ -77,7 +78,28 @@ class TenyBerBetolte extends Model
 		self::TEBB_DEL => 'int'
 	];
 
-	public function teny_ber_felosztas()
+	protected $fillable = [
+		self::TEBB_SORSZAM,
+		self::TEBB_JOGV_ID,
+		self::TEBB_VON_KEZD,
+		self::TEBB_VON_VEGE,
+		self::TEBB_SZAMF_KEZD,
+		self::TEBB_SZAMF_VEGE,
+		self::TEBB_MUNKAVALLALO,
+		self::TEBB_TARTOZIK_FOKONYV,
+		self::TEBB_TARTOZIK_MEGNEVEZES,
+		self::TEBB_JUTTATAS,
+		self::TEBB_KOVETEL_FOKONYV,
+		self::TEBB_KOVETEL_MEGNEVEZES,
+		self::TEBB_OSSZEG,
+		self::TEBB_CREATED,
+		self::TEBB_CREATER,
+		self::TEBB_LASTUPD,
+		self::TEBB_MODIFIER,
+		self::TEBB_DEL
+	];
+
+	public function teny_ber_felosztas_where_teb(): HasMany
 	{
 		return $this->hasMany(TenyBerFeloszta::class, TenyBerFeloszta::TEB_TEBB_UID);
 	}

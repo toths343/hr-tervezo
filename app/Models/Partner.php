@@ -8,18 +8,8 @@ use Carbon\Carbon;
 
 class Partner extends BasePartner implements HatalyosModel
 {
-    protected $fillable = [
-        'par_id',
-        'par_azonosito',
-        'par_nev',
-        'par_adoszam',
-        'par_nyilv_szam',
-        'par_cim',
-        'par_hatkezd',
-        'par_hatvege',
-        'par_creater',
-        'par_modifier',
-    ];
+    const PAR_CREATED = 'par_created';
+    const PAR_LASTUPD = 'par_lastupd';
 
     public function getUid(): int
     {

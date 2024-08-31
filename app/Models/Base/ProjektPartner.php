@@ -7,11 +7,12 @@
 namespace App\Models\Base;
 
 use App\Models\Kapcsolattarto;
-use App\Models\Partner;
 use App\Models\Projekt;
 use App\Models\ProjektPartnerKapcsolattarto;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class ProjektPartner
@@ -22,8 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $prjp_prj_id
  * @property int $prjp_del
  * 
- * @property Partner $partner
- * @property Projekt $projekt
+ * @property Projekt $prjp
  * @property Collection|Kapcsolattarto[] $kapcsolattartos
  *
  * @package App\Models\Base
@@ -46,17 +46,19 @@ class ProjektPartner extends Model
 		self::PRJP_DEL => 'int'
 	];
 
-	public function partner()
-	{
-		return $this->belongsTo(Partner::class, \App\Models\ProjektPartner::PRJP_PAR_ID, Partner::PAR_ID);
-	}
+	protected $fillable = [
+		self::PRJP_JELLEG,
+		self::PRJP_PAR_ID,
+		self::PRJP_PRJ_ID,
+		self::PRJP_DEL
+	];
 
-	public function projekt()
+	public function prjp(): BelongsTo
 	{
 		return $this->belongsTo(Projekt::class, \App\Models\ProjektPartner::PRJP_PRJ_ID, Projekt::PRJ_ID);
 	}
 
-	public function kapcsolattartos()
+	public function kapcsolattartos(): BelongsToMany
 	{
 		return $this->belongsToMany(Kapcsolattarto::class, 'projekt_partner_kapcsolattarto', Kapcsolattarto::PRJPK_PRJP_UID, Kapcsolattarto::PRJPK_KAPCS_ID)
 					->withPivot(ProjektPartnerKapcsolattarto::PRJPK_UID, ProjektPartnerKapcsolattarto::PRJPK_JELLEG, ProjektPartnerKapcsolattarto::PRJPK_DEL);

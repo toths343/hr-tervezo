@@ -27,7 +27,7 @@
             </a>
         </div>
     </div>
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center px-2 p-xxl-0">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid ps-0">
                 <a class="navbar-brand" href="/">
@@ -72,7 +72,7 @@
             </ol>
         </nav>
     </div>
-    <div>
+    <div class="px-2 p-xxl-0">
         @yield('content')
     </div>
 </div>

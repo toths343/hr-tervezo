@@ -11,6 +11,8 @@ use App\Models\AuthUserResource;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class AuthUser
@@ -26,8 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $user_modifier
  * @property int $user_del
  * 
- * @property AuthGroup $auth_group
- * @property Collection|AuthUserResource[] $auth_user_resources
+ * @property AuthGroup $user
+ * @property Collection|AuthUserResource[] $auth_user_resources_where_aure
  *
  * @package App\Models\Base
  */
@@ -55,12 +57,24 @@ class AuthUser extends Model
 		self::USER_DEL => 'int'
 	];
 
-	public function auth_group()
+	protected $fillable = [
+		self::USER_GROUP_UID,
+		self::USER_LOGIN,
+		self::USER_PASSWORD,
+		self::USER_NAME,
+		self::USER_CREATED,
+		self::USER_CREATER,
+		self::USER_LASTUPD,
+		self::USER_MODIFIER,
+		self::USER_DEL
+	];
+
+	public function user(): BelongsTo
 	{
 		return $this->belongsTo(AuthGroup::class, \App\Models\AuthUser::USER_GROUP_UID);
 	}
 
-	public function auth_user_resources()
+	public function auth_user_resources_where_aure(): HasMany
 	{
 		return $this->hasMany(AuthUserResource::class, AuthUserResource::AURES_USER_UID);
 	}

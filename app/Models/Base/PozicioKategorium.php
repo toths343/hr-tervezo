@@ -10,6 +10,7 @@ use App\Models\Pozicio;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class PozicioKategorium
@@ -25,7 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $pozk_modifier
  * @property int $pozk_del
  * 
- * @property Collection|Pozicio[] $pozicios
+ * @property Collection|Pozicio[] $pozicios_where_poz
  *
  * @package App\Models\Base
  */
@@ -52,7 +53,19 @@ class PozicioKategorium extends Model
 		self::POZK_DEL => 'int'
 	];
 
-	public function pozicios()
+	protected $fillable = [
+		self::POZK_KOD,
+		self::POZK_NEV,
+		self::POZK_TIPUS,
+		self::POZK_BESOROLAS,
+		self::POZK_CREATED,
+		self::POZK_CREATER,
+		self::POZK_LASTUPD,
+		self::POZK_MODIFIER,
+		self::POZK_DEL
+	];
+
+	public function pozicios_where_poz(): HasMany
 	{
 		return $this->hasMany(Pozicio::class, Pozicio::POZ_POZK_UID);
 	}

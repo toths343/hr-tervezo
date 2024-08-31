@@ -12,10 +12,13 @@ use App\Models\ProjektPartner;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Partner
- *
+ * 
  * @property int $par_uid
  * @property int $par_id
  * @property string $par_azonosito
@@ -25,19 +28,21 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $par_cim
  * @property Carbon $par_hatkezd
  * @property Carbon $par_hatvege
- * @property Carbon $par_created
- * @property string $par_creater
- * @property Carbon $par_lastupd
- * @property string $par_modifier
- * @property int $par_del
- *
- * @property Collection|Kapcsolattarto[] $kapcsolattartos
+ * @property Carbon $created_at
+ * @property string $creater
+ * @property Carbon $updated_at
+ * @property string $modifier
+ * @property string|null $del
+ * 
+ * @property Collection|Kapcsolattarto[] $kapcsolattartos_where_kapc
  * @property Collection|Projekt[] $projekts
  *
  * @package App\Models\Base
  */
 class Partner extends Model
 {
+	use SoftDeletes;
+	const DELETED_AT = 'del';
 	const PAR_UID = 'par_uid';
 	const PAR_ID = 'par_id';
 	const PAR_AZONOSITO = 'par_azonosito';
@@ -47,11 +52,10 @@ class Partner extends Model
 	const PAR_CIM = 'par_cim';
 	const PAR_HATKEZD = 'par_hatkezd';
 	const PAR_HATVEGE = 'par_hatvege';
-	const PAR_CREATED = 'par_created';
-	const PAR_CREATER = 'par_creater';
-	const PAR_LASTUPD = 'par_lastupd';
-	const PAR_MODIFIER = 'par_modifier';
-	const PAR_DEL = 'par_del';
+	const CREATED_AT = 'created_at';
+	const CREATER = 'creater';
+	const UPDATED_AT = 'updated_at';
+	const MODIFIER = 'modifier';
 	protected $table = 'partner';
 	protected $primaryKey = 'par_uid';
 	public $timestamps = false;
@@ -61,17 +65,31 @@ class Partner extends Model
 		self::PAR_ID => 'int',
 		self::PAR_HATKEZD => 'datetime',
 		self::PAR_HATVEGE => 'datetime',
-		self::PAR_CREATED => 'datetime',
-		self::PAR_LASTUPD => 'datetime',
-		self::PAR_DEL => 'int'
+		self::CREATED_AT => 'datetime',
+		self::UPDATED_AT => 'datetime'
 	];
 
-	public function kapcsolattartos()
+	protected $fillable = [
+		self::PAR_ID,
+		self::PAR_AZONOSITO,
+		self::PAR_NEV,
+		self::PAR_ADOSZAM,
+		self::PAR_NYILV_SZAM,
+		self::PAR_CIM,
+		self::PAR_HATKEZD,
+		self::PAR_HATVEGE,
+		self::CREATED_AT,
+		self::CREATER,
+		self::UPDATED_AT,
+		self::MODIFIER
+	];
+
+	public function kapcsolattartos_where_kapc(): HasMany
 	{
 		return $this->hasMany(Kapcsolattarto::class, Kapcsolattarto::KAPCS_PAR_ID, Kapcsolattarto::PAR_ID);
 	}
 
-	public function projekts()
+	public function projekts(): BelongsToMany
 	{
 		return $this->belongsToMany(Projekt::class, 'projekt_partner', Projekt::PRJP_PAR_ID, Projekt::PRJP_PRJ_ID)
 					->withPivot(ProjektPartner::PRJP_UID, ProjektPartner::PRJP_JELLEG, ProjektPartner::PRJP_DEL);

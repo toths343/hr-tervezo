@@ -6,10 +6,10 @@
 
 namespace App\Models\Base;
 
-use App\Models\Pozicio;
 use App\Models\Projekt;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class PozicioOrabonta
@@ -28,8 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $pozb_modifier
  * @property int $pozb_del
  * 
- * @property Pozicio $pozicio
- * @property Projekt $projekt
+ * @property Projekt $pozb
  *
  * @package App\Models\Base
  */
@@ -66,12 +65,22 @@ class PozicioOrabonta extends Model
 		self::POZB_DEL => 'int'
 	];
 
-	public function pozicio()
-	{
-		return $this->belongsTo(Pozicio::class, \App\Models\PozicioOrabonta::POZB_POZ_UID);
-	}
+	protected $fillable = [
+		self::POZB_POZ_UID,
+		self::POZB_PRJ_UID,
+		self::POZB_EV,
+		self::POZB_HONAP,
+		self::POZB_ORA,
+		self::POZB_KEZD,
+		self::POZB_VEGE,
+		self::POZB_CREATED,
+		self::POZB_CREATER,
+		self::POZB_LASTUPD,
+		self::POZB_MODIFIER,
+		self::POZB_DEL
+	];
 
-	public function projekt()
+	public function pozb(): BelongsTo
 	{
 		return $this->belongsTo(Projekt::class, \App\Models\PozicioOrabonta::POZB_PRJ_UID);
 	}

@@ -35,4 +35,11 @@ class VSysHonapok extends Model
 		self::HONAP_KEZD => 'datetime',
 		self::HONAP_VEGE => 'datetime'
 	];
+
+	protected $fillable = [
+		self::HONAP_EV,
+		self::HONAP_HONAP,
+		self::HONAP_KEZD,
+		self::HONAP_VEGE
+	];
 }

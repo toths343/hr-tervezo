@@ -28,4 +28,9 @@ class VMkvIdNexonSzemelyId extends Model
 		self::MKV_ID => 'int',
 		self::MKV_NEXON_SZEMELY_ID => 'int'
 	];
+
+	protected $fillable = [
+		self::MKV_ID,
+		self::MKV_NEXON_SZEMELY_ID
+	];
 }

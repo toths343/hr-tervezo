@@ -9,6 +9,7 @@ namespace App\Models\Base;
 use App\Models\TenyBerBetolte;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class TenyBerFeloszta
@@ -32,7 +33,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $teb_modifier
  * @property int $teb_del
  * 
- * @property TenyBerBetolte $teny_ber_betolte
+ * @property TenyBerBetolte $teb
  *
  * @package App\Models\Base
  */
@@ -79,7 +80,27 @@ class TenyBerFeloszta extends Model
 		self::TEB_DEL => 'int'
 	];
 
-	public function teny_ber_betolte()
+	protected $fillable = [
+		self::TEB_TEBB_UID,
+		self::TEB_JOGV_ID,
+		self::TEB_JUT_UID,
+		self::TEB_SZAMF_EV,
+		self::TEB_SZAMF_HONAP,
+		self::TEB_VON_KEZD,
+		self::TEB_VON_VEGE,
+		self::TEB_M_NAPOK,
+		self::TEB_N_NAPOK,
+		self::TEB_M_ORA,
+		self::TEB_OSSZEG,
+		self::TEB_NIDO_HIANY,
+		self::TEB_CREATED,
+		self::TEB_CREATER,
+		self::TEB_LASTUPD,
+		self::TEB_MODIFIER,
+		self::TEB_DEL
+	];
+
+	public function teb(): BelongsTo
 	{
 		return $this->belongsTo(TenyBerBetolte::class, \App\Models\TenyBerFeloszta::TEB_TEBB_UID);
 	}

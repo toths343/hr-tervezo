@@ -61,4 +61,22 @@ class Juttata extends Model
 		self::JUT_LASTUPD => 'datetime',
 		self::JUT_DEL => 'int'
 	];
+
+	protected $fillable = [
+		self::JUT_CID,
+		self::JUT_TARTOZIK_FOKONYV,
+		self::JUT_TARTOZIK_MEGNEVEZES,
+		self::JUT_JUTTATAS,
+		self::JUT_KOVETEL_FOKONYV,
+		self::JUT_KOVETEL_MEGNEVEZES,
+		self::JUT_KTGTIP,
+		self::JUT_OSZTASALAP,
+		self::JUT_HATKEZD,
+		self::JUT_HATVEGE,
+		self::JUT_CREATED,
+		self::JUT_CREATER,
+		self::JUT_LASTUPD,
+		self::JUT_MODIFIER,
+		self::JUT_DEL
+	];
 }

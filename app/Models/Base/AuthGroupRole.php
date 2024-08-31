@@ -6,10 +6,10 @@
 
 namespace App\Models\Base;
 
-use App\Models\AuthGroup;
 use App\Models\AuthRole;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class AuthGroupRole
@@ -23,8 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $grole_modifier
  * @property int $grole_del
  * 
- * @property AuthGroup $auth_group
- * @property AuthRole $auth_role
+ * @property AuthRole $grole
  *
  * @package App\Models\Base
  */
@@ -51,12 +50,17 @@ class AuthGroupRole extends Model
 		self::GROLE_DEL => 'int'
 	];
 
-	public function auth_group()
-	{
-		return $this->belongsTo(AuthGroup::class, \App\Models\AuthGroupRole::GROLE_GROUP_UID);
-	}
+	protected $fillable = [
+		self::GROLE_GROUP_UID,
+		self::GROLE_ROLE_UID,
+		self::GROLE_CREATED,
+		self::GROLE_CREATER,
+		self::GROLE_LASTUPD,
+		self::GROLE_MODIFIER,
+		self::GROLE_DEL
+	];
 
-	public function auth_role()
+	public function grole(): BelongsTo
 	{
 		return $this->belongsTo(AuthRole::class, \App\Models\AuthGroupRole::GROLE_ROLE_UID);
 	}

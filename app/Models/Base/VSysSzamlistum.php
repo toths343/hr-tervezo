@@ -25,4 +25,8 @@ class VSysSzamlistum extends Model
 	protected $casts = [
 		self::SZAM => 'int'
 	];
+
+	protected $fillable = [
+		self::SZAM
+	];
 }

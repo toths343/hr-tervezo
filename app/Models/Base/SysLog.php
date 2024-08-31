@@ -42,4 +42,14 @@ class SysLog extends Model
 		self::LOG_TABLE_REC_UID => 'int',
 		self::LOG_TIMESTAMP => 'datetime'
 	];
+
+	protected $fillable = [
+		self::LOG_SQL_USER,
+		self::LOG_USER,
+		self::LOG_TYPE,
+		self::LOG_TABLE,
+		self::LOG_TABLE_REC_UID,
+		self::LOG_DATA,
+		self::LOG_TIMESTAMP
+	];
 }

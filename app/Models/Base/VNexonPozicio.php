@@ -41,4 +41,14 @@ class VNexonPozicio extends Model
 		self::NPOZ_HATKEZD => 'datetime',
 		self::NPOZ_HATVEGE => 'datetime'
 	];
+
+	protected $fillable = [
+		self::NPOZ_UID,
+		self::NPOZ_NEXON_SZEMELY_ID,
+		self::NPOZ_NEV,
+		self::NPOZ_AKTIV,
+		self::NPOZ_SZERVEZET,
+		self::NPOZ_HATKEZD,
+		self::NPOZ_HATVEGE
+	];
 }

@@ -14,6 +14,8 @@ use App\Models\TamogatasiEloleg;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Projekt
@@ -49,10 +51,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $prj_modifier
  * @property int $prj_del
  * 
- * @property Collection|ElszamolasiAdatok[] $elszamolasi_adatoks
- * @property Collection|PozicioOrabonta[] $pozicio_orabontas
+ * @property Collection|ElszamolasiAdatok[] $elszamolasi_adatoks_where_elszam
+ * @property Collection|PozicioOrabonta[] $pozicio_orabontas_where_pozb
  * @property Collection|Partner[] $partners
- * @property Collection|TamogatasiEloleg[] $tamogatasi_elolegs
+ * @property Collection|TamogatasiEloleg[] $tamogatasi_elolegs_where_tam
  *
  * @package App\Models\Base
  */
@@ -112,23 +114,55 @@ class Projekt extends Model
 		self::PRJ_DEL => 'int'
 	];
 
-	public function elszamolasi_adatoks()
+	protected $fillable = [
+		self::PRJ_ID,
+		self::PRJ_KAT,
+		self::PRJ_AZONOSITO,
+		self::PRJ_JELLEG,
+		self::PRJ_NEV,
+		self::PRJ_ROVID_NEV,
+		self::PRJ_STATUS,
+		self::PRJ_FELADAT_MODJA,
+		self::PRJ_KAPCS_ID,
+		self::PRJ_TAMOGATASI_NYILV,
+		self::PRJ_TAMOGATASI_DATUM,
+		self::PRJ_KEZDETE,
+		self::PRJ_VEGE,
+		self::PRJ_TAM_EU,
+		self::PRJ_TAM_HAZAI,
+		self::PRJ_DKF_TAM_EU,
+		self::PRJ_DKF_TAM_HAZAI,
+		self::PRJ_HRTERV_KEZD,
+		self::PRJ_HRTERV_VEGE,
+		self::PRJ_FORRAS,
+		self::PRJ_MUNKASZAM,
+		self::PRJ_KONZORCIUMBAN,
+		self::PRJ_HATKEZD,
+		self::PRJ_HATVEGE,
+		self::PRJ_CREATED,
+		self::PRJ_CREATER,
+		self::PRJ_LASTUPD,
+		self::PRJ_MODIFIER,
+		self::PRJ_DEL
+	];
+
+	public function elszamolasi_adatoks_where_elszam(): HasMany
 	{
 		return $this->hasMany(ElszamolasiAdatok::class, ElszamolasiAdatok::ELSZAM_PRJ_ID, ElszamolasiAdatok::PRJ_ID);
 	}
 
-	public function pozicio_orabontas()
+	public function pozicio_orabontas_where_pozb(): HasMany
 	{
 		return $this->hasMany(PozicioOrabonta::class, PozicioOrabonta::POZB_PRJ_UID);
 	}
 
-	public function partners()
+	public function partners(): BelongsToMany
 	{
 		return $this->belongsToMany(Partner::class, 'projekt_partner', Partner::PRJP_PRJ_ID, Partner::PRJP_PAR_ID)
 					->withPivot(ProjektPartner::PRJP_UID, ProjektPartner::PRJP_JELLEG, ProjektPartner::PRJP_DEL);
 	}
 
-	public function tamogatasi_elolegs()
+	public function tamogatasi_elolegs_where_tam(): HasMany
 	{
 		return $this->hasMany(TamogatasiEloleg::class, TamogatasiEloleg::TAM_PRJ_ID, TamogatasiEloleg::PRJ_ID);
 	}
