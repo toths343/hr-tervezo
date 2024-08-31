@@ -17,4 +17,6 @@ return [
     'uj_elem_felvitele_lista_vegere' => 'Új elem felvitele a lista végére',
     'szerkesztes' => 'Szerkesztés',
     'mentes' => 'Mentés',
+    'torles' => 'Törlés',
+    'torles_megerosites' => 'Biztos, hogy törölni szeretné az alábbi bejegyzést: :uniqueName',
 ];

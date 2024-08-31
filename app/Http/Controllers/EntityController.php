@@ -75,6 +75,15 @@ class EntityController extends Controller
         ]);
     }
 
+    public function deleteModal(): JsonResponse
+    {
+        return response()->json([
+            'html' => view('entity.modals.delete', [
+                'uniqueName' => current($this->entity->getEditorData())->getUniqueName(),
+            ])->render(),
+        ]);
+    }
+
     public function mergeSave(EntityMergeRequest $entityMergeRequest): JsonResponse
     {
         $validated = $entityMergeRequest->validated();
@@ -86,6 +95,12 @@ class EntityController extends Controller
     {
         $validated = $entityBorderdateRequest->validated();
 
+        return response()->json([]);
+    }
+
+    public function deleteSave(Entity $entity): JsonResponse
+    {
+        current($entity->getEditorData())->delete();
         return response()->json([]);
     }
 

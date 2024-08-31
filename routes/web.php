@@ -35,8 +35,10 @@ Route::group([
         Route::get('/entity/modal/edit/{type}/{uid?}', 'edit')->name('entity.editModal');
         Route::get('/entity/modal/merge/{type}/{id}', 'mergeModal')->name('entity.mergeModal');
         Route::get('/entity/modal/borderdate/{type}/{id}', 'borderdateModal')->name('entity.borderdateModal');
+        Route::get('/entity/modal/delete/{type}/{uid}', 'deleteModal')->name('entity.deleteModal');
         Route::post('/entity/save/merge/{type}/{id}', 'mergeSave')->name('entity.mergeSave');
         Route::post('/entity/save/borderdate/{type}/{id}', 'borderdateSave')->name('entity.borderdateSave');
+        Route::post('/entity/save/delete/{type}/{uid}', 'deleteSave')->name('entity.deleteSave');
         // Route::post('/entity/save/{type}/{uid}', 'save')->name('entity.save');
     });
 

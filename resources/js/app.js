@@ -24,3 +24,4 @@ import './dates';
 import './mergemodal';
 import './borderdatemodal';
 import './editmodal';
+import './deletemodal';
