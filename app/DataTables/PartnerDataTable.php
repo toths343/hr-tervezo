@@ -29,10 +29,24 @@ class PartnerDataTable extends DataTable
 
     public function query(Partner $model): QueryBuilder
     {
-        $actDate = session()->get('actDate')->format('Y-m-d');
+        $startDate = session()->get('startDate')->format('Y-m-d');
+        $endDate = session()->get('startDate')->format('Y-m-d');
         return $model->newQuery()
-            ->where(PartnerBase::PAR_HATKEZD, '<=', $actDate)
-            ->where(PartnerBase::PAR_HATVEGE, '>', $actDate);
+            ->orWhere(function ($query) use ($startDate, $endDate) {
+                $query
+                    ->where(PartnerBase::PAR_HATKEZD, '<=', $startDate)
+                    ->where(PartnerBase::PAR_HATVEGE, '>=', $startDate);
+            })
+            ->orWhere(function ($query) use ($startDate, $endDate) {
+                $query
+                    ->whereBetween(PartnerBase::PAR_HATKEZD, [$startDate, $endDate])
+                    ->whereBetween(PartnerBase::PAR_HATVEGE, [$startDate, $endDate]);
+            })
+            ->orWhere(function ($query) use ($startDate, $endDate) {
+                $query
+                    ->where(PartnerBase::PAR_HATKEZD, '<=', $endDate)
+                    ->where(PartnerBase::PAR_HATVEGE, '>=', $endDate);
+            });
     }
 
     public function html(): HtmlBuilder
