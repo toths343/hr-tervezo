@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Abstracts\Entity;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,10 +15,14 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(Entity::class, function () {
             $entityType = ucfirst(request()->route('type'));
-            return $this->app->make('\App\Entities\\' . $entityType . 'Entity', [
-                'uid' => request()->route('uid'),
-                'id' => request()->route('id')
-            ]);
+            try {
+                return $this->app->make('\App\Entities\\' . $entityType . 'Entity', [
+                    'uid' => request()->route('uid'),
+                    'id' => request()->route('id')
+                ]);
+            } catch (BindingResolutionException) {
+                abort(404);
+            }
         });
     }
 
