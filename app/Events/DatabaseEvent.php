@@ -2,14 +2,12 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
 
 class DatabaseEvent
 {
@@ -20,8 +18,10 @@ class DatabaseEvent
      */
     public function __construct(Model $model)
     {
-        $model->creater = 'Todo';
-        $model->modifier = 'Todo';
+        if (!$model->exists) {
+            $model->creater = Auth::user()->user_name;
+        }
+        $model->modifier = Auth::user()->user_name;
     }
 
     /**
