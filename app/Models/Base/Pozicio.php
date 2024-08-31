@@ -6,6 +6,7 @@
 
 namespace App\Models\Base;
 
+use App\Models\Munkavallalo;
 use App\Models\PozicioKategorium;
 use App\Models\PozicioOrabonta;
 use Carbon\Carbon;
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Pozicio
- * 
+ *
  * @property int $poz_uid
  * @property int $poz_mkv_id
  * @property int|null $poz_pozk_uid
@@ -30,9 +31,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Carbon $poz_lastupd
  * @property string $poz_modifier
  * @property int $poz_del
- * 
- * @property PozicioKategorium|null $poz
- * @property Collection|PozicioOrabonta[] $pozicio_orabontas_where_pozb
+ *
+ * @property Munkavallalo $munkavallalo
+ * @property PozicioKategorium|null $pozicio_kategorium
+ * @property Collection|PozicioOrabonta[] $pozicio_orabontas
  *
  * @package App\Models\Base
  */
@@ -82,12 +84,17 @@ class Pozicio extends Model
 		self::POZ_DEL
 	];
 
-	public function poz(): BelongsTo
+	public function munkavallalo(): BelongsTo
+	{
+		return $this->belongsTo(Munkavallalo::class, \App\Models\Pozicio::POZ_MKV_ID, Munkavallalo::MKV_ID);
+	}
+
+	public function pozicio_kategorium(): BelongsTo
 	{
 		return $this->belongsTo(PozicioKategorium::class, \App\Models\Pozicio::POZ_POZK_UID);
 	}
 
-	public function pozicio_orabontas_where_pozb(): HasMany
+	public function pozicio_orabontas(): HasMany
 	{
 		return $this->hasMany(PozicioOrabonta::class, PozicioOrabonta::POZB_POZ_UID);
 	}

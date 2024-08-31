@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Munkavallalo
- * 
+ *
  * @property int $mkv_uid
  * @property int $mkv_id
  * @property int $mkv_nexon_szemely_id
@@ -27,8 +27,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $mkv_modifier
  * @property Carbon $mkv_lastupd
  * @property int $mkv_del
- * 
- * @property Collection|Pozicio[] $pozicios_where_poz
+ *
+ * @property Collection|Pozicio[] $pozicios
  *
  * @package App\Models\Base
  */
@@ -76,7 +76,7 @@ class Munkavallalo extends Model
 		self::MKV_DEL
 	];
 
-	public function pozicios_where_poz(): HasMany
+	public function pozicios(): HasMany
 	{
 		return $this->hasMany(Pozicio::class, Pozicio::POZ_MKV_ID, Pozicio::MKV_ID);
 	}

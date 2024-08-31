@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class Kapcsolattarto
- * 
+ *
  * @property int $kapcs_uid
  * @property int $kapcs_id
  * @property string $kapcs_azonosito
@@ -33,8 +33,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property Carbon $kapcs_lastupd
  * @property string $kapcs_modifier
  * @property int $kapcs_del
- * 
- * @property Partner $kapcs
+ *
+ * @property Partner $partner
  * @property Collection|ProjektPartner[] $projekt_partners
  *
  * @package App\Models\Base
@@ -89,7 +89,7 @@ class Kapcsolattarto extends Model
 		self::KAPCS_DEL
 	];
 
-	public function kapcs(): BelongsTo
+	public function partner(): BelongsTo
 	{
 		return $this->belongsTo(Partner::class, \App\Models\Kapcsolattarto::KAPCS_PAR_ID, Partner::PAR_ID);
 	}

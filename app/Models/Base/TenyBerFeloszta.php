@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class TenyBerFeloszta
- * 
+ *
  * @property int $teb_uid
  * @property int $teb_tebb_uid
  * @property int $teb_jogv_id
@@ -32,8 +32,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon $teb_lastupd
  * @property string $teb_modifier
  * @property int $teb_del
- * 
- * @property TenyBerBetolte $teb
+ *
+ * @property TenyBerBetolte $teny_ber_betolte
  *
  * @package App\Models\Base
  */
@@ -100,7 +100,7 @@ class TenyBerFeloszta extends Model
 		self::TEB_DEL
 	];
 
-	public function teb(): BelongsTo
+	public function teny_ber_betolte(): BelongsTo
 	{
 		return $this->belongsTo(TenyBerBetolte::class, \App\Models\TenyBerFeloszta::TEB_TEBB_UID);
 	}

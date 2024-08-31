@@ -7,6 +7,7 @@
 namespace App\Models\Base;
 
 use App\Models\Kapcsolattarto;
+use App\Models\Partner;
 use App\Models\Projekt;
 use App\Models\ProjektPartnerKapcsolattarto;
 use Illuminate\Database\Eloquent\Collection;
@@ -16,14 +17,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class ProjektPartner
- * 
+ *
  * @property int $prjp_uid
  * @property string $prjp_jelleg
  * @property int $prjp_par_id
  * @property int $prjp_prj_id
  * @property int $prjp_del
- * 
- * @property Projekt $prjp
+ *
+ * @property Partner $partner
+ * @property Projekt $projekt
  * @property Collection|Kapcsolattarto[] $kapcsolattartos
  *
  * @package App\Models\Base
@@ -53,7 +55,12 @@ class ProjektPartner extends Model
 		self::PRJP_DEL
 	];
 
-	public function prjp(): BelongsTo
+	public function partner(): BelongsTo
+	{
+		return $this->belongsTo(Partner::class, \App\Models\ProjektPartner::PRJP_PAR_ID, Partner::PAR_ID);
+	}
+
+	public function projekt(): BelongsTo
 	{
 		return $this->belongsTo(Projekt::class, \App\Models\ProjektPartner::PRJP_PRJ_ID, Projekt::PRJ_ID);
 	}

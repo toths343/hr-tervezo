@@ -1,15 +1,45 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-use App\Models\Base\VSysHonapok as BaseVSysHonapok;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
-class VSysHonapok extends BaseVSysHonapok
+/**
+ * Class VSysHonapok
+ *
+ * @property int|null $honap_ev
+ * @property int|null $honap_honap
+ * @property Carbon|null $honap_kezd
+ * @property Carbon|null $honap_vege
+ *
+ * @package App\Models
+ */
+class VSysHonapok extends Model
 {
+	const HONAP_EV = 'honap_ev';
+	const HONAP_HONAP = 'honap_honap';
+	const HONAP_KEZD = 'honap_kezd';
+	const HONAP_VEGE = 'honap_vege';
+	protected $table = 'v_sys_honapok';
+	public $incrementing = false;
+	public $timestamps = false;
+
+	protected $casts = [
+		self::HONAP_EV => 'int',
+		self::HONAP_HONAP => 'int',
+		self::HONAP_KEZD => 'datetime',
+		self::HONAP_VEGE => 'datetime'
+	];
+
 	protected $fillable = [
-		'honap_ev',
-		'honap_honap',
-		'honap_kezd',
-		'honap_vege'
+		self::HONAP_EV,
+		self::HONAP_HONAP,
+		self::HONAP_KEZD,
+		self::HONAP_VEGE
 	];
 }

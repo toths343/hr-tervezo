@@ -6,20 +6,22 @@
 
 namespace App\Models\Base;
 
+use App\Models\Kapcsolattarto;
 use App\Models\ProjektPartner;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class ProjektPartnerKapcsolattarto
- * 
+ *
  * @property int $prjpk_uid
  * @property string $prjpk_jelleg
  * @property int $prjpk_kapcs_id
  * @property int $prjpk_prjp_uid
  * @property int $prjpk_del
- * 
- * @property ProjektPartner $prjpk
+ *
+ * @property Kapcsolattarto $kapcsolattarto
+ * @property ProjektPartner $projekt_partner
  *
  * @package App\Models\Base
  */
@@ -48,7 +50,12 @@ class ProjektPartnerKapcsolattarto extends Model
 		self::PRJPK_DEL
 	];
 
-	public function prjpk(): BelongsTo
+	public function kapcsolattarto(): BelongsTo
+	{
+		return $this->belongsTo(Kapcsolattarto::class, \App\Models\ProjektPartnerKapcsolattarto::PRJPK_KAPCS_ID, Kapcsolattarto::KAPCS_ID);
+	}
+
+	public function projekt_partner(): BelongsTo
 	{
 		return $this->belongsTo(ProjektPartner::class, \App\Models\ProjektPartnerKapcsolattarto::PRJPK_PRJP_UID);
 	}

@@ -25,7 +25,7 @@
                <div class="card-text" data-entity-display="{{ $type }}" data-uid="{{ $element->getUid() }}">
                    @include('entities.display.' . $type, [$type => $element])
                </div>
-               <button type="button" class="btn btn-outline-primary btn-edit-modal-open" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">Szerkesztés {{$element->getUid()}}</button>
+               <button type="button" class="btn btn-outline-primary btn-edit-modal-open" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">Szerkesztés</button>
                <button type="button" class="btn btn-outline-danger" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">Törlés</button>
            </div>
            <div class="card-footer @if($element->isActive()) bg-black text-white @endif" data-entity-interval="{{ $type }}" data-uid="{{ $element->getUid() }}">{{ $element->getHatInterval() }}</div>

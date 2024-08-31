@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class TamogatasiEloleg
- * 
+ *
  * @property int $tam_uid
  * @property string $tam_sorszam
  * @property string $tam_tipus
@@ -31,8 +31,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon $tam_lastupd
  * @property string $tam_modifier
  * @property int $tam_del
- * 
- * @property Projekt $tam
+ *
+ * @property Projekt $projekt
  *
  * @package App\Models\Base
  */
@@ -94,7 +94,7 @@ class TamogatasiEloleg extends Model
 		self::TAM_DEL
 	];
 
-	public function tam(): BelongsTo
+	public function projekt(): BelongsTo
 	{
 		return $this->belongsTo(Projekt::class, \App\Models\TamogatasiEloleg::TAM_PRJ_ID, Projekt::PRJ_ID);
 	}

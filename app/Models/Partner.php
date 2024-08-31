@@ -8,9 +8,6 @@ use Carbon\Carbon;
 
 class Partner extends BasePartner implements HatalyosModel
 {
-    const PAR_CREATED = 'par_created';
-    const PAR_LASTUPD = 'par_lastupd';
-
     public function getUid(): int
     {
         return $this->par_uid;

@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Partner
- * 
+ *
  * @property int $par_uid
  * @property int $par_id
  * @property string $par_azonosito
@@ -33,8 +33,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon $updated_at
  * @property string $modifier
  * @property string|null $del
- * 
- * @property Collection|Kapcsolattarto[] $kapcsolattartos_where_kapc
+ *
+ * @property Collection|Kapcsolattarto[] $kapcsolattartos
  * @property Collection|Projekt[] $projekts
  *
  * @package App\Models\Base
@@ -84,7 +84,7 @@ class Partner extends Model
 		self::MODIFIER
 	];
 
-	public function kapcsolattartos_where_kapc(): HasMany
+	public function kapcsolattartos(): HasMany
 	{
 		return $this->hasMany(Kapcsolattarto::class, Kapcsolattarto::KAPCS_PAR_ID, Kapcsolattarto::PAR_ID);
 	}

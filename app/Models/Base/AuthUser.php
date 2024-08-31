@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class AuthUser
- * 
+ *
  * @property int $user_uid
  * @property int $user_group_uid
  * @property string $user_login
@@ -27,9 +27,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Carbon $user_lastupd
  * @property string $user_modifier
  * @property int $user_del
- * 
- * @property AuthGroup $user
- * @property Collection|AuthUserResource[] $auth_user_resources_where_aure
+ *
+ * @property AuthGroup $auth_group
+ * @property Collection|AuthUserResource[] $auth_user_resources
  *
  * @package App\Models\Base
  */
@@ -69,12 +69,12 @@ class AuthUser extends Model
 		self::USER_DEL
 	];
 
-	public function user(): BelongsTo
+	public function auth_group(): BelongsTo
 	{
 		return $this->belongsTo(AuthGroup::class, \App\Models\AuthUser::USER_GROUP_UID);
 	}
 
-	public function auth_user_resources_where_aure(): HasMany
+	public function auth_user_resources(): HasMany
 	{
 		return $this->hasMany(AuthUserResource::class, AuthUserResource::AURES_USER_UID);
 	}

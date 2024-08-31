@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class ElszamolasiAdatok
- * 
+ *
  * @property int $elszam_uid
  * @property int $elszam_prj_id
  * @property string $elszam_azonosito
@@ -73,8 +73,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon $elszam_lastupd
  * @property string $elszam_modifier
  * @property int $elszam_del
- * 
- * @property Projekt $elszam
+ *
+ * @property Projekt $projekt
  *
  * @package App\Models\Base
  */
@@ -246,7 +246,7 @@ class ElszamolasiAdatok extends Model
 		self::ELSZAM_DEL
 	];
 
-	public function elszam(): BelongsTo
+	public function projekt(): BelongsTo
 	{
 		return $this->belongsTo(Projekt::class, \App\Models\ElszamolasiAdatok::ELSZAM_PRJ_ID, Projekt::PRJ_ID);
 	}

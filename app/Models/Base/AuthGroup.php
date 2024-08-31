@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class AuthGroup
- * 
+ *
  * @property int $group_uid
  * @property string $group_name
  * @property string $group_type
@@ -24,9 +24,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Carbon $group_lastupd
  * @property string $group_modifier
  * @property int $group_del
- * 
- * @property Collection|AuthGroupRole[] $auth_group_roles_where_grole
- * @property Collection|AuthUser[] $auth_users_where_user
+ *
+ * @property Collection|AuthGroupRole[] $auth_group_roles
+ * @property Collection|AuthUser[] $auth_users
  *
  * @package App\Models\Base
  */
@@ -61,12 +61,12 @@ class AuthGroup extends Model
 		self::GROUP_DEL
 	];
 
-	public function auth_group_roles_where_grole(): HasMany
+	public function auth_group_roles(): HasMany
 	{
 		return $this->hasMany(AuthGroupRole::class, AuthGroupRole::GROLE_GROUP_UID);
 	}
 
-	public function auth_users_where_user(): HasMany
+	public function auth_users(): HasMany
 	{
 		return $this->hasMany(AuthUser::class, AuthUser::USER_GROUP_UID);
 	}

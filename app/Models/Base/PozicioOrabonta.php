@@ -6,6 +6,7 @@
 
 namespace App\Models\Base;
 
+use App\Models\Pozicio;
 use App\Models\Projekt;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class PozicioOrabonta
- * 
+ *
  * @property int $pozb_uid
  * @property int $pozb_poz_uid
  * @property int $pozb_prj_uid
@@ -27,8 +28,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon $pozb_lastupd
  * @property string $pozb_modifier
  * @property int $pozb_del
- * 
- * @property Projekt $pozb
+ *
+ * @property Pozicio $pozicio
+ * @property Projekt $projekt
  *
  * @package App\Models\Base
  */
@@ -80,7 +82,12 @@ class PozicioOrabonta extends Model
 		self::POZB_DEL
 	];
 
-	public function pozb(): BelongsTo
+	public function pozicio(): BelongsTo
+	{
+		return $this->belongsTo(Pozicio::class, \App\Models\PozicioOrabonta::POZB_POZ_UID);
+	}
+
+	public function projekt(): BelongsTo
 	{
 		return $this->belongsTo(Projekt::class, \App\Models\PozicioOrabonta::POZB_PRJ_UID);
 	}

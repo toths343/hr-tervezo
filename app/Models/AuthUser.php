@@ -11,15 +11,6 @@ class AuthUser extends BaseAuthUser implements Authenticatable
 		'user_password'
 	];
 
-	protected $fillable = [
-		'user_group_uid',
-		'user_login',
-		'user_password',
-		'user_name',
-		'user_creater',
-		'user_modifier'
-	];
-
     public function getAuthIdentifierName(): string
     {
         return BaseAuthUser::USER_UID;

@@ -6,6 +6,7 @@
 
 namespace App\Models\Base;
 
+use App\Models\AuthGroup;
 use App\Models\AuthRole;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class AuthGroupRole
- * 
+ *
  * @property int $grole_uid
  * @property int $grole_group_uid
  * @property int $grole_role_uid
@@ -22,8 +23,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon $grole_lastupd
  * @property string $grole_modifier
  * @property int $grole_del
- * 
- * @property AuthRole $grole
+ *
+ * @property AuthGroup $auth_group
+ * @property AuthRole $auth_role
  *
  * @package App\Models\Base
  */
@@ -60,7 +62,12 @@ class AuthGroupRole extends Model
 		self::GROLE_DEL
 	];
 
-	public function grole(): BelongsTo
+	public function auth_group(): BelongsTo
+	{
+		return $this->belongsTo(AuthGroup::class, \App\Models\AuthGroupRole::GROLE_GROUP_UID);
+	}
+
+	public function auth_role(): BelongsTo
 	{
 		return $this->belongsTo(AuthRole::class, \App\Models\AuthGroupRole::GROLE_ROLE_UID);
 	}
