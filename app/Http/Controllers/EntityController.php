@@ -35,6 +35,11 @@ class EntityController extends Controller
     public function index(): View
     {
         $list = $this->entity->getEntityList();
+
+        if ($list->isEmpty()) {
+            abort(404);
+        }
+
         $data = [
             'title' => $this->entity->getBreadcrumbName(),
             'type' => $this->entity->getType(),
