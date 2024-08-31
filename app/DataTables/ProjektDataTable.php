@@ -29,10 +29,24 @@ class ProjektDataTable extends DataTable
 
     public function query(Projekt $model): QueryBuilder
     {
-        $actDate = session()->get('actDate')->format('Y-m-d');
+        $startDate = session()->get('startDate')->format('Y-m-d');
+        $endDate = session()->get('startDate')->format('Y-m-d');
         return $model->newQuery()
-            ->where(ProjektBase::PRJ_HATKEZD, '<=', $actDate)
-            ->where(ProjektBase::PRJ_HATVEGE, '>', $actDate);
+            ->orWhere(function ($query) use ($startDate, $endDate) {
+                $query
+                    ->where(ProjektBase::PRJ_HATKEZD, '<=', $startDate)
+                    ->where(ProjektBase::PRJ_HATVEGE, '>=', $startDate);
+            })
+            ->orWhere(function ($query) use ($startDate, $endDate) {
+                $query
+                    ->whereBetween(ProjektBase::PRJ_HATKEZD, [$startDate, $endDate])
+                    ->whereBetween(ProjektBase::PRJ_HATVEGE, [$startDate, $endDate]);
+            })
+            ->orWhere(function ($query) use ($startDate, $endDate) {
+                $query
+                    ->where(ProjektBase::PRJ_HATKEZD, '<=', $endDate)
+                    ->where(ProjektBase::PRJ_HATVEGE, '>=', $endDate);
+            });
     }
 
     public function html(): HtmlBuilder

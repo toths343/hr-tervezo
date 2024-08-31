@@ -15,4 +15,6 @@ interface HatalyosModel
     function getHatvege(): Carbon;
 
     function getHatInterval(): string;
+
+    function isActive(): bool;
 }

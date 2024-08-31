@@ -61,4 +61,10 @@ class Projekt extends BaseProjekt implements HatalyosModel
     {
         return $this->prj_hatkezd->format('Y.m.d') . ' - ' . $this->prj_hatvege->format('Y.m.d');
     }
+
+    public function isActive(): bool
+    {
+        $actDate = session()->get('actDate')->format('Y-m-d');
+        return $this->prj_hatkezd <= $actDate && $this->prj_hatvege >= $actDate;
+    }
 }

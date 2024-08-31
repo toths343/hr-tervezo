@@ -35,4 +35,10 @@ class Partner extends BasePartner implements HatalyosModel
     {
         return $this->par_hatkezd->format('Y.m.d') . ' - ' . $this->par_hatvege->format('Y.m.d');
     }
+
+    public function isActive(): bool
+    {
+        $actDate = session()->get('actDate')->format('Y-m-d');
+        return $this->par_hatkezd <= $actDate && $this->par_hatvege >= $actDate;
+    }
 }
