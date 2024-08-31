@@ -49,6 +49,6 @@ class Partner extends BasePartner implements HatalyosModel
 
     public static function getNextId(): int
     {
-        return (Partner::query()->max(Partner::PAR_ID) ?? 0) + 1;
+        return (Partner::query()->max(BasePartner::PAR_ID) ?? 0) + 1;
     }
 }

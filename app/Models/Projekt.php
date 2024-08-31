@@ -38,4 +38,9 @@ class Projekt extends BaseProjekt implements HatalyosModel
         $actDate = session()->get('actDate')->format('Y-m-d');
         return $this->prj_hatkezd <= $actDate && $this->prj_hatvege >= $actDate;
     }
+
+    public static function getNextId(): int
+    {
+        return (Projekt::query()->max(BaseProjekt::PRJ_ID) ?? 0) + 1;
+    }
 }
