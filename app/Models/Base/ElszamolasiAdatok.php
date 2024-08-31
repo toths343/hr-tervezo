@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class ElszamolasiAdatok
- *
+ * 
  * @property int $elszam_uid
  * @property int $elszam_prj_id
  * @property string $elszam_azonosito
@@ -73,7 +73,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon $elszam_lastupd
  * @property string $elszam_modifier
  * @property int $elszam_del
- *
+ * 
  * @property Projekt $projekt
  *
  * @package App\Models\Base

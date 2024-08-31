@@ -13,13 +13,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class ProjektPartnerKapcsolattarto
- *
+ * 
  * @property int $prjpk_uid
  * @property string $prjpk_jelleg
  * @property int $prjpk_kapcs_id
  * @property int $prjpk_prjp_uid
  * @property int $prjpk_del
- *
+ * 
  * @property Kapcsolattarto $kapcsolattarto
  * @property ProjektPartner $projekt_partner
  *

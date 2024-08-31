@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class AuthGroup
- *
+ * 
  * @property int $group_uid
  * @property string $group_name
  * @property string $group_type
@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Carbon $group_lastupd
  * @property string $group_modifier
  * @property int $group_del
- *
+ * 
  * @property Collection|AuthGroupRole[] $auth_group_roles
  * @property Collection|AuthUser[] $auth_users
  *

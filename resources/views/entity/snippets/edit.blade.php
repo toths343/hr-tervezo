@@ -9,17 +9,16 @@
             </div>
             <div class="modal-body">
 
-                <div class="alert alert-danger edit-error-container d-none"></div>
+                <div class="alert alert-danger error-container d-none"></div>
 
-                <div class="editor-container">
-                    <div class="d-flex justify-content-center">
-                        <div class="spinner-border" role="status">
-                            <span class="visually-hidden">
-                                {{ __('entity.betoltes') }}
-                            </span>
-                        </div>
+                <div class="d-flex justify-content-center loader-container">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">
+                            {{ __('entity.betoltes') }}
+                        </span>
                     </div>
                 </div>
+                <div class="editor-container d-none"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">

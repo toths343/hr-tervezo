@@ -16,5 +16,8 @@ interface HatalyosModel
 
     function getHatInterval(): string;
 
+    static function getNextId(): int;
+
     function isActive(): bool;
+
 }

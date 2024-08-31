@@ -17,13 +17,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class ProjektPartner
- *
+ * 
  * @property int $prjp_uid
  * @property string $prjp_jelleg
  * @property int $prjp_par_id
  * @property int $prjp_prj_id
  * @property int $prjp_del
- *
+ * 
  * @property Partner $partner
  * @property Projekt $projekt
  * @property Collection|Kapcsolattarto[] $kapcsolattartos

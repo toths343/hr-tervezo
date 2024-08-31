@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class AuthRole
- *
+ * 
  * @property int $role_uid
  * @property string $role_label
  * @property string $role_name
@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Carbon $role_lastupd
  * @property string $role_modifier
  * @property int $role_del
- *
+ * 
  * @property Collection|AuthGroupRole[] $auth_group_roles
  *
  * @package App\Models\Base

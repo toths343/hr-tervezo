@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class PozicioOrabonta
- *
+ * 
  * @property int $pozb_uid
  * @property int $pozb_poz_uid
  * @property int $pozb_prj_uid
@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon $pozb_lastupd
  * @property string $pozb_modifier
  * @property int $pozb_del
- *
+ * 
  * @property Pozicio $pozicio
  * @property Projekt $projekt
  *

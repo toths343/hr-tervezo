@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class AuthUserResource
- *
+ * 
  * @property int $aures_uid
  * @property int $aures_user_uid
  * @property int $aures_res_id
@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon $aures_lastupd
  * @property string $aures_modifier
  * @property int $aures_del
- *
+ * 
  * @property AuthUser $auth_user
  *
  * @package App\Models\Base

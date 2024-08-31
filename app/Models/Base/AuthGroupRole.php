@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class AuthGroupRole
- *
+ * 
  * @property int $grole_uid
  * @property int $grole_group_uid
  * @property int $grole_role_uid
@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon $grole_lastupd
  * @property string $grole_modifier
  * @property int $grole_del
- *
+ * 
  * @property AuthGroup $auth_group
  * @property AuthRole $auth_role
  *

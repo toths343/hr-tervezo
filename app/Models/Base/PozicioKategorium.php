@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class PozicioKategorium
- *
+ * 
  * @property int $pozk_uid
  * @property string $pozk_kod
  * @property string $pozk_nev
@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Carbon $pozk_lastupd
  * @property string $pozk_modifier
  * @property int $pozk_del
- *
+ * 
  * @property Collection|Pozicio[] $pozicios
  *
  * @package App\Models\Base

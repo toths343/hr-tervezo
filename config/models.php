@@ -102,8 +102,8 @@ return [
         'timestamps' => [
             'enabled' => true,
             'fields' => [
-                'CREATED_AT' => 'created',
-                'UPDATED_AT' => 'lastupd',
+                'CREATED_AT' => 'created_at',
+                'UPDATED_AT' => 'updated_at',
              ]
         ],
 

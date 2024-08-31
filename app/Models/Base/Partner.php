@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Partner
- *
+ * 
  * @property int $par_uid
  * @property int $par_id
  * @property string $par_azonosito
@@ -33,7 +33,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Carbon $updated_at
  * @property string $modifier
  * @property string|null $del
- *
+ * 
  * @property Collection|Kapcsolattarto[] $kapcsolattartos
  * @property Collection|Projekt[] $projekts
  *
@@ -58,7 +58,6 @@ class Partner extends Model
 	const MODIFIER = 'modifier';
 	protected $table = 'partner';
 	protected $primaryKey = 'par_uid';
-	public $timestamps = false;
 
 	protected $casts = [
 		self::PAR_UID => 'int',
@@ -78,9 +77,7 @@ class Partner extends Model
 		self::PAR_CIM,
 		self::PAR_HATKEZD,
 		self::PAR_HATVEGE,
-		self::CREATED_AT,
 		self::CREATER,
-		self::UPDATED_AT,
 		self::MODIFIER
 	];
 

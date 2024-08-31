@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Entity\PartnerRequest;
 use App\Models\Partner;
-use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
 
@@ -18,7 +17,7 @@ class PartnerController extends Controller
             $partner = Partner::query()->find($request->route('uid'));
             $partner->update($attributes);
         } else {
-            $partner = Partner::query()->create($attributes);
+            $partner = Partner::query()->create($attributes + [Partner::PAR_ID => Partner::getNextId()]);
         }
 
         $partner = Partner::query()->where(Partner::PAR_UID, $partner->par_uid)->first();

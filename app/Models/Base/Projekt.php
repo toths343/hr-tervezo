@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Projekt
- *
+ * 
  * @property int $prj_uid
  * @property int $prj_id
  * @property string $prj_kat
@@ -50,7 +50,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Carbon $prj_lastupd
  * @property string $prj_modifier
  * @property int $prj_del
- *
+ * 
  * @property Collection|ElszamolasiAdatok[] $elszamolasi_adatoks
  * @property Collection|PozicioOrabonta[] $pozicio_orabontas
  * @property Collection|Partner[] $partners

@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class AuthUser
- *
+ * 
  * @property int $user_uid
  * @property int $user_group_uid
  * @property string $user_login
@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Carbon $user_lastupd
  * @property string $user_modifier
  * @property int $user_del
- *
+ * 
  * @property AuthGroup $auth_group
  * @property Collection|AuthUserResource[] $auth_user_resources
  *

@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Munkavallalo
- *
+ * 
  * @property int $mkv_uid
  * @property int $mkv_id
  * @property int $mkv_nexon_szemely_id
@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $mkv_modifier
  * @property Carbon $mkv_lastupd
  * @property int $mkv_del
- *
+ * 
  * @property Collection|Pozicio[] $pozicios
  *
  * @package App\Models\Base

@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Pozicio
- *
+ * 
  * @property int $poz_uid
  * @property int $poz_mkv_id
  * @property int|null $poz_pozk_uid
@@ -31,7 +31,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Carbon $poz_lastupd
  * @property string $poz_modifier
  * @property int $poz_del
- *
+ * 
  * @property Munkavallalo $munkavallalo
  * @property PozicioKategorium|null $pozicio_kategorium
  * @property Collection|PozicioOrabonta[] $pozicio_orabontas

@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class Kapcsolattarto
- *
+ * 
  * @property int $kapcs_uid
  * @property int $kapcs_id
  * @property string $kapcs_azonosito
@@ -33,7 +33,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property Carbon $kapcs_lastupd
  * @property string $kapcs_modifier
  * @property int $kapcs_del
- *
+ * 
  * @property Partner $partner
  * @property Collection|ProjektPartner[] $projekt_partners
  *

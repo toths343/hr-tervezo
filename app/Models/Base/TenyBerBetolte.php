@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class TenyBerBetolte
- *
+ * 
  * @property int $tebb_uid
  * @property int $tebb_sorszam
  * @property int $tebb_jogv_id
@@ -34,7 +34,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Carbon $tebb_lastupd
  * @property string $tebb_modifier
  * @property int $tebb_del
- *
+ * 
  * @property Collection|TenyBerFeloszta[] $teny_ber_felosztas
  *
  * @package App\Models\Base

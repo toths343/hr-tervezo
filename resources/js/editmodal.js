@@ -12,7 +12,9 @@ class EditModal {
         $('.btn-edit-modal-open').on('click.edit-modal-open', (event) => {
             this.type = event.target.dataset.type;
             this.uid = event.target.dataset.uid || 0;
-            $('.edit-error-container').addClass('d-none');
+            $('.edit-modal .modal-body .error-container').addClass('d-none');
+            $('.edit-modal .modal-body .loader-container').removeClass('d-none');
+            $('.edit-modal .modal-body .editor-container').addClass('d-none');
             this.openEditModal();
         });
 
@@ -25,7 +27,8 @@ class EditModal {
             $.ajax({
                 url: '/entity/modal/edit/' + this.type + '/' + this.uid
             }).done((response) => {
-                $('.edit-modal .modal-body .editor-container').html(response.html);
+                $('.edit-modal .modal-body .editor-container').html(response.html).removeClass('d-none');
+                $('.edit-modal .modal-body .loader-container').addClass('d-none');
             })
         });
     }
@@ -44,7 +47,7 @@ class EditModal {
             contentType: false
         })
             .fail((response) => {
-                $('.edit-error-container').html(Object.entries(response.responseJSON.errors).map(error => error[1]).join('<br/>')).removeClass('d-none');
+                $('.edit-modal .modal-body .error-container').html(Object.entries(response.responseJSON.errors).map(error => error[1]).join('<br/>')).removeClass('d-none');
             })
             .done((response) => {
                 if (response.entityDisplay) {
