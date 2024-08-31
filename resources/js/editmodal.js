@@ -44,22 +44,29 @@ class EditModal {
             url: '/' + this.type + '/save/' + this.uid,
             data: new FormData(document.querySelector('.edit-form')),
             processData: false,
-            contentType: false
+            contentType: false,
+            beforeSend(jqXHR, settings) {
+                $('.is-invalid').removeClass('is-invalid');
+                $('.invalid-feedback').remove();
+            }
         })
             .fail((response) => {
-                $('.edit-modal .modal-body .error-container').html(Object.entries(response.responseJSON.errors).map(error => error[1]).join('<br/>')).removeClass('d-none');
+                for (const [key, value] of Object.entries(response.responseJSON.errors)) {
+                    this.editModalElement.find('input[name=' + key + ']').after('<div class="invalid-feedback">' + value + '</div>').addClass('is-invalid');
+                }
+                $('input:not(.is-invalid), select:not(.is-invalid), textarea:not(.is-invalid)').addClass('is-valid')
             })
             .done((response) => {
                 if (response.entityDisplay) {
-                    var entityDisplayContainer = $('[data-entity-display="' + this.type + '"][data-uid="' + this.uid + '"]');
+                    const entityDisplayContainer = $('[data-entity-display="' + this.type + '"][data-uid="' + this.uid + '"]');
                     if (entityDisplayContainer.length) {
                         entityDisplayContainer.html(response.entityDisplay);
                     }
-                    var entityUniqueNameContainer = $('[data-entity-unique-name="' + this.type + '"][data-uid="' + this.uid + '"]');
+                    const entityUniqueNameContainer = $('[data-entity-unique-name="' + this.type + '"][data-uid="' + this.uid + '"]');
                     if (entityUniqueNameContainer.length) {
                         entityUniqueNameContainer.html(response.entityUniqueName);
                     }
-                    var entityIntervalContainer = $('[data-entity-interval="' + this.type + '"][data-uid="' + this.uid + '"]');
+                    const entityIntervalContainer = $('[data-entity-interval="' + this.type + '"][data-uid="' + this.uid + '"]');
                     if (entityIntervalContainer.length) {
                         entityIntervalContainer.html(response.entityInterval);
                     }
