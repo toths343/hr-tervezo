@@ -2,6 +2,7 @@ class EditModal {
     editModalElement;
     editModal;
     type;
+    id;
     uid;
     newHatkezd;
     newHatvege
@@ -20,6 +21,7 @@ class EditModal {
                 $('.edit-modal .modal-body .loader-container').addClass('d-none');
             }).always(() => {
                 if (!this.uid) {
+                    this.editModalElement.find('input.id').val(this.id);
                     this.editModalElement.find('input.hatkezd').val(this.newHatkezd);
                     this.editModalElement.find('input.hatvege').val(this.newHatvege);
                 }
@@ -28,6 +30,7 @@ class EditModal {
 
         $('.btn-edit-modal-open').on('click.edit-modal-open', (event) => {
             this.type = event.target.dataset.type;
+            this.id = event.target.dataset.id || 0;
             this.uid = event.target.dataset.uid || 0;
             this.newHatkezd = event.target.dataset.hatkezd || '';
             this.newHatvege = event.target.dataset.hatvege || '';
