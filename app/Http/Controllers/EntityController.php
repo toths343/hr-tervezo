@@ -75,6 +75,16 @@ class EntityController extends Controller
         ]);
     }
 
+    public function editModal(): JsonResponse
+    {
+        return response()->json([
+            'html' => view(
+                'entities.editor.' . $this->entity->getType(),
+                $this->entity->getEditorData()
+            )->render(),
+        ]);
+    }
+
     public function deleteModal(): JsonResponse
     {
         return response()->json([
@@ -102,40 +112,5 @@ class EntityController extends Controller
     {
         current($entity->getEditorData())->delete();
         return response()->json([]);
-    }
-
-    public function edit(): JsonResponse
-    {
-        return response()->json([
-            'html' => view(
-                'entities.editor.' . $this->entity->getType(),
-                $this->entity->getEditorData()
-            )->render(),
-        ]);
-    }
-
-    /** @deprecated  */
-    public function save(Request $request): JsonResponse
-    {
-        /* @var FormRequest $entityRequest */
-        $entityRequestClassName = '\App\Http\Requests\Entity\\' . ucfirst($this->entity->getType()) . 'Request';
-        $entityRequest = (new $entityRequestClassName());
-        $validator = Validator::make($request->all(), $entityRequest->rules(), $entityRequest->messages());
-        if (!$validator->fails()) {
-            /* @var Model $entityModelClass */
-            $entityModelClassName = '\App\Models\\' . ucfirst($this->entity->getType());
-            $entityModelClass = new $entityModelClassName;
-            $attributes = $request->all();
-            $attributes = array_combine(array_map(fn ($key) => Str::snake($key), array_keys($attributes)), $attributes);
-            if ($this->entity->uid) {
-                $entityModel = $entityModelClass::query()->find($this->entity->uid);
-                $entityModel->update($attributes);
-            } else {
-                $entityModelClass::create($attributes);
-            }
-            return response()->json();
-        } else {
-            return response()->json(['errors' => $validator->messages()], 422);
-        }
     }
 }
