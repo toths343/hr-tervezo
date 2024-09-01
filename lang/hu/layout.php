@@ -7,4 +7,6 @@ return [
     'display' => 'Megjelenítés',
     'mentes' => 'Mentés',
     'megse' => 'Mégse',
+    'sikeres_mentes' => 'Sikeres mentés',
+    'sikeres_torles' => 'Sikeres törlés',
 ];

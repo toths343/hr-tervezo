@@ -1,5 +1,5 @@
 @if($mergeable)
-    <button type="button" class="btn btn-outline-success my-2 btn-borderdate-modal-open">
+    <button type="button" class="btn btn-outline-success mb-2 btn-borderdate-modal-open">
         {{ __('entity.hatardatum_elmozgatasa') }}
     </button>
 

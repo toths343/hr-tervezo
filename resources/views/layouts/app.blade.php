@@ -27,7 +27,7 @@
             </a>
         </div>
     </div>
-    <div class="d-flex justify-content-between align-items-center px-2 p-xxl-0">
+    <div class="d-flex justify-content-between align-items-center px-2 p-xxl-0 mb-2">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid ps-0">
                 <a class="navbar-brand" href="/">
@@ -73,6 +73,24 @@
         </nav>
     </div>
     <div class="px-2 p-xxl-0">
+        @if(session()->get('successSaveMessage'))
+            <div class="alert alert-success my-2" role="alert">
+                <h4 class="alert-heading">
+                    {{ __('layout.sikeres_mentes') }}
+                </h4>
+                <hr/>
+                {{ session()->get('successSaveMessage') }}
+            </div>
+        @endif
+        @if(session()->get('successDeleteMessage'))
+            <div class="alert alert-success py-2" role="alert">
+                <h4 class="alert-heading">
+                    {{ __('layout.sikeres_torles') }}
+                </h4>
+                <hr/>
+                {{ session()->get('successDeleteMessage') }}
+            </div>
+        @endif
         @yield('content')
     </div>
 </div>

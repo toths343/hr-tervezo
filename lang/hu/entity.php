@@ -19,4 +19,7 @@ return [
     'mentes' => 'Mentés',
     'torles' => 'Törlés',
     'torles_megerosites' => 'Biztos, hogy törölni szeretné az alábbi bejegyzést: :uniqueName',
+    'sikeres_szakasz_osszevonas' => 'Sikeres szakasz összevonás',
+    'sikeres_hatardatum_elmozgatas' => 'Sikeres határdátum elmozgatás',
+    'sikeres_torles' => 'Az alábbi bejegyzést törölte: :uniqueName',
 ];

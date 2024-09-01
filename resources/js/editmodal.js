@@ -56,25 +56,8 @@ class EditModal {
                 }
                 $('input:not(.is-invalid), select:not(.is-invalid), textarea:not(.is-invalid)').addClass('is-valid')
             })
-            .done((response) => {
-                if (response.entityDisplay) {
-                    const entityDisplayContainer = $('[data-entity-display="' + this.type + '"][data-uid="' + this.uid + '"]');
-                    if (entityDisplayContainer.length) {
-                        entityDisplayContainer.html(response.entityDisplay);
-                    }
-                    const entityUniqueNameContainer = $('[data-entity-unique-name="' + this.type + '"][data-uid="' + this.uid + '"]');
-                    if (entityUniqueNameContainer.length) {
-                        entityUniqueNameContainer.html(response.entityUniqueName);
-                    }
-                    const entityIntervalContainer = $('[data-entity-interval="' + this.type + '"][data-uid="' + this.uid + '"]');
-                    if (entityIntervalContainer.length) {
-                        entityIntervalContainer.html(response.entityInterval);
-                    }
-
-                    this.editModal.hide();
-                } else {
-                    location.reload();
-                }
+            .done(() => {
+                location.reload();
             });
     }
 }

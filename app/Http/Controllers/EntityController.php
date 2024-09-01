@@ -5,12 +5,7 @@ namespace App\Http\Controllers;
 use App\Abstracts\Entity;
 use App\Http\Requests\EntityBorderdateRequest;
 use App\Http\Requests\EntityMergeRequest;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 
@@ -97,20 +92,22 @@ class EntityController extends Controller
     public function mergeSave(EntityMergeRequest $entityMergeRequest): JsonResponse
     {
         $validated = $entityMergeRequest->validated();
-
-        return response()->json([]);
+        session()->flash('successSaveMessage', __('entity.sikeres_szakasz_osszevonas'));
+        return response()->json();
     }
 
     public function borderdateSave(EntityBorderdateRequest $entityBorderdateRequest): JsonResponse
     {
         $validated = $entityBorderdateRequest->validated();
-
-        return response()->json([]);
+        session()->flash('successSaveMessage', __('entity.sikeres_hatardatum_elmozgatas'));
+        return response()->json();
     }
 
     public function deleteSave(Entity $entity): JsonResponse
     {
-        current($entity->getEditorData())->delete();
-        return response()->json([]);
+        $object = current($entity->getEditorData());
+        $object->delete();
+        session()->flash('successDeleteMessage', __('entity.sikeres_torles', ['uniqueName' => $object->getUniqueName()]));
+        return response()->json();
     }
 }

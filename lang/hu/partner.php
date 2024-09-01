@@ -22,4 +22,5 @@ return [
     'partner_vegdatumanak_kivalasztasa_kotelezo' => '',
     'partner_vegdatum_format' => '',
     'partner_vegdatum_kesobb_mint_kezdodatum' => '',
+    'sikeres_mentes' => 'Az alábbi partner adat mentésre került: :uniqueName',
 ];

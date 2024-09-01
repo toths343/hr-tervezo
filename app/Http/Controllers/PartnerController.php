@@ -21,15 +21,7 @@ class PartnerController extends Controller
             $partner = Partner::query()->create($attributes + [PartnerBase::PAR_ID => Partner::getNextId()]);
         }
 
-        $partner = Partner::query()->where(PartnerBase::PAR_UID, $partner->par_uid)->first();
-
-        return response()->json([
-            'entityUniqueName' => $partner->getUniqueName(),
-            'entityInterval' => $partner->getHatInterval(),
-            'entityDisplay' => view(
-                'entities.display.partner',
-                ['partner' => $partner]
-            )->render(),
-        ]);
+        $request->session()->flash('successSaveMessage', __('partner.sikeres_mentes', ['uniqueName' => $partner->getUniqueName()]));
+        return response()->json();
     }
 }
