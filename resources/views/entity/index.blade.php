@@ -6,6 +6,7 @@
 @section('content')
 
     @include('entity.snippets.merge')
+    @include('entity.snippets.split')
     @include('entity.snippets.borderdate')
     @include('entity.snippets.edit')
     @include('entity.snippets.delete')
@@ -42,8 +43,11 @@
             </div>
             <div class="card-body collapse @if($element->isActive()) show @endif" id="collapse{{ $element->getUid() }}">
                 <div class="card-text">
-                    @include('entities.display.' . $type, [$type => $element])
+                    @include('entities.simpledisplay.' . $type, [$type => $element])
                 </div>
+                <button type="button" class="btn btn-outline-primary btn-split-modal-open" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">
+                    {{ __('entity.felosztas') }}
+                </button>
                 <button type="button" class="btn btn-outline-primary btn-edit-modal-open" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">
                     {{ __('entity.szerkesztes') }}
                 </button>

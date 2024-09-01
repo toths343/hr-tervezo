@@ -2,29 +2,69 @@
     /** @var \App\Models\Partner $partner */
 @endphp
 
-<div class="row">
-    <dl class="col-lg-6 mb-0">
-        <dt>Azonosító</dt>
-        <dd>{{ $partner->par_azonosito }}</dd>
-    </dl>
+DISPLAY
 
-    <dl class="col-lg-6 mb-0">
-        <dt class="col-12">Név</dt>
-        <dd class="col-12">{{ $partner->par_nev }}</dd>
-    </dl>
+<script>
+    $(function() {
+        const dateFormat = 'yy.mm.dd';
 
-    <dl class="col-lg-6 mb-0">
-        <dt class="col-12">Adószám</dt>
-        <dd class="col-12">{{ $partner->par_adoszam }}</dd>
-    </dl>
+        $('input[name="parHatkezd"]').datepicker({
+            dateFormat: dateFormat
+        });
 
-    <dl class="col-lg-6 mb-0">
-        <dt class="col-12">Nyilvántartási szám</dt>
-        <dd class="col-12">{{ $partner->par_nyilv_szam }}</dd>
-    </dl>
+        $('input[name="parHatvege"]').datepicker({
+            dateFormat: dateFormat
+        });
+    });
+</script>
 
-    <dl class="col-lg-6 mb-0">
-        <dt class="col-12">Cím</dt>
-        <dd class="col-12">{{ $partner->par_cim }}</dd>
-    </dl>
-</div>
+<form class="edit-form" action="#">
+    @csrf
+    <input type="hidden" name="parId" class="id"/>
+
+    <div class="mb-3">
+        <label for="parAzonosito" class="form-label">{{ __('partner.partner_azonosito') }}</label>
+        <input type="text" class="form-control" id="parAzonosito" name="parAzonosito"
+               placeholder="{{ __('partner.partner_azonosito') }}" value="{{ $partner->par_azonosito }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="parNev" class="form-label">{{ __('partner.partner_nev') }}</label>
+        <input type="text" class="form-control" id="parNev" name="parNev"
+               placeholder="{{ __('partner.partner_nev') }}" value="{{ $partner->par_nev }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="parAdoszam" class="form-label">{{ __('partner.partner_adoszama') }}</label>
+        <input type="text" class="form-control" id="parAdoszam" name="parAdoszam"
+               placeholder="{{ __('partner.partner_adoszama') }}" value="{{ $partner->par_adoszam }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="parNyilvSzam" class="form-label">{{ __('partner.partner_nyilvantartasi_szama') }}</label>
+        <input type="text" class="form-control" id="parNyilvSzam" name="parNyilvSzam"
+               placeholder="{{ __('partner.partner_nyilvantartasi_szama') }}" value="{{ $partner->par_nyilv_szam }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="parCim" class="form-label">{{ __('partner.partner_cime') }}</label>
+        <input type="text" class="form-control" id="parCim" name="parCim"
+               placeholder="{{ __('partner.partner_cime') }}" value="{{ $partner->par_cim }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="parHatkezd" class="form-label">{{ __('partner.partner_hatalyossaga') }}</label>
+
+        <div class="row g-3 align-items-center">
+            <div class="col-6">
+                <input type="text" class="form-control hatkezd" id="parHatkezd" name="parHatkezd"
+                       value="{{ $partner->par_hatkezd?->format('Y.m.d') }}">
+            </div>
+            <div class="col-6">
+                <input type="text" class="form-control hatvege" id="parHatvege" name="parHatvege"
+                       value="{{ $partner->par_hatvege?->format('Y.m.d') }}">
+            </div>
+        </div>
+
+    </div>
+</form>

@@ -22,6 +22,7 @@ import 'jquery-ui/dist/jquery-ui';
 
 import './dates';
 import './mergemodal';
+import './splitmodal';
 import './borderdatemodal';
 import './editmodal';
 import './deletemodal';

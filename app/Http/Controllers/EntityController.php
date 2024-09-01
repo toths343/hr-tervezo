@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Abstracts\Entity;
 use App\Http\Requests\EntityBorderdateRequest;
 use App\Http\Requests\EntityMergeRequest;
+use App\Http\Requests\EntitySplitRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
 
@@ -62,6 +63,18 @@ class EntityController extends Controller
         ]);
     }
 
+    public function splitModal(): JsonResponse
+    {
+        $editorData = $this->entity->getEditorData();
+        return response()->json([
+            'html' => view('entity.modals.split', [
+                'displayView' => view('entities.display.' . $this->entity->getType(), $editorData),
+                'hatkezd' => current($editorData)->getHatkezd(),
+                'hatvege' => current($editorData)->getHatvege(),
+            ])->render(),
+        ]);
+    }
+
     public function borderdateModal(): JsonResponse
     {
         return response()->json([
@@ -94,6 +107,13 @@ class EntityController extends Controller
     {
         $validated = $entityMergeRequest->validated();
         session()->flash('successSaveMessage', __('entity.sikeres_szakasz_osszevonas'));
+        return response()->json();
+    }
+
+    public function splitSave(EntitySplitRequest $entitySplitRequest): JsonResponse
+    {
+        $validated = $entitySplitRequest->validated();
+        session()->flash('successSaveMessage', __('entity.sikeres_felosztas'));
         return response()->json();
     }
 

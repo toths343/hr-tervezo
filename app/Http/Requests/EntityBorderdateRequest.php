@@ -12,7 +12,7 @@ class EntityBorderdateRequest extends FormRequest
             'borderdateUid' => 'required',
         ];
 
-        if ($this->request->get('borderdateUid')){
+        if ($this->request->get('borderdateUid')) {
             $rules['date' . $this->request->get('borderdateUid')] = 'required|date_format:Y.m.d';
         }
 
@@ -25,7 +25,7 @@ class EntityBorderdateRequest extends FormRequest
             'borderdateUid.required' => __('entity.borderdateuid_required'),
         ];
 
-        if($this->request->get('mergeUid')){
+        if ($this->request->get('mergeUid')) {
             $messages['date' . $this->request->get('borderdateUid') . '.required'] =  __('entity.borderdate_date_required');
             $messages['date' . $this->request->get('borderdateUid') . '.date'] =  __('entity.borderdate_date_format');
         }
