@@ -12,7 +12,11 @@
 
     @if ($canInsertBeforeFirst)
         <br/>
-        <button type="button" class="btn btn-outline-success mb-3 btn-edit-modal-open" data-type="{{ $type }}">
+        <button type="button" class="btn btn-outline-success mb-3 btn-edit-modal-open"
+                data-id="{{ $id }}"
+                data-type="{{ $type }}"
+                data-hatkezd="1900.01.01"
+                data-hatvege="{{ $list->first()->getHatkezd()->copy()->subDay()->format('Y.m.d') }}">
             {{ __('entity.uj_elem_felvitele_lista_elejere') }}
         </button>
     @endif
@@ -57,7 +61,11 @@
     @endforeach
 
     @if ($canInsertAfterLast)
-        <button type="button" class="btn btn-outline-success mb-3">
+        <button type="button" class="btn btn-outline-success mb-3 btn-edit-modal-open"
+                data-id="{{ $id }}"
+                data-type="{{ $type }}"
+                data-hatkezd="{{ $list->last()->getHatvege()->copy()->addDay()->format('Y.m.d') }}"
+                data-hatvege="3999.12.31">
             {{ __('entity.uj_elem_felvitele_lista_vegere') }}
         </button>
     @endif
