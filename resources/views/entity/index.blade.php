@@ -22,8 +22,8 @@
     @endphp
     @foreach($list as $element)
 
-        @if ($lastHatvege !== null && $lastHatvege->addDay() < $element->getHatkezd())
-            <button type="button" class="btn btn-outline-success mb-3 btn-edit-modal-open" data-type="{{ $type }}">
+        @if ($lastHatvege !== null && $lastHatvege->copy()->addDay() < $element->getHatkezd())
+            <button type="button" class="btn btn-outline-success mb-3 btn-edit-modal-open" data-type="{{ $type }}" data-hatkezd="{{ $lastHatvege->copy()->addDay()->format('Y.m.d') }}" data-hatvege="{{ $element->getHatkezd()->copy()->subDay()->format('Y.m.d') }}">
                 {{ __('entity.uj_elem_felvitele') }}
             </button>
         @endif

@@ -3,6 +3,8 @@ class EditModal {
     editModal;
     type;
     uid;
+    newHatkezd;
+    newHatvege
 
     constructor() {
         this.init();
@@ -16,12 +18,19 @@ class EditModal {
             }).done((response) => {
                 $('.edit-modal .modal-body .editor-container').html(response.html).removeClass('d-none');
                 $('.edit-modal .modal-body .loader-container').addClass('d-none');
+            }).always(() => {
+                if (!this.uid) {
+                    this.editModalElement.find('input.hatkezd').val(this.newHatkezd);
+                    this.editModalElement.find('input.hatvege').val(this.newHatvege);
+                }
             })
         });
 
         $('.btn-edit-modal-open').on('click.edit-modal-open', (event) => {
             this.type = event.target.dataset.type;
             this.uid = event.target.dataset.uid || 0;
+            this.newHatkezd = event.target.dataset.hatkezd || '';
+            this.newHatvege = event.target.dataset.hatvege || '';
             $('.edit-modal .modal-body .error-container').addClass('d-none');
             $('.edit-modal .modal-body .loader-container').removeClass('d-none');
             $('.edit-modal .modal-body .editor-container').addClass('d-none');

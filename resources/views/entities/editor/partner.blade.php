@@ -54,11 +54,11 @@
 
         <div class="row g-3 align-items-center">
             <div class="col-6">
-                <input type="text" class="form-control" id="parHatkezd" name="parHatkezd"
+                <input type="text" class="form-control hatkezd" id="parHatkezd" name="parHatkezd"
                        value="{{ $partner->par_hatkezd?->format('Y.m.d') }}">
             </div>
             <div class="col-6">
-                <input type="text" class="form-control" id="parHatvege" name="parHatvege"
+                <input type="text" class="form-control hatvege" id="parHatvege" name="parHatvege"
                        value="{{ $partner->par_hatvege?->format('Y.m.d') }}">
             </div>
         </div>
