@@ -72,9 +72,10 @@ class EditModal {
         })
             .fail((response) => {
                 for (const [key, value] of Object.entries(response.responseJSON.errors)) {
-                    this.editModalElement.find('input[name=' + key + ']').after('<div class="invalid-feedback">' + value + '</div>').addClass('is-invalid');
+                    this.editModalElement.find('input[name=' + key + '],select[name=' + key + ']').after('<div class="invalid-feedback">' + value + '</div>').addClass('is-invalid');
                 }
                 $('input:not(.is-invalid), select:not(.is-invalid), textarea:not(.is-invalid)').addClass('is-valid')
+                $(".edit-modal").animate({scrollTop: $('.is-invalid:first').offset().top + window.innerHeight}, 200);
             })
             .done(() => {
                 location.reload();

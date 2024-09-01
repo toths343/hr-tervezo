@@ -18,7 +18,7 @@
 
 <form class="edit-form" action="#">
     @csrf
-    <input type="hidden" name="parId" class="id"/>
+    <input type="hidden" name="parId" value="{{ $partner->par_id }}" class="id"/>
 
     <div class="mb-3">
         <label for="parAzonosito" class="form-label">{{ __('partner.partner_azonosito') }}</label>

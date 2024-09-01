@@ -2,9 +2,35 @@
     /** @var \App\Models\Projekt $projekt */
 @endphp
 
+<script>
+    function calculate(op1field, op2field, resultfield) {
+        var sum = 0;
+        $.each([op1field, op2field], (index, field) => {
+            var element = $('input[name="' + field + '"]');
+            if (!isNaN(parseInt(element.val()))) {
+                sum += parseInt(element.val());
+            }
+        });
+        $('input[name="' + resultfield + '"]').val(sum);
+    }
+    $(function() {
+        const dateFormat = 'yy.mm.dd';
+
+        $.each(['prjTamogatasiDatum', 'prjKezdete', 'prjVege', 'prjHrtervKezd', 'prjHrtervVege', 'prjHatkezd', 'prjHatvege'], (index, field) =>
+            $('input[name="' + field + '"]').datepicker({
+            dateFormat: dateFormat
+        }));
+
+        $('input[name="prjTamEu"]').on('change', () => calculate('prjTamEu', 'prjTamHazai', 'tamOsszesen'));
+        $('input[name="prjTamHazai"]').on('change', () => calculate('prjTamEu', 'prjTamHazai', 'tamOsszesen'));
+        $('input[name="prjDkfTamEu"]').on('change', () => calculate('prjDkfTamEu', 'prjDkfTamHazai', 'dkfOsszesen'));
+        $('input[name="prjDkfTamHazai"]').on('change', () => calculate('prjDkfTamEu', 'prjDkfTamHazai', 'dkfOsszesen'));
+    });
+</script>
+
 <form class="edit-form" action="#">
     @csrf
-    <input type="hidden" name="prjId" class="id"/>
+    <input type="hidden" name="prjId" value="{{ $projekt->prj_id }}" class="id"/>
 
     <div class="mb-3">
         <label for="prjAzonosito" class="form-label">{{ __('projekt.projekt_azonosito_szama') }}</label>
@@ -27,9 +53,9 @@
     <div class="mb-3">
         <label for="prjStatus" class="form-label">{{ __('projekt.projekt_statusza') }}</label>
         <select class="form-select" id="prjStatus" name="prjStatus">
-            <option selected>{{ __('general.kerjuk_valasszon') }}</option>
+            <option value="">{{ __('general.kerjuk_valasszon') }}</option>
             @foreach($szotar['PROJEKT_STATUSZA'] as $item)
-                <option value="{{ $item->szo_rnev }}">{{ $item->szo_hnev }}</option>
+                <option {{ $projekt->prj_status === $item->szo_rnev ? 'selected' : '' }} value="{{ $item->szo_rnev }}">{{ $item->szo_hnev }}</option>
             @endforeach
         </select>
     </div>
@@ -43,9 +69,9 @@
     <div class="mb-3">
         <label for="prjFeladatModja" class="form-label">{{ __('projekt.feladatvegzes_modja') }}</label>
         <select class="form-select" id="prjFeladatModja" name="prjFeladatModja">
-            <option selected>{{ __('general.kerjuk_valasszon') }}</option>
+            <option value="">{{ __('general.kerjuk_valasszon') }}</option>
             @foreach($szotar['FELADATVEGZES_MODJA'] as $item)
-                <option value="{{ $item->szo_rnev }}">{{ $item->szo_hnev }}</option>
+                <option {{ $projekt->prj_feladat_modja === $item->szo_rnev ? 'selected' : '' }} value="{{ $item->szo_rnev }}">{{ $item->szo_hnev }}</option>
             @endforeach
         </select>
     </div>
@@ -69,7 +95,7 @@
     <div class="mb-3">
         <label for="" class="form-label">{{ __('projekt.projekt_jellege') }}</label>
         <select class="form-select" id="" name="">
-            <option selected>{{ __('general.kerjuk_valasszon') }}</option>
+            <option  value="">{{ __('general.kerjuk_valasszon') }}</option>
             <option value="1">One</option>
             <option value="2">Two</option>
         </select>
@@ -102,7 +128,7 @@
         <label for="prjTamogatasiDatum" class="form-label">{{ __('projekt.tamogatasi_szerzodes_datuma') }}</label>
         <input type="text" class="form-control" id="prjTamogatasiDatum" name="prjTamogatasiDatum"
                placeholder="{{ __('projekt.tamogatasi_szerzodes_datuma') }}"
-               value="{{ $projekt->prj_tamogatasi_nyilv }}">
+               value="{{ $projekt->prj_tamogatasi_datum?->format('Y.m.d') }}">
     </div>
 
     <div class="mb-3">
@@ -181,7 +207,7 @@
 
     <div class="mb-3">
         <label class="form-label">{{ __('projekt.projekt_forras_azonosito') }}</label>
-        <input type="text" disabled readonly class="form-control" id="prjForras" name="prjForras"
+        <input type="text" class="form-control" id="prjForras" name="prjForras"
                placeholder="{{ __('projekt.projekt_forras_azonosito') }}"
                value="{{ $projekt->prj_forras }}">
     </div>
@@ -205,9 +231,9 @@
     <div class="mb-3">
         <label for="prjKonzorciumban" class="form-label">{{ __('projekt.konzorciumban_megvalositott') }}</label>
         <select class="form-select" id="prjKonzorciumban" name="prjKonzorciumban">
-            <option selected>{{ __('general.kerjuk_valasszon') }}</option>
+            <option  value="">{{ __('general.kerjuk_valasszon') }}</option>
             @foreach($szotar['PROJEKT_KONZORCIUMBAN'] as $item)
-                <option value="{{ $item->szo_rnev }}">{{ $item->szo_hnev }}</option>
+                <option {{ $projekt->prj_konzorciumban === $item->szo_rnev ? 'selected' : '' }} value="{{ $item->szo_rnev }}">{{ $item->szo_hnev }}</option>
             @endforeach
         </select>
     </div>
