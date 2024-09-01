@@ -18,7 +18,7 @@ class PartnerController extends Controller
             $partner = Partner::query()->find($request->route('uid'));
             $partner->update($attributes);
         } else {
-            $partner = Partner::query()->create($attributes + [PartnerBase::PAR_ID => Partner::getNextId()]);
+            $partner = Partner::query()->create(array_merge($attributes, [PartnerBase::PAR_ID => Partner::getNextId()]));
         }
 
         $request->session()->flash('successSaveMessage', __('partner.sikeres_mentes', ['uniqueName' => $partner->getUniqueName()]));

@@ -30,8 +30,8 @@ class PartnerDataTable extends DataTable
     public function query(Partner $model): QueryBuilder
     {
         $startDate = session()->get('startDate')->format('Y-m-d');
-        $endDate = session()->get('startDate')->format('Y-m-d');
-        return $model->newQuery()
+        $endDate = session()->get('endDate')->format('Y-m-d');
+        $query = $model->newQuery()
             ->orWhere(function ($query) use ($startDate, $endDate) {
                 $query
                     ->where(PartnerBase::PAR_HATKEZD, '<=', $startDate)
@@ -45,8 +45,9 @@ class PartnerDataTable extends DataTable
             ->orWhere(function ($query) use ($startDate, $endDate) {
                 $query
                     ->where(PartnerBase::PAR_HATKEZD, '<=', $endDate)
-                    ->where(PartnerBase::PAR_HATVEGE, '>=', $endDate);
+                    ->where(PartnerBase::PAR_HATVEGE, '>=', $startDate);
             });
+        return $query;
     }
 
     public function html(): HtmlBuilder

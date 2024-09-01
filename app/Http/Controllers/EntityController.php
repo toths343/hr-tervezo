@@ -23,6 +23,7 @@ class EntityController extends Controller
             'breadcrumbs' => [
                 '' => $this->entity->getBreadcrumbName(),
             ],
+            'type' => $this->entity->getType(),
         ];
         return $this->entity->getDatatable()->render('entity.list', $data);
     }

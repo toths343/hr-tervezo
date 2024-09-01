@@ -30,7 +30,7 @@ class EditModal {
 
         $('.btn-edit-modal-open').on('click.edit-modal-open', (event) => {
             this.type = event.target.dataset.type;
-            this.id = event.target.dataset.id || 0;
+            this.id = event.target.dataset.id || '';
             this.uid = event.target.dataset.uid || 0;
             this.newHatkezd = event.target.dataset.hatkezd || '';
             this.newHatvege = event.target.dataset.hatvege || '';
