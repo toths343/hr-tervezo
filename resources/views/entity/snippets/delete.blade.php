@@ -8,7 +8,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="d-flex justify-content-center">
+                <div class="delete-container d-none"></div>
+
+                <div class="d-flex justify-content-center loader-container">
                     <div class="spinner-border" role="status">
                         <span class="visually-hidden">
                             {{ __('entity.betoltes') }}

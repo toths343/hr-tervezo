@@ -13,6 +13,8 @@ class DeleteModal
         $('.btn-delete-modal-open').on('click.delete-modal-open', (event) => {
             this.type = event.target.dataset.type;
             this.uid = event.target.dataset.uid;
+            $('.delete-modal .modal-body .loader-container').removeClass('d-none');
+            $('.delete-modal .modal-body .delete-container').addClass('d-none');
             this.openDeleteModal();
         });
 
@@ -25,7 +27,8 @@ class DeleteModal
             $.ajax({
                 url: '/entity/modal/delete/' + this.type + '/' + this.uid
             }).done((response) => {
-                $('.delete-modal .modal-body').html(response.html);
+                $('.delete-modal .modal-body .delete-container').html(response.html).removeClass('d-none');
+                $('.delete-modal .modal-body .loader-container').addClass('d-none');
             })
         });
     }
