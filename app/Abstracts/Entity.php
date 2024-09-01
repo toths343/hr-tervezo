@@ -74,5 +74,5 @@ abstract class Entity
     {
         return [];
     }
-    
+
 }

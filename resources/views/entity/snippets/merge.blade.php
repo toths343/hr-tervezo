@@ -1,5 +1,5 @@
 @if($mergeable)
-    <button type="button" class="btn btn-outline-success mb-2 btn-merge-modal-open">
+    <button type="button" class="btn btn-outline-success mb-3 btn-merge-modal-open">
         {{ __('entity.szakaszok_osszevonasa') }}
     </button>
 

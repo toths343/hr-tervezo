@@ -12,35 +12,48 @@
 
     @if ($canInsertBeforeFirst)
         <br/>
-        <button type="button" class="btn btn-outline-success mb-2 btn-edit-modal-open" data-type="{{ $type }}">
+        <button type="button" class="btn btn-outline-success mb-3 btn-edit-modal-open" data-type="{{ $type }}">
             {{ __('entity.uj_elem_felvitele_lista_elejere') }}
         </button>
     @endif
 
+    @php
+        $lastHatvege = null;
+    @endphp
     @foreach($list as $element)
-       <div class="card mb-3">
-           <div class="card-header @if($element->isActive()) bg-black text-white @endif" data-bs-toggle="collapse" href="#collapse{{ $element->getUid() }}" role="button" aria-expanded="false" aria-controls="collapse{{ $element->getUid() }}">
-               {{ $element->getUniqueName() }}
-           </div>
-           <div class="card-body collapse @if($element->isActive()) show @endif" id="collapse{{ $element->getUid() }}">
-               <div class="card-text">
-                   @include('entities.display.' . $type, [$type => $element])
-               </div>
-               <button type="button" class="btn btn-outline-primary btn-edit-modal-open" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">
-                   {{ __('entity.szerkesztes') }}
-               </button>
-               <button type="button" class="btn btn-outline-danger btn-delete-modal-open" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">
-                   {{ __('entity.torles') }}
-               </button>
-           </div>
-           <div class="card-footer @if($element->isActive()) bg-black text-white @endif">
-               {{ $element->getHatInterval() }}
-           </div>
-       </div>
+
+        @if ($lastHatvege !== null && $lastHatvege->addDay() < $element->getHatkezd())
+            <button type="button" class="btn btn-outline-success mb-3 btn-edit-modal-open" data-type="{{ $type }}">
+                {{ __('entity.uj_elem_felvitele') }}
+            </button>
+        @endif
+
+        <div class="card mb-3">
+            <div class="card-header @if($element->isActive()) bg-black text-white @endif" data-bs-toggle="collapse" href="#collapse{{ $element->getUid() }}" role="button" aria-expanded="false" aria-controls="collapse{{ $element->getUid() }}">
+                {{ $element->getUniqueName() }}
+            </div>
+            <div class="card-body collapse @if($element->isActive()) show @endif" id="collapse{{ $element->getUid() }}">
+                <div class="card-text">
+                    @include('entities.display.' . $type, [$type => $element])
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-edit-modal-open" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">
+                    {{ __('entity.szerkesztes') }}
+                </button>
+                <button type="button" class="btn btn-outline-danger btn-delete-modal-open" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">
+                    {{ __('entity.torles') }}
+                </button>
+            </div>
+            <div class="card-footer @if($element->isActive()) bg-black text-white @endif">
+                {{ $element->getHatInterval() }}
+            </div>
+        </div>
+        @php
+            $lastHatvege = $element->getHatvege();
+        @endphp
     @endforeach
 
     @if ($canInsertAfterLast)
-        <button type="button" class="btn btn-outline-success mb-2">
+        <button type="button" class="btn btn-outline-success mb-3">
             {{ __('entity.uj_elem_felvitele_lista_vegere') }}
         </button>
     @endif

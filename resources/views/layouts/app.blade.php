@@ -27,7 +27,7 @@
             </a>
         </div>
     </div>
-    <div class="d-flex justify-content-between align-items-center px-2 p-xxl-0 mb-2">
+    <div class="d-flex justify-content-between align-items-center px-2 p-xxl-0 mb-3">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid ps-0">
                 <a class="navbar-brand" href="/">
