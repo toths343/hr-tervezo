@@ -9,19 +9,6 @@ class EditModal {
     }
 
     init() {
-        $('.btn-edit-modal-open').on('click.edit-modal-open', (event) => {
-            this.type = event.target.dataset.type;
-            this.uid = event.target.dataset.uid || 0;
-            $('.edit-modal .modal-body .error-container').addClass('d-none');
-            $('.edit-modal .modal-body .loader-container').removeClass('d-none');
-            $('.edit-modal .modal-body .editor-container').addClass('d-none');
-            this.openEditModal();
-        });
-
-        $('.edit-modal .save-btn').on('click.edit-modal-save', () => {
-            this.save();
-        });
-
         this.editModalElement = $('.edit-modal');
         this.editModalElement.on('shown.bs.modal', () => {
             $.ajax({
@@ -30,6 +17,27 @@ class EditModal {
                 $('.edit-modal .modal-body .editor-container').html(response.html).removeClass('d-none');
                 $('.edit-modal .modal-body .loader-container').addClass('d-none');
             })
+        });
+
+        $('.btn-edit-modal-open').on('click.edit-modal-open', (event) => {
+            this.type = event.target.dataset.type;
+            this.uid = event.target.dataset.uid || 0;
+            $('.edit-modal .modal-body .error-container').addClass('d-none');
+            $('.edit-modal .modal-body .loader-container').removeClass('d-none');
+            $('.edit-modal .modal-body .editor-container').addClass('d-none');
+            this.editModalElement.find('.title-edit, .title-new').addClass('d-none');
+
+            if (this.uid) {
+                this.editModalElement.find('.title-edit').removeClass('d-none');
+            } else {
+                this.editModalElement.find('.title-new').removeClass('d-none');
+            }
+
+            this.openEditModal();
+        });
+
+        $('.edit-modal .save-btn').on('click.edit-modal-save', () => {
+            this.save();
         });
     }
 
