@@ -30,7 +30,7 @@ class ProjektDataTable extends DataTable
     public function query(Projekt $model): QueryBuilder
     {
         $startDate = session()->get('startDate')->format('Y-m-d');
-        $endDate = session()->get('startDate')->format('Y-m-d');
+        $endDate = session()->get('endDate')->format('Y-m-d');
         return $model->newQuery()
             ->orWhere(function ($query) use ($startDate, $endDate) {
                 $query
@@ -45,7 +45,7 @@ class ProjektDataTable extends DataTable
             ->orWhere(function ($query) use ($startDate, $endDate) {
                 $query
                     ->where(ProjektBase::PRJ_HATKEZD, '<=', $endDate)
-                    ->where(ProjektBase::PRJ_HATVEGE, '>=', $endDate);
+                    ->where(ProjektBase::PRJ_HATVEGE, '>=', $startDate);
             });
     }
 
