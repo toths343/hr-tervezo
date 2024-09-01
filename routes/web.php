@@ -4,6 +4,7 @@ use App\Http\Controllers\EntityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\ProjektController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +46,10 @@ Route::group([
 
     Route::controller(PartnerController::class)->group(function () {
         Route::post('/partner/save/{uid?}', 'save')->name('partner.save');
+    });
+
+    Route::controller(ProjektController::class)->group(function () {
+        Route::post('/projekt/save/{uid?}', 'save')->name('projekt.save');
     });
 
 });

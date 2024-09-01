@@ -2,6 +2,10 @@
 
 return [
     'required' => 'A(z) ":field" mező megadása kötelező',
+    'date_format' => 'A(t) ":field" mező formátuma nem megfelelő (éééé.hh.nn)',
+    'before' => 'A(t) ":field" mező értékének korábbi időpontnak kell lennie a végdátumnál',
+    'after' => 'A(t) ":field" mező értékének későbbi időpontnak kell lennie a kezdődátumnál',
+
     'hatalyossag_kezdodatumanak_kivalasztasa_kotelezo' => 'A hatályosság kezdődátumának megadása kötelező',
     'hatalyossag_kezdodatum_format' => 'A hatályosság kezdődátumának formátuma nem megfelelő',
     'hatalyossag_kezdodatum_korabban_mint_vegdatum' => 'A hatályosság kezdődátumának korábbi időpontnak kell lennie a végdátumnál',

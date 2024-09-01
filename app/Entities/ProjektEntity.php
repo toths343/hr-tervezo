@@ -4,15 +4,17 @@ namespace App\Entities;
 use App\Abstracts\Entity;
 use App\DataTables\ProjektDataTable;
 use App\Models\Base\Projekt as ProjektBase;
-use App\Models\Projekt as ProjektModel;
+use App\Models\Projekt;
+use App\Models\Szotar;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Yajra\DataTables\Services\DataTable;
 
 class ProjektEntity extends Entity
 {
-    public function __construct(private readonly ProjektDataTable $projektDataTable, ?int $id)
+    public function __construct(private readonly ProjektDataTable $projektDataTable, ?int $uid, ?int $id)
     {
+        $this->uid = $uid;
         $this->id = $id;
     }
 
@@ -23,7 +25,7 @@ class ProjektEntity extends Entity
 
     function getBuilder(): Builder
     {
-        return ProjektModel::query();
+        return Projekt::query();
     }
 
     function getBreadcrumbName(): string
@@ -41,4 +43,10 @@ class ProjektEntity extends Entity
         return $this->projektDataTable;
     }
 
+    function getEditorData(): array
+    {
+        return [
+            'projekt' => $this->uid ? $this->getBuilder()->find($this->uid) : new Projekt(),
+        ] + ['szotar' => Szotar::getSzotar(['PROJEKT_STATUSZA', 'FELADATVEGZES_MODJA', 'PROJEKT_KATEGORIA', 'PROJEKT_KONZORCIUMBAN'])];
+    }
 }

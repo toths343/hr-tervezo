@@ -10,6 +10,8 @@ return [
     'nyilvantartasi_szam' => 'Nyilvántartási szám',
     'cim' => 'Cím',
     'hatalyossag' => 'Hatályosság',
+    'hatalyossag_kezdete' => 'Hatályosság kezdete',
+    'hatalyossag_vege' => 'Hatályosság vége',
     'partner_azonosito' => 'Partner azonosító',
     'partner_nev' => 'Partner név',
     'partner_adoszama' => 'Partner adószáma',
@@ -22,5 +24,5 @@ return [
     'partner_vegdatumanak_kivalasztasa_kotelezo' => '',
     'partner_vegdatum_format' => '',
     'partner_vegdatum_kesobb_mint_kezdodatum' => '',
-    'sikeres_mentes' => 'Az alábbi partner adat mentésre került: :uniqueName',
+    'sikeres_mentes' => 'Az alábbi partner mentésre került: :uniqueName',
 ];

@@ -28,12 +28,12 @@ class PartnerRequest extends FormRequest
             'parAdoszam.required' => __('validation.required', ['field' => __('partner.partner_adoszama')]),
             'parNyilvSzam.required' => __('validation.required', ['field' => __('partner.partner_nyilvantartasi_szama')]),
             'parCim.required' => __('validation.required', ['field' => __('partner.partner_cime')]),
-            'parHatkezd.required' => __('validation.hatalyossag_kezdodatumanak_kivalasztasa_kotelezo'),
-            'parHatkezd.date_format' => __('validation.hatalyossag_kezdodatum_format'),
-            'parHatkezd.before' => __('validation.hatalyossag_kezdodatum_korabban_mint_vegdatum'),
-            'parHatvege.required' => __('validation.hatalyossag_vegdatumanak_kivalasztasa_kotelezo'),
-            'parHatvege.date_format' => __('validation.hatalyossag_vegdatum_format'),
-            'parHatvege.after' => __('validation.hatalyossag_vegdatum_kesobb_mint_kezdodatum'),
+            'parHatkezd.required' => __('validation.required', ['field' => __('partner.hatalyossag_kezdete')]),
+            'parHatkezd.date_format' => __('validation.date_format', ['field' => __('partner.hatalyossag_kezdete')]),
+            'parHatkezd.before' => __('validation.before', ['field' => __('partner.hatalyossag_kezdete')]),
+            'parHatvege.required' => __('validation.required', ['field' => __('partner.hatalyossag_vege')]),
+            'parHatvege.date_format' => __('validation.date_format', ['field' => __('partner.hatalyossag_vege')]),
+            'parHatvege.after' => __('validation.after', ['field' => __('partner.hatalyossag_vege')]),
         ];
     }
 

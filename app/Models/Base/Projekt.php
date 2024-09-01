@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Projekt
@@ -45,11 +46,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $prj_konzorciumban
  * @property Carbon $prj_hatkezd
  * @property Carbon $prj_hatvege
- * @property Carbon $prj_created
- * @property string $prj_creater
- * @property Carbon $prj_lastupd
- * @property string $prj_modifier
- * @property int $prj_del
+ * @property Carbon $created_at
+ * @property string $creater
+ * @property Carbon $updated_at
+ * @property string $modifier
+ * @property string|null $del
  * 
  * @property Collection|ElszamolasiAdatok[] $elszamolasi_adatoks
  * @property Collection|PozicioOrabonta[] $pozicio_orabontas
@@ -60,6 +61,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Projekt extends Model
 {
+	use SoftDeletes;
+	const DELETED_AT = 'del';
 	const PRJ_UID = 'prj_uid';
 	const PRJ_ID = 'prj_id';
 	const PRJ_KAT = 'prj_kat';
@@ -85,14 +88,12 @@ class Projekt extends Model
 	const PRJ_KONZORCIUMBAN = 'prj_konzorciumban';
 	const PRJ_HATKEZD = 'prj_hatkezd';
 	const PRJ_HATVEGE = 'prj_hatvege';
-	const PRJ_CREATED = 'prj_created';
-	const PRJ_CREATER = 'prj_creater';
-	const PRJ_LASTUPD = 'prj_lastupd';
-	const PRJ_MODIFIER = 'prj_modifier';
-	const PRJ_DEL = 'prj_del';
+	const CREATED_AT = 'created_at';
+	const CREATER = 'creater';
+	const UPDATED_AT = 'updated_at';
+	const MODIFIER = 'modifier';
 	protected $table = 'projekt';
 	protected $primaryKey = 'prj_uid';
-	public $timestamps = false;
 
 	protected $casts = [
 		self::PRJ_UID => 'int',
@@ -109,9 +110,8 @@ class Projekt extends Model
 		self::PRJ_HRTERV_VEGE => 'datetime',
 		self::PRJ_HATKEZD => 'datetime',
 		self::PRJ_HATVEGE => 'datetime',
-		self::PRJ_CREATED => 'datetime',
-		self::PRJ_LASTUPD => 'datetime',
-		self::PRJ_DEL => 'int'
+		self::CREATED_AT => 'datetime',
+		self::UPDATED_AT => 'datetime'
 	];
 
 	protected $fillable = [
@@ -139,11 +139,8 @@ class Projekt extends Model
 		self::PRJ_KONZORCIUMBAN,
 		self::PRJ_HATKEZD,
 		self::PRJ_HATVEGE,
-		self::PRJ_CREATED,
-		self::PRJ_CREATER,
-		self::PRJ_LASTUPD,
-		self::PRJ_MODIFIER,
-		self::PRJ_DEL
+		self::CREATER,
+		self::MODIFIER
 	];
 
 	public function elszamolasi_adatoks(): HasMany
