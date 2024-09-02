@@ -14,32 +14,16 @@
 </head>
 <body>
 <div class="container-xxl p-0">
-    <div class="bg-body-secondary p-2 d-flex justify-content-between">
-        <div>
-            @include('layouts.snippets.datepickers')
-        </div>
-        <div>
-        <span class="fw-semibold ms-3">
-            {{ $user->user_name }}
-        </span>
-            <a class="btn btn-outline-primary ms-2" href="{{ route('logout') }}">
-                {{ __('layout.logout') }}
-            </a>
-        </div>
-    </div>
-    <div class="d-flex justify-content-between align-items-center px-2 p-xxl-0 mb-3">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid ps-0">
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg fixed top w-100">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="/">
                     {{ __('layout.title') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavDropdown"
-                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav me-auto">
+
+                <div class="navbar-collapse justify-content-end" id="navbarNavDropdown">
+                    <ul class="navbar-nav mb-2 mb-lg-0 px-3">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                aria-expanded="false">
@@ -51,12 +35,27 @@
                             </ul>
                         </li>
                     </ul>
+                    <a class="btn btn-secondary btn-sm btn-icon" href="{{ route('logout') }}">
+                        <i class="icon-log-out"></i>
+                    </a>
                 </div>
             </div>
         </nav>
+        <section class="d-flex justify-content-between py-2" id="date-selector">
+            @include('layouts.snippets.datepickers')
+        </section>
+        <div>
+        <span class="fw-semibold ms-3">
+            {{ $user->user_name }}
+        </span>
+
+        </div>
+    </header>
+    <div class="d-flex justify-content-between align-items-center px-2 p-xxl-0 mb-3">
+
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a class="text-decoration-none" href="{{ route('home.index') }}">Nyitólap</a></li>
+                <li class="breadcrumb-item"><a class="text-decoration-none color-primary" href="{{ route('home.index') }}">Nyitólap</a></li>
                 @if(isset($breadcrumbs))
                     @foreach($breadcrumbs as $url => $breadcrumb)
                         <li class="breadcrumb-item {{ !$url ? 'active' : '' }}">

@@ -54,11 +54,20 @@ class PartnerDataTable extends DataTable
     {
         return $this->builder()
             ->setTableId('partner')
+            ->addTableClass('table-striped')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1, 'asc')
             ->parameters([
                 'buttons' => ['export'],
+                'language' => [
+                    'paginate' => [
+                        'previous' => '&#139;',
+                        'next'     => '&#8250',
+                        'first'     => '&#171',
+                        'last'     => '&#187',
+                    ]
+                ],
             ]);
     }
 

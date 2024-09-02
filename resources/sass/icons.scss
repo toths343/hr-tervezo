@@ -1,0 +1,34 @@
+[class^="icon-"] {
+  background-color: currentColor;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  display: inline-block;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.icon-log-out {
+  -webkit-mask-image: url('../icons/log-out.svg');
+  mask-image: url('../icons/log-out.svg');
+}
+
+.icon-edit {
+  -webkit-mask-image: url('../icons/edit.svg');
+  mask-image: url('../icons/edit.svg');
+}
+
+.icon-arrow-left {
+  -webkit-mask-image: url('../icons/left-arrow-alt.svg');
+  mask-image: url('../icons/left-arrow-alt.svg');
+}
+
+.icon-arrow-right {
+  -webkit-mask-image: url('../icons/right-arrow-alt.svg');
+  mask-image: url('../icons/right-arrow-alt.svg');
+}
+
+.icon-trash {
+  -webkit-mask-image: url('../icons/trash.svg');
+  mask-image: url('../icons/trash.svg');
+}
+

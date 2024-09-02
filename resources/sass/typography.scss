@@ -1,0 +1,77 @@
+:root {
+    /* Font family */
+    --body-font-family: 'Plus Jakarta Sans';
+
+    /* Font weights */
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extra-bold: 800;
+
+    /* Font sizes */
+    --font-size-large: 1.25rem;
+    --font-size-medium: 1.125rem;
+    --font-size-regular: 1rem;
+    --font-size-small: 0.875rem;
+    --font-size-tiny: 0.75rem;
+    --font-size-h1: 3.5rem;
+    --font-size-h2: 3rem;
+    --font-size-h3: 2.5rem;
+    --font-size-h4: 2rem;
+    --font-size-h5: 1.5rem;
+    --font-size-h6: 1.25rem;
+    --font-size-icon: 1.625rem;
+
+    /* Line heights */
+    --line-height-text: 150%;
+    --line-height-header-large: 120%;
+    --line-height-header-medium: 130%;
+    --line-height-header-small: 140%;
+    --line-height-input: 21px;
+}
+
+.text-large {
+    font-size: var(--font-size-large);
+    line-height: var(--line-height-text);
+}
+
+.text-medium {
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height-text);
+}
+
+.text-small {
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-text);
+}
+
+.text-tiny {
+    font-size: var(--font-size-tiny);
+    line-height: var(--line-height-text);
+}
+
+.weight-extra-bold {
+    font-weight: var(--font-weight-bold);
+}
+
+.weight-bold {
+    font-weight: var(--font-weight-extra-bold);
+}
+
+.weight-semi-bold {
+    font-weight: var(--font-weight-semi-bold);
+}
+
+.weight-medium {
+    font-weight: var(--font-weight-medium);
+}
+
+.weight-normal {
+    font-weight: var(--font-weight-regular);
+}
+
+.weight-light {
+    font-weight: var(--font-weight-regular);
+}
