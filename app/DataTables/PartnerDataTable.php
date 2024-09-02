@@ -66,7 +66,7 @@ class PartnerDataTable extends DataTable
     {
         return [
             Column::make(PartnerBase::PAR_UID)->title(__('partner.uid'))->className('align-middle'),
-            Column::make(PartnerBase::PAR_ID)->title(__('partner.uid'))->className('align-middle'),
+            Column::make(PartnerBase::PAR_ID)->title(__('partner.id'))->className('align-middle'),
             Column::make(PartnerBase::PAR_AZONOSITO)->title(__('partner.azonosito'))->className('align-middle'),
             Column::make(PartnerBase::PAR_NEV)->title(__('partner.nev'))->className('align-middle'),
             Column::make(PartnerBase::PAR_ADOSZAM)->title(__('partner.adoszam'))->className('align-middle'),

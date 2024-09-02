@@ -13,28 +13,31 @@
 
     @if ($canInsertBeforeFirst)
         <br/>
-        <button type="button" class="btn btn-outline-success mb-3 btn-edit-modal-open"
-                data-id="{{ $id }}"
-                data-type="{{ $type }}"
-                data-hatkezd="1900.01.01"
-                data-hatvege="{{ $list->first()->getHatkezd()->copy()->subDay()->format('Y.m.d') }}">
+        <a href="{{ route('entity.edit', [
+                'type' => $type,
+                'id' => $id,
+                'uid' => 0,
+                'hatkezd' => '1900.01.01',
+                'hatvege' => $list->first()->getHatkezd()->copy()->subDay()->format('Y.m.d'),
+            ]) }}" class="btn btn-outline-success mb-3">
             {{ __('entity.uj_elem_felvitele_lista_elejere') }}
-        </button>
+        </a>
     @endif
 
     @php
         $lastHatvege = null;
     @endphp
     @foreach($list as $element)
-
         @if ($lastHatvege !== null && $lastHatvege->copy()->addDay() < $element->getHatkezd())
-            <button type="button" class="btn btn-outline-success mb-3 btn-edit-modal-open"
-                data-id="{{ $id }}"
-                data-type="{{ $type }}"
-                data-hatkezd="{{ $lastHatvege->copy()->addDay()->format('Y.m.d') }}"
-                data-hatvege="{{ $element->getHatkezd()->copy()->subDay()->format('Y.m.d') }}">
+            <a href="{{ route('entity.edit', [
+                'type' => $type,
+                'id' => $id,
+                'uid' => 0,
+                'hatkezd' => $lastHatvege->copy()->addDay()->format('Y.m.d'),
+                'hatvege' => $element->getHatkezd()->copy()->subDay()->format('Y.m.d')
+            ]) }}" class="btn btn-outline-success mb-3">
                 {{ __('entity.uj_elem_felvitele') }}
-            </button>
+            </a>
         @endif
 
         <div class="card mb-3">
@@ -48,9 +51,9 @@
                 <button type="button" class="btn btn-outline-primary btn-split-modal-open" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">
                     {{ __('entity.felosztas') }}
                 </button>
-                <button type="button" class="btn btn-outline-primary btn-edit-modal-open" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">
+                <a href="{{ route('entity.edit', ['type' => $type, 'uid' => $element->getUid()]) }}" class="btn btn-outline-primary">
                     {{ __('entity.szerkesztes') }}
-                </button>
+                </a>
                 <button type="button" class="btn btn-outline-danger btn-delete-modal-open" data-type="{{ $type }}" data-uid="{{ $element->getUid() }}">
                     {{ __('entity.torles') }}
                 </button>
@@ -65,13 +68,15 @@
     @endforeach
 
     @if ($canInsertAfterLast)
-        <button type="button" class="btn btn-outline-success mb-3 btn-edit-modal-open"
-                data-id="{{ $id }}"
-                data-type="{{ $type }}"
-                data-hatkezd="{{ $list->last()->getHatvege()->copy()->addDay()->format('Y.m.d') }}"
-                data-hatvege="3999.12.31">
+        <a href="{{ route('entity.edit', [
+                'type' => $type,
+                'id' => $id,
+                'uid' => 0,
+                'hatkezd' => $list->last()->getHatvege()->copy()->addDay()->format('Y.m.d'),
+                'hatvege' => '3999.12.31',
+            ]) }}" class="btn btn-outline-success mb-3">
             {{ __('entity.uj_elem_felvitele_lista_vegere') }}
-        </button>
+        </a>
     @endif
 
 @endsection

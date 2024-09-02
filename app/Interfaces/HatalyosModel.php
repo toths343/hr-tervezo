@@ -6,6 +6,8 @@ use Carbon\Carbon;
 
 interface HatalyosModel
 {
+    function getId(): int;
+
     function getUid(): int;
 
     function getUniqueName(): string;

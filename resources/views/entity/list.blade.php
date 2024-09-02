@@ -8,10 +8,9 @@
     <div class="card">
         <div class="card-header">{{ $title }}</div>
         <div class="card-body small">
-            <button type="button" class="btn btn-outline-success mb-3 btn-edit-modal-open"
-                data-type="{{ $type }}">
+            <a href="{{ route('entity.edit', ['type' => $type, 'uid' => 0]) }}" class="btn btn-outline-success mb-3">
                 {{ __('entity.uj_elem_felvitele') }}
-            </button>
+            </a>
 
             {{ $dataTable->table() }}
         </div>

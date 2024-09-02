@@ -16,6 +16,11 @@ class Partner extends BasePartner implements HatalyosModel
         'deleting' => DatabaseEvent::class,
     ];
 
+    public function getId(): int
+    {
+        return $this->par_id;
+    }
+
     public function getUid(): int
     {
         return $this->par_uid;
@@ -43,8 +48,8 @@ class Partner extends BasePartner implements HatalyosModel
 
     public function isActive(): bool
     {
-        $actDate = session()->get('actDate')->format('Y-m-d');
-        return $this->par_hatkezd <= $actDate && $this->par_hatvege >= $actDate;
+        $actDate = session()->get('actDate')->format('Y.m.d');
+        return $this->par_hatkezd->format('Y.m.d') <= $actDate && $this->par_hatvege->format('Y.m.d') >= $actDate;
     }
 
     public static function getNextId(): int

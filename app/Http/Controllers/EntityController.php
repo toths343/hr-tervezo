@@ -29,6 +29,29 @@ class EntityController extends Controller
         return $this->entity->getDatatable()->render('entity.list', $data);
     }
 
+    public function edit(): View
+    {
+        $editorData = $this->entity->getEditorData();
+        $data = [
+            'title' => $this->entity->getBreadcrumbName(),
+            'type' => $this->entity->getType(),
+            'id' => $this->entity->uid ? current($editorData)->getId() : request()->query('id'),
+            'uid' => $this->entity->uid,
+            'hatkezd' => request()->query('hatkezd'),
+            'hatvege' => request()->query('hatvege'),
+            'breadcrumbs' => [
+                route('entity.list', ['type' => $this->entity->getType()]) => $this->entity->getBreadcrumbName(),
+                '' => $this->entity->uid ? current($editorData)->getUniqueName() : __('entity.uj_elem_felvitele'),
+            ],
+            'editContent' => view(
+                'entities.editor.' . $this->entity->getType(),
+                $editorData
+            )->render(),
+        ];
+
+        return view('entity.edit', $data);
+    }
+
     public function index(): View
     {
         $list = $this->entity->getEntityList();
@@ -43,7 +66,7 @@ class EntityController extends Controller
             'id' => $this->entity->id,
             'breadcrumbs' => [
                 route('entity.list', ['type' => $this->entity->getType()]) => $this->entity->getBreadcrumbName(),
-                '' => $list[0]->getUniqueName(),
+                '' => __('entity.szerkesztes'),
             ],
             'list' => $this->entity->getEntityList(),
             'mergeable' => $this->entity->mergeable(),

@@ -32,6 +32,8 @@ Route::group([
 
     Route::controller(EntityController::class)->group(function () {
         Route::get('/entity/{type}', 'list')->name('entity.list');
+        Route::get('/entity/{type}/edit/{uid}', 'edit')->name('entity.edit');
+        Route::get('/entity/{type}/edit/{uid}', 'edit')->name('entity.edit');
         Route::get('/entity/{type}/{id}', 'index')->name('entity.index');
 
         Route::get('/entity/modal/edit/{type}/{uid?}', 'editModal')->name('entity.editModal');

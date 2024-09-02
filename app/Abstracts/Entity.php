@@ -64,7 +64,7 @@ abstract class Entity
 
     function canInsertAfterLast(): bool
     {
-        if (!$this->getEntityList()->isEmpty() && $this->getEntityList()->last()->getHatvege()->isBefore(Carbon::createFromFormat('Y-m-d','3999-12-31'))) {
+        if (!$this->getEntityList()->isEmpty() && $this->getEntityList()->last()->getHatvege()->isBefore(Carbon::createFromFormat('Y-m-d H:i:s','3999-12-31 00:00:00'))) {
             return true;
         }
         return false;

@@ -8,6 +8,11 @@ use Carbon\Carbon;
 
 class Projekt extends BaseProjekt implements HatalyosModel
 {
+    public function getId(): int
+    {
+        return $this->prj_id;
+    }
+
     public function getUid(): int
     {
         return $this->prj_uid;
