@@ -1,7 +1,3 @@
-<button type="button" class="btn btn-outline-success mb-3 btn-split-modal-open">
-    {{ __('entity.felosztas') }}
-</button>
-
 <div class="modal split-modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
