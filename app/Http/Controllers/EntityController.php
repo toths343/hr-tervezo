@@ -66,7 +66,7 @@ class EntityController extends Controller
             'id' => $this->entity->id,
             'breadcrumbs' => [
                 route('entity.list', ['type' => $this->entity->getType()]) => $this->entity->getBreadcrumbName(),
-                '' => __('entity.szerkesztes'),
+                '' => __('entity.reszletek'),
             ],
             'list' => $this->entity->getEntityList(),
             'mergeable' => $this->entity->mergeable(),

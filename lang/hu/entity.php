@@ -28,4 +28,5 @@ return [
     'sikeres_hatardatum_elmozgatas' => 'Sikeres határdátum elmozgatás',
     'sikeres_torles' => 'Az alábbi bejegyzést törölte: :uniqueName',
     'sikeres_felosztas' => 'Sikeres felosztás',
+    'reszletek' => 'Részletek',
 ];
