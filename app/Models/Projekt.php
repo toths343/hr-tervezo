@@ -2,12 +2,35 @@
 
 namespace App\Models;
 
+use App\Events\DatabaseEvent;
 use App\Interfaces\HatalyosModel;
 use App\Models\Base\Projekt as BaseProjekt;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Projekt extends BaseProjekt implements HatalyosModel
 {
+    use SoftDeletes;
+
+    const DELETED_AT = self::PRJ_DEL;
+
+    const CREATED_AT = self::PRJ_CREATED;
+
+    const CREATED_BY = self::PRJ_CREATER;
+
+    const UPDATED_AT = self::PRJ_LASTUPD;
+
+    const UPDATED_BY = self::PRJ_MODIFIER;
+
+    public $timestamps = true;
+
+    protected $dispatchesEvents = [
+        'updating' => DatabaseEvent::class,
+        'saving' => DatabaseEvent::class,
+        'creating' => DatabaseEvent::class,
+        'deleting' => DatabaseEvent::class,
+    ];
+
     public function getId(): int
     {
         return $this->prj_id;

@@ -14,11 +14,10 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Partner
- * 
+ *
  * @property int $par_uid
  * @property int $par_id
  * @property string $par_azonosito
@@ -28,12 +27,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $par_cim
  * @property Carbon $par_hatkezd
  * @property Carbon $par_hatvege
- * @property Carbon $created_at
- * @property string $creater
- * @property Carbon $updated_at
- * @property string $modifier
- * @property string|null $del
- * 
+ * @property Carbon $par_created
+ * @property string $par_creater
+ * @property Carbon $par_lastupd
+ * @property string $par_modifier
+ * @property Carbon|null $par_del
+ *
  * @property Collection|Kapcsolattarto[] $kapcsolattartos
  * @property Collection|Projekt[] $projekts
  *
@@ -41,8 +40,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Partner extends Model
 {
-	use SoftDeletes;
-	const DELETED_AT = 'del';
 	const PAR_UID = 'par_uid';
 	const PAR_ID = 'par_id';
 	const PAR_AZONOSITO = 'par_azonosito';
@@ -52,20 +49,23 @@ class Partner extends Model
 	const PAR_CIM = 'par_cim';
 	const PAR_HATKEZD = 'par_hatkezd';
 	const PAR_HATVEGE = 'par_hatvege';
-	const CREATED_AT = 'created_at';
-	const CREATER = 'creater';
-	const UPDATED_AT = 'updated_at';
-	const MODIFIER = 'modifier';
+	const PAR_CREATED = 'par_created';
+	const PAR_CREATER = 'par_creater';
+	const PAR_LASTUPD = 'par_lastupd';
+	const PAR_MODIFIER = 'par_modifier';
+	const PAR_DEL = 'par_del';
 	protected $table = 'partner';
 	protected $primaryKey = 'par_uid';
+	public $timestamps = false;
 
 	protected $casts = [
 		self::PAR_UID => 'int',
 		self::PAR_ID => 'int',
 		self::PAR_HATKEZD => 'datetime',
 		self::PAR_HATVEGE => 'datetime',
-		self::CREATED_AT => 'datetime',
-		self::UPDATED_AT => 'datetime'
+		self::PAR_CREATED => 'datetime',
+		self::PAR_LASTUPD => 'datetime',
+		self::PAR_DEL => 'datetime'
 	];
 
 	protected $fillable = [
@@ -77,8 +77,11 @@ class Partner extends Model
 		self::PAR_CIM,
 		self::PAR_HATKEZD,
 		self::PAR_HATVEGE,
-		self::CREATER,
-		self::MODIFIER
+		self::PAR_CREATED,
+		self::PAR_CREATER,
+		self::PAR_LASTUPD,
+		self::PAR_MODIFIER,
+		self::PAR_DEL
 	];
 
 	public function kapcsolattartos(): HasMany

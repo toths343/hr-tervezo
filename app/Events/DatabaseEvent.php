@@ -19,9 +19,9 @@ class DatabaseEvent
     public function __construct(Model $model)
     {
         if (!$model->exists) {
-            $model->creater = Auth::user()->user_name;
+            $model->{$model::CREATED_BY} = Auth::user()->user_name;
         }
-        $model->modifier = Auth::user()->user_name;
+        $model->{$model::UPDATED_BY} = Auth::user()->user_name;
     }
 
     /**

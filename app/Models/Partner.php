@@ -6,9 +6,24 @@ use App\Events\DatabaseEvent;
 use App\Interfaces\HatalyosModel;
 use App\Models\Base\Partner as BasePartner;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Partner extends BasePartner implements HatalyosModel
 {
+    use SoftDeletes;
+
+    const DELETED_AT = self::PAR_DEL;
+
+    const CREATED_AT = self::PAR_CREATED;
+
+    const CREATED_BY = self::PAR_CREATER;
+
+    const UPDATED_AT = self::PAR_LASTUPD;
+
+    const UPDATED_BY = self::PAR_MODIFIER;
+
+    public $timestamps = true;
+
     protected $dispatchesEvents = [
         'updating' => DatabaseEvent::class,
         'saving' => DatabaseEvent::class,
