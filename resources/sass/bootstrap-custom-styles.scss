@@ -437,11 +437,19 @@ table.table.dataTable {
 /* Menu */
 .dropdown-menu {
   --bs-dropdown-link-color: var(--color-link-primary);
+  --bs-dropdown-color: var(--color-link-primary);
   --bs-dropdown-padding-y: 0;
   --bs-dropdown-item-padding-y: 0.75rem;
   --bs-dropdown-item-padding-x: 1.5rem;
   font-weight: var(--font-weight-semi-bold);
   border-bottom: 1px solid var(--color-border-primary);
+}
+
+.dropdown-item {
+  font-weight: var(--font-weight-semi-bold);
+  border-bottom: 1px solid var(--color-border-primary);
+  --bs-dropdown-item-padding-y: 0.75rem;
+  --bs-dropdown-item-padding-x: 1.5rem;
 
   &:hover {
     --bs-dropdown-link-hover-color: var(--color-link-primary);

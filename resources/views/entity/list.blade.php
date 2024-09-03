@@ -5,8 +5,8 @@
 @section('content')
     @include('entity.snippets.edit')
 
-    <div class="card">
-        <div class="card-header">{{ $title }}</div>
+    <div class="card list-card">
+        <h5 class="card-header">{{ $title }}</h5>
         <div class="card-body small">
             <button type="button" class="btn btn-primary mb-3 btn-edit-modal-open"
                 data-type="{{ $type }}">
